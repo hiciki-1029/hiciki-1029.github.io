@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Pipeline from "../../components/Pipeline.astro";
 
 export async function getStaticPaths() {
   const systems = await getCollection("systems");
@@ -29,8 +30,39 @@ const badge = badgeMap[sys.data.status];
     </div>
   </section>
 
+  {
+    sys.data.pipeline.length > 0 && (
+      <section class="wrap" style="padding-top:10px;">
+        <div class="panel" style="padding:22px 24px;">
+          <div class="pipeline-title">系统链路</div>
+          <Pipeline steps={sys.data.pipeline} />
+        </div>
+      </section>
+    )
+  }
+
   <article class="narrow prose">
     <Content />
+
+    {
+      sys.data.media.length > 0 && (
+        <div class="gallery">
+          {sys.data.media.map((m) =>
+            m.type === "image" ? (
+              <figure class="shot">
+                <img src={m.src} alt={m.caption} loading="lazy" />
+                {m.caption && <figcaption>{m.caption}</figcaption>}
+              </figure>
+            ) : (
+              <figure class="shot">
+                <video controls preload="none" poster={m.poster} src={m.src}></video>
+                {m.caption && <figcaption>{m.caption}</figcaption>}
+              </figure>
+            )
+          )}
+        </div>
+      )
+    }
 
     {
       sys.data.link && (

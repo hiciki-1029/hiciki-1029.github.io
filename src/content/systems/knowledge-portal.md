@@ -7,6 +7,7 @@ status: live
 featured: true
 span: "3"
 tags: ["Next.js", "飞书", "向量检索", "证据接地"]
+pipeline: ["多端采集", "结构化蒸馏", "入库留痕", "可溯源问答", "签名发布"]
 link: "https://github.com/hiciki-1029/book-digest-hq"
 linkLabel: "开源的读书蒸馏器"
 order: 1

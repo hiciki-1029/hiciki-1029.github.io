@@ -2,6 +2,8 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SystemCard from "../components/SystemCard.astro";
+import HeroSystem from "../components/HeroSystem.astro";
+import Marquee from "../components/Marquee.astro";
 
 const systems = (await getCollection("systems")).sort(
   (a, b) => a.data.order - b.data.order
@@ -13,37 +15,41 @@ const writings = (await getCollection("writing"))
 const kindLabel = { digest: "蒸馏", note: "笔记", retro: "复盘", essay: "随笔" };
 
 const stats = [
-  { n: "69<small>期日报</small>", l: "另有 11 期周报，资讯智能体每天自动送达" },
-  { n: "约200<small>人</small>", l: "新人培养自动化，横跨 23 个团队，通关率 86.5%" },
-  { n: "24<small>件/31人</small>", l: "21 天 AI 创作赛，从作品到上台路演" },
-  { n: "34<small>个</small>", l: "亲手写的 AI 技能，加 14 个常驻自动化" },
-  { n: "24<small>份</small>", l: "前沿报告蒸馏，附来源、可回溯" },
+  { to: 69, prefix: "", suffix: "期日报", l: "另有 11 期周报，资讯智能体每天自动送达" },
+  { to: 200, prefix: "约", suffix: "人", l: "新人培养自动化，横跨 23 个团队，通关率 86.5%" },
+  { to: 24, prefix: "", suffix: "件·31人", l: "21 天 AI 创作赛，从作品到上台路演" },
+  { to: 34, prefix: "", suffix: "个", l: "亲手写的 AI 技能，加 14 个常驻自动化" },
+  { to: 24, prefix: "", suffix: "份", l: "前沿报告蒸馏，附来源、可回溯" },
 ];
 
 const layers = [
   {
-    num: "01 / 造系统",
+    key: "build",
+    num: "01",
+    kicker: "造系统",
     title: "把事做成能跑的系统",
     desc: "重复的活交给机器，人留下判断、验收与回写。从测评、资讯到知识库，都是真实在运行的应用，而不是演示稿。",
     tags: ["常驻智能体", "全栈实现", "自动化运营"],
   },
   {
-    num: "02 / 带团队",
+    key: "lead",
+    num: "02",
+    kicker: "带团队",
     title: "带一群人一起做 AI",
     desc: "一个人会用不够。我牵头黑客松、运营兴趣小组、搭好沉淀机制，让非技术的 HR 同事也能做出能用的作品。",
     tags: ["AI 黑客松", "兴趣社群", "作品牵引"],
   },
   {
-    num: "03 / 判断与人",
+    key: "judge",
+    num: "03",
+    kicker: "判断与人",
     title: "管人怎么想的那一层",
-    desc: "十年组织人才发展，叠加 ICF 教练。懂业务、懂人、懂难谈话——这是 AI 越强大、反而越稀缺的部分。",
+    desc: "十余年组织人才发展，叠加 ICF 教练。懂业务、懂人、懂难谈话——这是 AI 越强大、反而越稀缺的部分。",
     tags: ["ICF 教练", "组织诊断", "关键对话"],
   },
 ];
 
 const road = [
-  { yr: "2012–2015", co: "伊顿", rl: "培训专员" },
-  { yr: "2016–2018", co: "晨光科力普", rl: "培训主管" },
   { yr: "2018–2021", co: "爱奇艺", rl: "HRBP / 培训" },
   { yr: "2021–2022", co: "小红书", rl: "人才发展" },
   { yr: "2022—今", co: "心动网络", rl: "人才发展 · 近 2000 人" },
@@ -52,21 +58,26 @@ const road = [
 
 <BaseLayout>
   <!-- 1 · Hero -->
-  <section class="wrap hero">
-    <span class="eyebrow">人才发展 × AI 工程化 × ICF 教练 · 上海</span>
-    <h1>
-      我运行着一套<br />
-      「组织 × AI」的<em>工作系统</em>。
-    </h1>
-    <p class="lede">
-      十年做组织与人才发展，近两年把重复的活交给系统、把判断和对话留给人——
-      <strong>不只是自己用 AI，而是亲手造系统，并带着整个 HR 团队一起做。</strong>
-    </p>
-    <div class="hero-actions">
-      <a class="btn btn-primary" href="/systems/">看我做的系统 <span class="arrow">→</span></a>
-      <a class="btn btn-ghost" href="/resume/">读我的简历</a>
+  <section class="wrap hero hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">人才发展 × AI 工程化 × ICF 教练 · 上海</span>
+      <h1>
+        我运行着一套<br />
+        「组织 × AI」的<em>工作系统</em>。
+      </h1>
+      <p class="lede">
+        十余年做组织与人才发展，近两年把重复的活交给系统、把判断和对话留给人——
+        <strong>不只是自己用 AI，而是亲手造系统，并带着整个 HR 团队一起做。</strong>
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="/systems/">看我做的系统 <span class="arrow">→</span></a>
+        <a class="btn btn-ghost" href="/resume/">读我的简历</a>
+      </div>
     </div>
+    <HeroSystem />
   </section>
+
+  <div class="wrap"><Marquee /></div>
 
   <!-- 2 · 三层能力 -->
   <section class="wrap section reveal">
@@ -78,8 +89,28 @@ const road = [
     <div class="layers">
       {
         layers.map((l) => (
-          <div class="layer">
-            <div class="num">{l.num}</div>
+          <div class={`layer layer-${l.key}`}>
+            <div class="licon" aria-hidden="true">
+              {l.key === "build" && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <rect x="3" y="3" width="7" height="7" rx="2" /><rect x="14" y="3" width="7" height="7" rx="2" />
+                  <rect x="3" y="14" width="7" height="7" rx="2" /><rect x="14" y="14" width="7" height="7" rx="2" />
+                </svg>
+              )}
+              {l.key === "lead" && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <circle cx="9" cy="8" r="3.2" /><path d="M3.5 20c.6-3.4 3-5 5.5-5s4.9 1.6 5.5 5" />
+                  <path d="M16 5.2a3 3 0 0 1 0 5.6M17.5 15.2c1.8.7 3 2.2 3.3 4.8" />
+                </svg>
+              )}
+              {l.key === "judge" && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <circle cx="12" cy="12" r="9" /><path d="M12 7v5l3.2 2" />
+                </svg>
+              )}
+            </div>
+            <span class="ghost-num">{l.num}</span>
+            <div class="lkicker">{l.kicker}</div>
             <h3>{l.title}</h3>
             <p>{l.desc}</p>
             <div class="tags">{l.tags.map((t) => <span>{t}</span>)}</div>
@@ -108,11 +139,18 @@ const road = [
       <h2>数字比形容词可信</h2>
       <span class="hint">均为脱敏后的阶段性口径</span>
     </div>
-    <div class="stats">
+    <div class="stats" id="stats">
       {
         stats.map((s) => (
           <div class="stat">
-            <div class="n" set:html={s.n} />
+            <div class="n">
+              <span
+                class="count"
+                data-to={s.to}
+                data-prefix={s.prefix}
+                data-suffix={s.suffix}
+              >{s.prefix}0</span>
+            </div>
             <div class="l">{s.l}</div>
           </div>
         ))
@@ -183,3 +221,42 @@ const road = [
     <p class="road-more"><a href="/resume/">看完整简历与教育、认证 →</a></p>
   </section>
 </BaseLayout>
+
+<script>
+  // 数字滚动：进入视口后从 0 递增到目标值
+  (function () {
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var el = document.getElementById("stats");
+    if (!el) return;
+    var nums = Array.prototype.slice.call(el.querySelectorAll(".count"));
+    function paint(node, v) {
+      node.textContent =
+        (node.dataset.prefix || "") + Math.round(v) + (node.dataset.suffix || "");
+    }
+    function run() {
+      nums.forEach(function (node) {
+        var to = parseInt(node.dataset.to || "0", 10);
+        if (reduce) { paint(node, to); return; }
+        var t0 = null, dur = 1100;
+        function step(ts) {
+          if (!t0) t0 = ts;
+          var p = Math.min((ts - t0) / dur, 1);
+          var ease = 1 - Math.pow(1 - p, 3);
+          paint(node, to * ease);
+          if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      });
+    }
+    if (reduce || !("IntersectionObserver" in window)) {
+      nums.forEach(function (n) { paint(n, parseInt(n.dataset.to || "0", 10)); });
+      return;
+    }
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (e.isIntersecting) { run(); io.disconnect(); }
+      });
+    }, { threshold: 0.35 });
+    io.observe(el);
+  })();
+</script>

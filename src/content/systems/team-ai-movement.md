@@ -7,7 +7,8 @@ status: method
 featured: false
 span: "2"
 tags: ["AI 转型", "黑客松", "社群运营", "组织能力"]
-order: 5
+pipeline: ["打样作品", "搭台办赛", "社群陪跑", "知识自动入库", "沉淀为模板"]
+order: 7
 ---
 
 ## 问题

@@ -7,7 +7,8 @@ status: live
 featured: false
 span: "6"
 tags: ["多智能体编排", "自建 Skill", "常驻服务", "工作流设计"]
-order: 6
+pipeline: ["任务识别", "模型路由", "Skill 执行", "常驻自动化", "健康检查", "回写知识库"]
+order: 8
 ---
 
 ## 问题

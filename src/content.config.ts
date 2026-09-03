@@ -18,6 +18,19 @@ const systems = defineCollection({
     tags: z.array(z.string()).default([]),
     link: z.string().url().optional(),
     linkLabel: z.string().optional(),
+    // 可视化链路：按顺序渲染成流程节点
+    pipeline: z.array(z.string()).default([]),
+    // 截图 / 录屏：图片或视频放 public/systems/<slug>/ 下，这里只写相对路径
+    media: z
+      .array(
+        z.object({
+          type: z.enum(["image", "video"]),
+          src: z.string(),
+          caption: z.string().default(""),
+          poster: z.string().optional(),
+        })
+      )
+      .default([]),
     order: z.number().default(99),
   }),
 });

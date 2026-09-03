@@ -31,7 +31,27 @@ npm run preview   # 预览构建产物
 | `status` | `live` 在运行 / `building` 建设中 / `method` 方法脱敏 |
 | `span` | 首页 Bento 跨度：`3` 半宽大卡 / `2` 三分之一 / `6` 整行 |
 | `featured` | 是否用强调底色 |
+| `pipeline` | 链路图，按顺序写步骤数组，如 `["采集","蒸馏","入库","推送"]`，详情页自动渲染成流程图 |
+| `order` | 首页 Bento 排序，数字越小越靠前 |
 | `sensitivity` 原则 | 公司内部系统只写方法与脱敏数字，不放内部链接、账号、员工数据 |
+
+### 给案例加截图 / 录屏（媒体）
+
+1. 把图片（png/jpg，建议宽 1600px 以内）或视频（mp4，控制在 10MB 内）放进 `public/systems/<案例 slug>/`，例如 `public/systems/ai-creation-contest/roadshow.mp4`；
+2. 在该案例 md 顶部加 `media` 字段（可多张、图/视频混排，按数组顺序展示）：
+
+```yaml
+media:
+  - type: image                 # image 或 video
+    src: /systems/ai-creation-contest/wall.png
+    caption: 脱敏后的作品墙
+  - type: video
+    src: /systems/ai-creation-contest/roadshow.mp4
+    poster: /systems/ai-creation-contest/cover.png   # 视频封面，可选
+    caption: 精品路演现场（已打码）
+```
+
+3. 视频默认不自动加载、点击才播放；**所有截图/录屏上线前必须脱敏**：不露公司内部域名、后台地址、同事姓名、员工数据。
 
 ## 内容红线
 

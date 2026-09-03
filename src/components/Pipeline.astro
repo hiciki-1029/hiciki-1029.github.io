@@ -1,0 +1,20 @@
+---
+interface Props {
+  steps: string[];
+}
+const { steps } = Astro.props;
+---
+
+{
+  steps.length > 0 && (
+    <div class="pipeline" aria-label="系统链路">
+      {steps.map((s, i) => (
+        <div class="pstep">
+          <span class="pdot">{i + 1}</span>
+          <span class="plabel">{s}</span>
+          {i < steps.length - 1 && <span class="parrow" aria-hidden="true">→</span>}
+        </div>
+      ))}
+    </div>
+  )
+}
