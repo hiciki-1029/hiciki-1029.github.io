@@ -1,0 +1,29 @@
+---
+const path = Astro.url.pathname;
+const nav = [
+  { href: "/systems/", label: "系统" },
+  { href: "/writing/", label: "文字" },
+  { href: "/now/", label: "现在" },
+  { href: "/about/", label: "关于" },
+  { href: "/resume/", label: "简历" },
+];
+const isActive = (href: string) =>
+  href === "/" ? path === "/" : path.startsWith(href);
+---
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="/">
+      熙熙<span class="en">CIKI · HICIKI.ME</span>
+    </a>
+    <nav class="site-nav" aria-label="主导航">
+      {
+        nav.map((n) => (
+          <a href={n.href} aria-current={isActive(n.href) ? "page" : undefined}>
+            {n.label}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</header>

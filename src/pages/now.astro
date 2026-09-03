@@ -1,0 +1,52 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const writings = (await getCollection("writing"))
+  .filter((w) => w.data.public)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 5);
+const updated = writings[0]?.data.date;
+---
+
+<BaseLayout
+  title="现在"
+  description="龚文熙现在正在做的事：关键对话 Lab、团队 AI 化与持续的前沿研究。/now 页面保持更新。"
+>
+  <section class="narrow page-head">
+    <span class="eyebrow">/ NOW · 现在在做</span>
+    <h1>最近，我在这几件事上</h1>
+    <p class="sub">
+      这是一个 <a href="https://nownownow.com/about" target="_blank" rel="noopener">/now 页</a>——
+      不写愿望清单，只写此刻真正投入的事。最近更新：
+      {
+        updated?.toLocaleDateString("zh-CN", { year: "numeric", month: "long" })
+      }。
+    </p>
+  </section>
+
+  <article class="narrow prose">
+    <h2>在打磨的产品</h2>
+    <p>
+      把「关键对话 Lab」从能跑的原型，打磨成可以放心交给一线管理者反复练习的产品：
+      校准 SCARF 压力引擎与姿态检测的评分、补全成长画像、优化桌面端的分发体验。
+    </p>
+
+    <h2>在推动的组织变化</h2>
+    <p>
+      让团队在黑客松里长出的 AI 能力沉淀进日常工作流——不是办一次活动热闹一下，
+      而是让智能体和自动化真正接走重复事务，让人回到判断和对话。
+    </p>
+
+    <h2>在持续的学习</h2>
+    <p>
+      保持每周的前沿报告蒸馏与交叉洞察，主线是「AI 如何重塑组织、管理与人才发展」；
+      同时继续 ICF 教练实践，把教练对话里的真实卡点反哺给关键对话 Lab。
+    </p>
+
+    <h2>最近写的</h2>
+    <ul>
+      {writings.map((w) => <li><a href={`/writing/${w.id}/`}>{w.data.title}</a></li>)}
+    </ul>
+  </article>
+</BaseLayout>

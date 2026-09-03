@@ -1,0 +1,44 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const writings = (await getCollection("writing"))
+  .filter((w) => w.data.public)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const kindLabel = { digest: "报告蒸馏", note: "笔记", retro: "复盘", essay: "随笔" };
+---
+
+<BaseLayout
+  title="文字"
+  description="龚文熙关于组织、人才与 AI 的持续写作：前沿报告蒸馏、工作复盘与方法论随笔，保持更新。"
+>
+  <section class="wrap page-head">
+    <span class="eyebrow">WRITING · 持续输出</span>
+    <h1>把想清楚的事，写下来</h1>
+    <p class="sub">
+      报告蒸馏、项目复盘与方法随笔。它们大多先在我的知识系统里生成，再挑可以公开的放到这里——这也是这个站「一直活着」的原因。
+    </p>
+  </section>
+
+  <section class="narrow" style="padding-top:28px;">
+    {
+      writings.map((w) => (
+        <a
+          class="work-item"
+          href={`/writing/${w.id}/`}
+          style="display:block;padding:22px 0;border-top:1px solid var(--line);text-decoration:none;color:var(--ink);"
+        >
+          <div style="font-size:13px;color:var(--ochre-soft);font-weight:600;letter-spacing:0.04em;">
+            {w.data.date.toLocaleDateString("zh-CN", {
+              year: "numeric",
+              month: "long",
+            })}{" "}
+            · {kindLabel[w.data.kind]}
+          </div>
+          <h3 style="margin:8px 0 6px;font-size:20px;">{w.data.title}</h3>
+          <p style="color:var(--muted);font-size:15px;">{w.data.summary}</p>
+        </a>
+      ))
+    }
+  </section>
+</BaseLayout>

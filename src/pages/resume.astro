@@ -1,0 +1,114 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const jobs = [
+  {
+    co: "心动网络",
+    role: "人才发展（TD）",
+    when: "2022.05 — 至今 · 上海",
+    points: [
+      "公司唯一的人才发展岗，覆盖近 2000 人组织的新人与管理者培养体系，累计培养近百名基层管理者；",
+      "主导校招生培养（SSR）、管理者发展（动心计划）、新员工通关（萌新计划）等核心项目；",
+      "把资讯、测评、知识沉淀、培养运营做成可运行的 AI 系统，并牵头 HR 团队 AI 黑客松与兴趣小组。",
+    ],
+  },
+  {
+    co: "小红书",
+    role: "人才发展（TD）",
+    when: "2021.05 — 2022.05 · 上海",
+    points: ["负责人才发展相关项目，支持快速增长期的组织能力建设。"],
+  },
+  {
+    co: "爱奇艺",
+    role: "HRBP / 培训主管",
+    when: "2018.04 — 2021.05 · 上海",
+    points: ["承担业务伙伴与培训管理职责，贯通招聘、培训与业务支持。"],
+  },
+  {
+    co: "晨光科力普",
+    role: "培训主管",
+    when: "2016.09 — 2018.04 · 上海",
+    points: ["搭建与落地培训体系，负责课程开发、授课与项目运营。"],
+  },
+  {
+    co: "伊顿",
+    role: "培训专员",
+    when: "2012.08 — 2015.09",
+    points: ["职业起点，从培训执行、课程组织到员工发展活动，打下人力资源基本功。"],
+  },
+];
+
+const edu = [
+  {
+    school: "香港大学",
+    degree: "管理心理学 · 硕士（优秀毕业生）",
+    when: "2022.07 — 2023.12",
+  },
+  {
+    school: "江汉文理学院",
+    degree: "自动化 · 本科",
+    when: "2008.09 — 2012.06",
+  },
+];
+
+const certs = [
+  "ICF 国际教练联盟 认证教练",
+  "SFI 系统引导师",
+  "TTI DISC 行为风格 + 激励因子认证",
+  "CCP 职业生涯规划师",
+  "KNX 人才盘点认证",
+  "MBTI / OPQ / 大五人格认证",
+];
+---
+
+<BaseLayout
+  title="简历"
+  description="龚文熙的完整简历：十年组织人才发展经历、教育背景与专业认证。"
+>
+  <section class="narrow page-head">
+    <span class="eyebrow">RESUME · 简历</span>
+    <h1>龚文熙 <span style="color:var(--muted);font-size:0.6em;font-family:var(--sans);">Ciki Gong</span></h1>
+    <p class="sub">
+      人才发展专家 · ICF 教练 · 组织 × AI 实践者 · 上海<br />
+      <a href="mailto:1029ciki@gmail.com">1029ciki@gmail.com</a> ·
+      <a href="https://github.com/hiciki-1029" target="_blank" rel="noopener">github.com/hiciki-1029</a>
+    </p>
+  </section>
+
+  <section class="narrow" style="padding-top:24px;">
+    <h2 style="font-size:14px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin:24px 0 14px;">工作经历</h2>
+    {
+      jobs.map((j) => (
+        <div class="resume-block">
+          <h3>
+            {j.co} · {j.role}
+          </h3>
+          <div class="when">{j.when}</div>
+          <ul>
+            {j.points.map((p) => <li>{p}</li>)}
+          </ul>
+        </div>
+      ))
+    }
+
+    <h2 style="font-size:14px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin:32px 0 14px;">教育背景</h2>
+    {
+      edu.map((e) => (
+        <div class="resume-block">
+          <h3>{e.school}</h3>
+          <div class="when">{e.when}</div>
+          <ul><li>{e.degree}</li></ul>
+        </div>
+      ))
+    }
+
+    <h2 style="font-size:14px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin:32px 0 14px;">专业认证</h2>
+    <div class="cert-chips" style="margin-bottom:8px;">
+      {certs.map((c) => <span>{c}</span>)}
+    </div>
+
+    <p class="prose" style="margin-top:30px;color:var(--muted);font-size:14px;">
+      更能说明问题的不是履历，而是我做过的系统——<a href="/systems/">去看看 →</a>
+    </p>
+  </section>
+</BaseLayout>

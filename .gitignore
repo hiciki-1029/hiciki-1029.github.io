@@ -1,0 +1,13 @@
+# build
+node_modules/
+dist/
+.astro/
+# os
+.DS_Store
+# 本地草稿与历史参考（不进公开仓：含早期错误文案/内部规划）
+tmp/
+minutes/
+demo/
+.planning/
+docs/
+*.log

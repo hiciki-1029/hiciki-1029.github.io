@@ -1,0 +1,30 @@
+---
+import { render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  sys: CollectionEntry<"systems">;
+}
+const { sys } = Astro.props;
+const { data } = sys;
+
+const badgeMap = {
+  live: { cls: "live", label: "在运行 LIVE" },
+  building: { cls: "building", label: "建设中 BUILDING" },
+  method: { cls: "method", label: "方法 METHOD" },
+} as const;
+const badge = badgeMap[data.status];
+---
+
+<a class={`sys span-${data.span} ${data.featured ? "feature" : ""} reveal`} href={`/systems/${sys.id}/`}>
+  <span class="go" aria-hidden="true">↗</span>
+  <div class="top">
+    <span class={`badge ${badge.cls}`}><span class="dot"></span>{badge.label}</span>
+  </div>
+  <h3>{data.title}</h3>
+  <p>{data.tagline}</p>
+  <div class="meta">
+    <span>{data.year}</span>
+    {data.tags.map((t) => <span>{t}</span>)}
+  </div>
+</a>

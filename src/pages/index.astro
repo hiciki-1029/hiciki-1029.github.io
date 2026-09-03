@@ -1,0 +1,185 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SystemCard from "../components/SystemCard.astro";
+
+const systems = (await getCollection("systems")).sort(
+  (a, b) => a.data.order - b.data.order
+);
+const writings = (await getCollection("writing"))
+  .filter((w) => w.data.public)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+const kindLabel = { digest: "蒸馏", note: "笔记", retro: "复盘", essay: "随笔" };
+
+const stats = [
+  { n: "69<small>期日报</small>", l: "另有 11 期周报，资讯智能体每天自动送达" },
+  { n: "约200<small>人</small>", l: "新人培养自动化，横跨 23 个团队，通关率 86.5%" },
+  { n: "24<small>件/31人</small>", l: "21 天 AI 创作赛，从作品到上台路演" },
+  { n: "34<small>个</small>", l: "亲手写的 AI 技能，加 14 个常驻自动化" },
+  { n: "24<small>份</small>", l: "前沿报告蒸馏，附来源、可回溯" },
+];
+
+const layers = [
+  {
+    num: "01 / 造系统",
+    title: "把事做成能跑的系统",
+    desc: "重复的活交给机器，人留下判断、验收与回写。从测评、资讯到知识库，都是真实在运行的应用，而不是演示稿。",
+    tags: ["常驻智能体", "全栈实现", "自动化运营"],
+  },
+  {
+    num: "02 / 带团队",
+    title: "带一群人一起做 AI",
+    desc: "一个人会用不够。我牵头黑客松、运营兴趣小组、搭好沉淀机制，让非技术的 HR 同事也能做出能用的作品。",
+    tags: ["AI 黑客松", "兴趣社群", "作品牵引"],
+  },
+  {
+    num: "03 / 判断与人",
+    title: "管人怎么想的那一层",
+    desc: "十年组织人才发展，叠加 ICF 教练。懂业务、懂人、懂难谈话——这是 AI 越强大、反而越稀缺的部分。",
+    tags: ["ICF 教练", "组织诊断", "关键对话"],
+  },
+];
+
+const road = [
+  { yr: "2012–2015", co: "伊顿", rl: "培训专员" },
+  { yr: "2016–2018", co: "晨光科力普", rl: "培训主管" },
+  { yr: "2018–2021", co: "爱奇艺", rl: "HRBP / 培训" },
+  { yr: "2021–2022", co: "小红书", rl: "人才发展" },
+  { yr: "2022—今", co: "心动网络", rl: "人才发展 · 近 2000 人" },
+];
+---
+
+<BaseLayout>
+  <!-- 1 · Hero -->
+  <section class="wrap hero">
+    <span class="eyebrow">人才发展 × AI 工程化 × ICF 教练 · 上海</span>
+    <h1>
+      我运行着一套<br />
+      「组织 × AI」的<em>工作系统</em>。
+    </h1>
+    <p class="lede">
+      十年做组织与人才发展，近两年把重复的活交给系统、把判断和对话留给人——
+      <strong>不只是自己用 AI，而是亲手造系统，并带着整个 HR 团队一起做。</strong>
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="/systems/">看我做的系统 <span class="arrow">→</span></a>
+      <a class="btn btn-ghost" href="/resume/">读我的简历</a>
+    </div>
+  </section>
+
+  <!-- 2 · 三层能力 -->
+  <section class="wrap section reveal">
+    <div class="sec-head">
+      <span class="sec-index">A</span>
+      <h2>我和多数 HR 不一样的地方</h2>
+      <span class="hint">三层能力，互相咬合</span>
+    </div>
+    <div class="layers">
+      {
+        layers.map((l) => (
+          <div class="layer">
+            <div class="num">{l.num}</div>
+            <h3>{l.title}</h3>
+            <p>{l.desc}</p>
+            <div class="tags">{l.tags.map((t) => <span>{t}</span>)}</div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- 3 · 活系统证据墙 -->
+  <section class="wrap section reveal">
+    <div class="sec-head">
+      <span class="sec-index">B</span>
+      <h2>几件正在运行的真事</h2>
+      <span class="hint">每件都按「问题—链路—验收—边界」讲清楚</span>
+    </div>
+    <div class="bento">
+      {systems.map((s) => <SystemCard sys={s} />)}
+    </div>
+  </section>
+
+  <!-- 4 · 数字锚点 -->
+  <section class="wrap section reveal">
+    <div class="sec-head">
+      <span class="sec-index">C</span>
+      <h2>数字比形容词可信</h2>
+      <span class="hint">均为脱敏后的阶段性口径</span>
+    </div>
+    <div class="stats">
+      {
+        stats.map((s) => (
+          <div class="stat">
+            <div class="n" set:html={s.n} />
+            <div class="l">{s.l}</div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- 5 · 现在在做 + 最新文字 -->
+  <section class="wrap section reveal">
+    <div class="sec-head">
+      <span class="sec-index">D</span>
+      <h2>现在在做</h2>
+      <span class="hint">这个站会随我的知识库持续更新</span>
+    </div>
+    <div class="now-grid">
+      <div class="panel dark">
+        <h3>/ now</h3>
+        <ul class="now-list">
+          <li>把「关键对话 Lab」打磨成能交给一线管理者反复练习的产品；</li>
+          <li>推动团队 AI 作品从黑客松走向日常工作流；</li>
+          <li>持续蒸馏组织与 AI 的前沿报告，每周一篇交叉洞察。</li>
+        </ul>
+        <p style="margin-top:16px;"><a href="/now/">看完整 Now 页 →</a></p>
+      </div>
+      <div class="panel">
+        <h3>最近写的</h3>
+        <ul class="writing-list">
+          {
+            writings.map((w) => (
+              <li>
+                <a href={`/writing/${w.id}/`}>
+                  <span class="d">
+                    {w.data.date.toLocaleDateString("zh-CN", {
+                      year: "numeric",
+                      month: "2-digit",
+                    })}{" "}
+                    · {kindLabel[w.data.kind]}
+                  </span>
+                  <span>{w.data.title}</span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+        <p style="margin-top:14px;"><a href="/writing/">全部文字 →</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · 来路（工作经历从简） -->
+  <section class="wrap section reveal">
+    <div class="sec-head">
+      <span class="sec-index">E</span>
+      <h2>来路</h2>
+      <span class="hint">工作经历从简，详细版在简历页</span>
+    </div>
+    <div class="road">
+      {
+        road.map((r) => (
+          <div class="stop">
+            <div class="yr">{r.yr}</div>
+            <div class="co">{r.co}</div>
+            <div class="rl">{r.rl}</div>
+          </div>
+        ))
+      }
+    </div>
+    <p class="road-more"><a href="/resume/">看完整简历与教育、认证 →</a></p>
+  </section>
+</BaseLayout>

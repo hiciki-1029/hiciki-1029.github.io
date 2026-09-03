@@ -1,0 +1,29 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SystemCard from "../../components/SystemCard.astro";
+
+const systems = (await getCollection("systems")).sort(
+  (a, b) => a.data.order - b.data.order
+);
+---
+
+<BaseLayout
+  title="做过的系统"
+  description="龚文熙把组织里的真实任务做成能跑、能验收、能回写的系统：知识库、关键对话 Lab、校招培养套件、情报中台与团队 AI 运动。"
+>
+  <section class="wrap page-head">
+    <span class="eyebrow">SYSTEMS · 活系统证据墙</span>
+    <h1>不是「用过 AI」，是「造了系统」</h1>
+    <p class="sub">
+      每件事都按同一套结构讲：遇到什么<strong>问题</strong>、搭了怎样的<strong>链路</strong>、拿什么<strong>验收</strong>、以及它的<strong>边界</strong>在哪。
+      涉及组织的部分一律脱敏，不展示内部后台与人员数据。
+    </p>
+  </section>
+
+  <section class="wrap section" style="padding-top:32px;">
+    <div class="bento">
+      {systems.map((s) => <SystemCard sys={s} />)}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,36 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const writings = await getCollection("writing");
+  return writings
+    .filter((w) => w.data.public)
+    .map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const kindLabel = { digest: "报告蒸馏", note: "笔记", retro: "复盘", essay: "随笔" };
+---
+
+<BaseLayout title={post.data.title} description={post.data.summary}>
+  <section class="narrow page-head">
+    <span class="eyebrow">
+      {kindLabel[post.data.kind]}{post.data.source ? ` · ${post.data.source}` : ""}
+    </span>
+    <h1>{post.data.title}</h1>
+    <p class="sub">
+      {post.data.date.toLocaleDateString("zh-CN", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })}
+    </p>
+  </section>
+
+  <article class="narrow prose">
+    <Content />
+    <p style="margin-top:40px;"><a href="/writing/">← 返回全部文字</a></p>
+  </article>
+</BaseLayout>

@@ -1,0 +1,77 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+const {
+  title,
+  description = "龚文熙（熙熙 / Ciki）：十年组织人才发展 × AI 工程化 × ICF 教练，把组织里的真实任务做成能跑、能验收、能回写的系统。",
+} = Astro.props;
+const fullTitle = title ? `${title} · 熙熙 Ciki` : "熙熙 Ciki · 组织 × AI 工作系统";
+const canonical = new URL(Astro.url.pathname, Astro.site ?? "https://www.hiciki.me");
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="author" content="龚文熙 Ciki" />
+    <meta name="theme-color" content="#f5f1e8" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:url" content={canonical} />
+    <title>{fullTitle}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:ital,wght@0,600;0,700;1,600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a class="skip" href="#content">跳到正文</a>
+    <Header />
+    <main id="content">
+      <slot />
+    </main>
+    <Footer />
+
+    <script>
+      // 克制动效：仅在元素进入视口时渐入；不支持/减少动态时 CSS 已兜底为常显
+      (function () {
+        try {
+          var els = document.querySelectorAll(".reveal");
+          if (!("IntersectionObserver" in window)) {
+            els.forEach(function (el) { el.classList.add("in"); });
+            return;
+          }
+          var io = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (e) {
+                if (e.isIntersecting) {
+                  e.target.classList.add("in");
+                  io.unobserve(e.target);
+                }
+              });
+            },
+            { threshold: 0.08, rootMargin: "0px 0px -8% 0px" }
+          );
+          els.forEach(function (el) { io.observe(el); });
+        } catch (err) {
+          document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("in"); });
+        }
+      })();
+    </script>
+  </body>
+</html>
