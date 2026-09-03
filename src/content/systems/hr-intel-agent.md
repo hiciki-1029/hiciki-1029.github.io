@@ -6,7 +6,7 @@ year: "2026"
 status: live
 featured: false
 span: "2"
-tags: ["常驻智能体", "信息蒸馏", "定时自动化", "健康检查"]
+tags: ["常驻智能体", "信息蒸馏", "定时自动化"]
 order: 4
 ---
 
