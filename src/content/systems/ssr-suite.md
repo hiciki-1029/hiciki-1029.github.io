@@ -18,6 +18,10 @@ media:
     src: /systems/ssr-suite/learning-plaza.mp4
     poster: /systems/ssr-suite/learning-plaza.jpg
     caption: "学习广场：精选推荐、分类筛选、搜索与资源共建（界面已做品牌脱敏）"
+  - type: video
+    src: /systems/ssr-suite/ssr-kickoff.mp4
+    poster: /systems/ssr-suite/ssr-kickoff.jpg
+    caption: "启动会网页：全屏议程与成长路线，键盘翻页替代散装 PPT（已隐去编辑控件与品牌画面）"
 order: 4
 ---
 

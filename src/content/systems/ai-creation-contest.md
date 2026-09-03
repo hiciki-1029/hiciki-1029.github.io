@@ -11,6 +11,10 @@ tags: ["AI 共创", "赛制设计", "学习平台", "作品路演"]
 pipeline: ["定位调研", "赛制与平台", "21 天共创", "试玩会初筛", "精品路演", "作品上线"]
 media:
   - type: video
+    src: /systems/ai-creation-contest/contest-landing.mp4
+    poster: /systems/ai-creation-contest/contest-landing.jpg
+    caption: "自建报名长页：赛道、赛程、奖项与报名入口一屏自助（品牌已脱敏）"
+  - type: video
     src: /systems/ai-creation-contest/works-gallery.mp4
     poster: /systems/ai-creation-contest/works-gallery.jpg
     caption: "作品广场实机：分类与人气投票，点开一件作品看产品价值、产品实现与 AI 全流程（作者已匿名、品牌已脱敏）"
@@ -37,4 +41,4 @@ order: 3
 
 ## 边界
 
-报名站与学习广场部署在公司内部环境，这里只讲赛制与方法；下方为脱敏后的作品广场实机演示（作者匿名、品牌信息已处理），不放内部人员名单。
+报名站与学习广场部署在公司内部环境，这里只讲赛制与方法；上方为脱敏后的报名长页与作品广场实机（作者匿名、品牌信息已处理），不放内部人员名单。

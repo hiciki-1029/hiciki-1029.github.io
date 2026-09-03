@@ -9,6 +9,11 @@ featured: false
 span: "2"
 tags: ["全栈", "边缘部署", "自动同步", "异常告警"]
 pipeline: ["40 题作答", "实时计分", "生成报告", "写回数据表", "邮箱匹配人员", "异常告警"]
+media:
+  - type: video
+    src: /systems/disc-assessment/disc-assessment.mp4
+    poster: /systems/disc-assessment/disc-assessment.jpg
+    caption: "实机演示：逐题作答后自动生成行为偏好报告（登录环节与个人信息已隐去）"
 order: 6
 ---
 
@@ -31,4 +36,4 @@ order: 6
 
 ## 边界
 
-该应用部署在公司域名下、服务于内部场景，因此个人主页不直接外链、不放真实作答数据；面试中可演示脱敏版本与完整技术链路。
+该应用部署在公司域名下、服务于内部场景，因此个人主页不直接外链、不放真实作答数据；上方为匿名化实机演示，完整技术链路可在交流时展开。
