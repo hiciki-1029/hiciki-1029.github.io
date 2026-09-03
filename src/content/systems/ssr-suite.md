@@ -8,6 +8,15 @@ featured: false
 span: "3"
 tags: ["NestJS", "实时互动", "自动化运营", "学习体验"]
 pipeline: ["15 场访谈定位", "报名与学习广场", "实时星图大屏", "启动会网页", "FAQ 机器人", "自动化回写"]
+media:
+  - type: video
+    src: /systems/ssr-suite/star-map.mp4
+    poster: /systems/ssr-suite/star-map.jpg
+    caption: "实时班级星图：学员手机开卡后约 1.5 秒同步到现场大屏（演示数据已匿名化）"
+  - type: video
+    src: /systems/ssr-suite/learning-plaza.mp4
+    poster: /systems/ssr-suite/learning-plaza.jpg
+    caption: "学习广场：精选推荐、分类筛选、搜索与资源共建（界面已做品牌脱敏）"
 order: 4
 ---
 
@@ -31,4 +40,4 @@ order: 4
 
 ## 边界
 
-系统部署在公司内部环境，此处只讲方法与链路、不展示内部界面与人员数据；规模数字均为脱敏后的阶段性口径。
+系统部署在公司内部环境，上方演示画面已做匿名化（学员以编号呈现）与品牌脱敏；规模数字均为脱敏后的阶段性口径。

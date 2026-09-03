@@ -10,6 +10,11 @@ tags: ["Next.js", "飞书", "向量检索", "证据接地"]
 pipeline: ["多端采集", "结构化蒸馏", "入库留痕", "可溯源问答", "签名发布"]
 link: "https://github.com/hiciki-1029/book-digest-hq"
 linkLabel: "开源的读书蒸馏器"
+media:
+  - type: video
+    src: /systems/knowledge-portal/knowledge-portal.mp4
+    poster: /systems/knowledge-portal/knowledge-portal.jpg
+    caption: "实机演示：今日待处理 → 资料库卡片流 → 洞察与「写下我的想法」工作流"
 order: 1
 ---
 
