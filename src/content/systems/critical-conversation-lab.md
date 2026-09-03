@@ -1,6 +1,7 @@
 ---
 title: "关键对话 Lab：让管理者和 AI 对练一场难谈话"
 tagline: "把 ICF 教练、SCARF 威胁—奖赏模型与交互分析（TA）写进引擎，做一个可以反复排练「辞退、降薪、绩效面谈」的 AI 陪练。"
+short: "和 AI 对练一场难谈话"
 layer: judge
 year: "2026"
 status: building

@@ -22,7 +22,7 @@ const badge = badgeMap[data.status];
     <span class={`badge ${badge.cls}`}><span class="dot"></span>{badge.label}</span>
   </div>
   <h3>{data.title}</h3>
-  <p>{data.tagline}</p>
+  <p>{data.short ?? data.tagline}</p>
   <div class="meta">
     <span>{data.year}</span>
     {data.tags.map((t) => <span>{t}</span>)}

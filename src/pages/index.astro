@@ -28,7 +28,7 @@ const layers = [
     num: "01",
     kicker: "造系统",
     title: "把事做成能跑的系统",
-    desc: "重复的活交给机器，人留下判断、验收与回写。从测评、资讯到知识库，都是真实在运行的应用，而不是演示稿。",
+    desc: "重复的事交给机器，判断和验收留给人。测评、资讯、知识库，都是在跑的真应用，不是演示稿。",
     tags: ["常驻智能体", "全栈实现", "自动化运营"],
   },
   {
@@ -36,15 +36,15 @@ const layers = [
     num: "02",
     kicker: "带团队",
     title: "带一群人一起做 AI",
-    desc: "一个人会用不够。我牵头黑客松、运营兴趣小组、搭好沉淀机制，让非技术的 HR 同事也能做出能用的作品。",
+    desc: "一个人会用不算数。我牵头黑客松、运营兴趣小组，让零技术背景的 HR 也能做出能用的作品。",
     tags: ["AI 黑客松", "兴趣社群", "作品牵引"],
   },
   {
     key: "judge",
     num: "03",
     kicker: "判断与人",
-    title: "管人怎么想的那一层",
-    desc: "十余年组织人才发展，叠加 ICF 教练。懂业务、懂人、懂难谈话——这是 AI 越强大、反而越稀缺的部分。",
+    title: "管「人怎么想」这一层",
+    desc: "十余年组织人才经验，加上教练功底，懂业务也懂人。AI 越强，这层反而越稀缺。",
     tags: ["ICF 教练", "组织诊断", "关键对话"],
   },
 ];
@@ -66,8 +66,8 @@ const road = [
         「组织 × AI」的<em>工作系统</em>。
       </h1>
       <p class="lede">
-        十余年做组织与人才发展，近两年把重复的活交给系统、把判断和对话留给人——
-        <strong>不只是自己用 AI，而是亲手造系统，并带着整个 HR 团队一起做。</strong>
+        十余年做组织与人才发展。这两年我把重复的事交给系统，把判断和对话留给人——
+        <strong>自己造能用的系统，也带整个 HR 团队一起做。</strong>
       </p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="/systems/">看我做的系统 <span class="arrow">→</span></a>
@@ -84,7 +84,7 @@ const road = [
     <div class="sec-head">
       <span class="sec-index">A</span>
       <h2>我和多数 HR 不一样的地方</h2>
-      <span class="hint">三层能力，互相咬合</span>
+      <span class="hint">造系统 · 带团队 · 懂人</span>
     </div>
     <div class="layers">
       {
@@ -125,7 +125,7 @@ const road = [
     <div class="sec-head">
       <span class="sec-index">B</span>
       <h2>几件正在运行的真事</h2>
-      <span class="hint">每件都按「问题—链路—验收—边界」讲清楚</span>
+      <span class="hint">点进去看「问题—链路—验收—边界」</span>
     </div>
     <div class="bento">
       {systems.map((s) => <SystemCard sys={s} />)}
@@ -163,7 +163,7 @@ const road = [
     <div class="sec-head">
       <span class="sec-index">D</span>
       <h2>现在在做</h2>
-      <span class="hint">这个站会随我的知识库持续更新</span>
+      <span class="hint">随做随更</span>
     </div>
     <div class="now-grid">
       <div class="panel dark">

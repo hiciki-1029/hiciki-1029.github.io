@@ -1,6 +1,7 @@
 ---
 title: "带团队做 AI：从一个人用到一群人会用"
 tagline: "牵头 HR 团队 AI 黑客松、运营 AI 兴趣小组、组织外部交流——把个人的 AI 能力，变成一个团队的肌肉记忆。"
+short: "从一个人会，到一群人会"
 layer: lead
 year: "2026"
 status: method
