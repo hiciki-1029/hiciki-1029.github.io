@@ -19,34 +19,6 @@ const homeSystems = systems
   .filter((s) => homeOrder.includes(s.id))
   .sort((a, b) => homeOrder.indexOf(a.id) - homeOrder.indexOf(b.id));
 
-const writings = (await getCollection("writing"))
-  .filter((w) => w.data.public)
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, 3);
-const kindLabel = { digest: "蒸馏", note: "笔记", retro: "复盘", essay: "随笔" };
-
-// 数字做减法：只留三个最有冲击力的
-const stats = [
-  { to: 200, prefix: "约", suffix: "人", l: "新人培养自动化，横跨 23 个团队，通关率 86.5%" },
-  { to: 24, prefix: "", suffix: "件·31人", l: "21 天 AI 创作赛，从作品到上台路演" },
-  { to: 34, prefix: "", suffix: "个", l: "自建的 AI 技能，加 14 个定时自动化流程" },
-];
-
-const beliefs = [
-  {
-    k: "先看清",
-    t: "动手之前，先走到一线，把真问题弄清楚。",
-  },
-  {
-    k: "亲手做",
-    t: "能交给 AI 的重复工作，就做成真正能用的产品，也带着同事一起做。",
-  },
-  {
-    k: "看见人",
-    t: "不急着给答案，慢下来，让一个人被真正听见、被看见。",
-  },
-];
-
 const layers = [
   {
     key: "build",
@@ -105,23 +77,11 @@ const road = [
 
   <div class="wrap"><Marquee /></div>
 
-  <!-- 2 · 我相信 -->
+  <!-- 2 · 我相信（一句话） -->
   <section class="wrap section reveal">
-    <div class="beliefs">
-      <div class="beliefs-aside">
-        <span class="beliefs-kicker">我相信</span>
-        <p class="beliefs-sub">三件做人和做事里，一直没怎么变过的事。</p>
-      </div>
-      <div class="beliefs-grid">
-        {
-          beliefs.map((b) => (
-            <div class="belief">
-              <span class="b-k">{b.k}</span>
-              <h3>{b.t}</h3>
-            </div>
-          ))
-        }
-      </div>
+    <div class="belief-one">
+      <span class="b1-k">我相信</span>
+      <p class="belief-line">先走到一线把真问题看清，亲手把想法做成能用的东西，再把耐心，留给一个个具体的人。</p>
     </div>
   </section>
 
@@ -167,32 +127,10 @@ const road = [
     </div>
   </section>
 
-  <!-- 4 · 我怎么想（观点前置） -->
+  <!-- 2 · 我做的东西（精选 4 个） -->
   <section class="wrap section reveal">
     <div class="sec-head">
       <span class="sec-index">02</span>
-      <h2>我怎么想</h2>
-      <span class="hint">把想清楚的事，写下来</span>
-    </div>
-    <div class="think-grid">
-      {
-        writings.map((w) => (
-          <a class="think" href={`/writing/${w.id}/`}>
-            <span class="think-kind">{kindLabel[w.data.kind]}</span>
-            <h3>{w.data.title}</h3>
-            <p>{w.data.summary}</p>
-            <span class="think-go">读这篇 <span class="arrow">→</span></span>
-          </a>
-        ))
-      }
-    </div>
-    <p class="grid-more"><a href="/writing/">看全部文章 →</a></p>
-  </section>
-
-  <!-- 5 · 我做的东西（精选 4 个） -->
-  <section class="wrap section reveal">
-    <div class="sec-head">
-      <span class="sec-index">03</span>
       <h2>我做的东西</h2>
       <span class="hint">精选四个，点进去看「问题—做法—验证—边界」</span>
     </div>
@@ -202,56 +140,10 @@ const road = [
     <p class="grid-more"><a href="/systems/">查看全部 {systems.length} 个 AI 实践 →</a></p>
   </section>
 
-  <!-- 6 · 数字锚点 -->
+  <!-- 3 · 工作经历 -->
   <section class="wrap section reveal">
     <div class="sec-head">
-      <span class="sec-index">04</span>
-      <h2>几个数字</h2>
-      <span class="hint">均为脱敏后的阶段性口径</span>
-    </div>
-    <div class="stats stats-3" id="stats">
-      {
-        stats.map((s) => (
-          <div class="stat">
-            <div class="n">
-              <span
-                class="count"
-                data-to={s.to}
-                data-prefix={s.prefix}
-                data-suffix={s.suffix}
-              >{s.prefix}{s.to}{s.suffix}</span>
-            </div>
-            <div class="l">{s.l}</div>
-          </div>
-        ))
-      }
-    </div>
-  </section>
-
-  <!-- 7 · 最近在做 -->
-  <section class="wrap section reveal">
-    <div class="sec-head">
-      <span class="sec-index">05</span>
-      <h2>最近在做</h2>
-      <span class="hint">随做随更</span>
-    </div>
-    <div class="now-single">
-      <div class="panel dark">
-        <h3>/ now</h3>
-        <ul class="now-list">
-          <li>把「关键对话 Lab」打磨成能交给一线管理者反复练习的产品；</li>
-          <li>让团队在黑客松里做的 AI 作品，真正进到日常工作里；</li>
-          <li>持续读组织与 AI 的前沿报告，每周整理一篇交叉洞察。</li>
-        </ul>
-        <p style="margin-top:16px;"><a href="/now/">看完整近况 →</a></p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 8 · 工作经历 -->
-  <section class="wrap section reveal">
-    <div class="sec-head">
-      <span class="sec-index">06</span>
+      <span class="sec-index">03</span>
       <h2>工作经历</h2>
       <span class="hint">只放最近三段，完整版在简历页</span>
     </div>
@@ -289,43 +181,3 @@ const road = [
   </section>
 </BaseLayout>
 
-<script>
-  // 数字滚动：进入视口后从 0 递增到目标值
-  (function () {
-    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    var el = document.getElementById("stats");
-    if (!el) return;
-    var nums = Array.prototype.slice.call(el.querySelectorAll(".count"));
-    function paint(node, v) {
-      node.textContent =
-        (node.dataset.prefix || "") + Math.round(v) + (node.dataset.suffix || "");
-    }
-    function run() {
-      nums.forEach(function (node) {
-        var to = parseInt(node.dataset.to || "0", 10);
-        if (reduce) { paint(node, to); return; }
-        var t0 = null, dur = 1100;
-        function step(ts) {
-          if (!t0) t0 = ts;
-          var p = Math.min((ts - t0) / dur, 1);
-          var ease = 1 - Math.pow(1 - p, 3);
-          paint(node, to * ease);
-          if (p < 1) requestAnimationFrame(step);
-        }
-        requestAnimationFrame(step);
-      });
-    }
-    if (reduce || !("IntersectionObserver" in window)) {
-      nums.forEach(function (n) { paint(n, parseInt(n.dataset.to || "0", 10)); });
-      return;
-    }
-    // 有 JS 才把初值归零、等进入视口再滚动；无 JS / 爬虫保留服务器渲染的终值
-    nums.forEach(function (n) { paint(n, 0); });
-    var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e) {
-        if (e.isIntersecting) { run(); io.disconnect(); }
-      });
-    }, { threshold: 0.35 });
-    io.observe(el);
-  })();
-</script>

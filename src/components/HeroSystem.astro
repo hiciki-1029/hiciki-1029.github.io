@@ -41,10 +41,11 @@ const nodes = [
     ))}
   </svg>
 
-  <!-- 中央：卡通形象 -->
-  <div class="hero-core">
+  <!-- 中央：卡通形象（点一下会打招呼） -->
+  <div class="hero-core" id="sayHi" role="button" tabindex="0" aria-label="和熙熙打个招呼" title="点我打个招呼">
+    <span class="say" id="sayBubble" aria-live="polite"></span>
     <span class="ring" aria-hidden="true"></span>
-    <img src="/me/avatar.jpg" alt="熙熙（Ciki）的卡通形象" width="200" height="200" loading="eager" />
+    <img src="/me/avatar.jpg" alt="熙熙（Ciki）的卡通形象，点一下会打招呼" width="200" height="200" loading="eager" />
     <span class="name">熙熙 · Ciki</span>
   </div>
 </div>
@@ -77,6 +78,31 @@ const nodes = [
     font-family: var(--sans, sans-serif); font-size: 13px; letter-spacing: 0.08em; font-weight: 500;
     color: #76706a; background: rgba(255, 255, 255, 0.85); padding: 2px 10px; border-radius: 999px;
   }
+  /* 点一下头像，冒出一句招呼 */
+  .hero-core { cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; }
+  .hero-core:active img { transform: scale(0.96); }
+  .hero-core img { transition: transform 160ms ease; }
+  .hero-core:focus-visible { outline: 2px solid #b8492a; outline-offset: 5px; border-radius: 50%; }
+  .say {
+    position: absolute; left: 50%; bottom: calc(100% + 6px); z-index: 6;
+    transform: translateX(-50%) translateY(8px);
+    background: #fff; color: #2b2722; border: 1px solid #e2dccd;
+    box-shadow: 0 12px 32px -14px rgba(33, 29, 25, 0.4);
+    font-family: var(--sans, sans-serif); font-size: 13px; line-height: 1.55;
+    width: max-content; max-width: 232px; text-align: center;
+    padding: 9px 15px; border-radius: 15px;
+    opacity: 0; visibility: hidden;
+    transition: opacity 240ms ease, transform 240ms ease, visibility 240ms ease;
+    pointer-events: none;
+  }
+  .say.show { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+  .say::after {
+    content: ""; position: absolute; left: 50%; top: 100%; transform: translateX(-50%);
+    border: 6px solid transparent; border-top-color: #fff;
+  }
+  @media (max-width: 560px) {
+    .say { white-space: normal; width: max-content; max-width: 188px; text-align: center; }
+  }
   @keyframes dash { to { stroke-dashoffset: -120; } }
   @keyframes spin { to { transform: rotate(360deg); } }
   @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
@@ -88,3 +114,34 @@ const nodes = [
   }
   @media (max-width: 900px) { .hero-visual { margin: 14px auto 0; width: 100%; max-width: min(330px, 82vw); } }
 </style>
+
+<script>
+  // 点头像 / 按回车，熙熙会说一句话；首次进页面先主动打个招呼
+  (function () {
+    const core = document.getElementById("sayHi");
+    const bubble = document.getElementById("sayBubble");
+    if (!core || !bubble || core.dataset.sayReady) return;
+    core.dataset.sayReady = "1";
+    const lines = [
+      "你好呀，欢迎来到我的小宇宙～",
+      "把重复的工作交给 AI，把「人」留给自己。",
+      "慢慢来，稳稳的也很好。",
+      "很高兴遇见你，随便逛逛吧 :)",
+    ];
+    let i = 0;
+    let hideTimer = null;
+    function speak() {
+      bubble.textContent = lines[i % lines.length];
+      i += 1;
+      bubble.classList.add("show");
+      window.clearTimeout(hideTimer);
+      hideTimer = window.setTimeout(() => bubble.classList.remove("show"), 4000);
+    }
+    core.addEventListener("click", speak);
+    core.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); speak(); }
+    });
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.setTimeout(speak, reduce ? 300 : 1300);
+  })();
+</script>

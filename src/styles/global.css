@@ -378,25 +378,23 @@ p { margin: 0; }
 .hero-mail .arrow { transition: transform 140ms ease; }
 .hero-mail:hover .arrow { transform: translateX(3px); }
 
-/* ---------- 我相信 ---------- */
-.beliefs {
-  display: grid; grid-template-columns: 0.85fr 2.15fr;
-  gap: clamp(20px, 3vw, 42px); align-items: center;
-  padding: clamp(26px, 3.4vw, 42px); border-radius: var(--r-lg);
-  background: linear-gradient(150deg, var(--paper-2), var(--card) 62%);
+/* ---------- 我相信（一句话） ---------- */
+.belief-one {
+  max-width: 940px; margin: 0 auto; text-align: center;
+  padding: clamp(30px, 4.4vw, 54px) clamp(24px, 6vw, 72px);
+  border-radius: var(--r-lg);
+  background: linear-gradient(150deg, var(--paper-2), var(--card) 64%);
   border: 1px solid var(--line);
 }
-.beliefs-kicker { font-family: var(--sans); font-size: 25px; font-weight: 600; color: var(--ink); letter-spacing: -0.015em; }
-.beliefs-kicker::before {
-  content: ""; display: block; width: 26px; height: 2px; background: var(--ochre); margin-bottom: 12px;
+.belief-one .b1-k {
+  display: block; font-size: 12px; letter-spacing: 0.24em; font-weight: 600;
+  color: var(--ochre); margin-bottom: 18px;
 }
-.beliefs-sub { margin-top: 12px; font-size: 14px; color: var(--muted); line-height: 1.7; }
-.beliefs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 26px; }
-.belief { padding-left: 22px; border-left: 1px solid var(--line-strong); }
-.belief:first-child { border-left: 0; padding-left: 0; }
-.belief .b-k { font-size: 12px; letter-spacing: 0.14em; color: var(--ochre); font-weight: 600; }
-.belief h3 { margin: 10px 0 8px; font-size: 18.5px; line-height: 1.5; font-weight: 600; }
-.belief p { font-size: 14px; color: var(--muted); line-height: 1.65; }
+.belief-one .belief-line {
+  margin: 0; font-family: var(--serif); font-weight: 700;
+  font-size: clamp(19px, 2.3vw, 25px); line-height: 1.9; color: var(--ink);
+  letter-spacing: 0.01em;
+}
 
 /* 章节标题旁的卡通小印章 */
 .sec-stamp {
@@ -470,10 +468,6 @@ p { margin: 0; }
   .stats { grid-template-columns: repeat(2, 1fr); }
   .now-grid { grid-template-columns: 1fr; }
   .case-grid { grid-template-columns: 1fr; }
-  .beliefs { grid-template-columns: 1fr; gap: 18px; }
-  .beliefs-grid { grid-template-columns: 1fr; gap: 0; }
-  .belief { padding-left: 0; border-left: 0; padding-top: 14px; border-top: 1px solid var(--line); }
-  .belief:first-child { padding-top: 0; border-top: 0; }
   .think-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 560px) {
