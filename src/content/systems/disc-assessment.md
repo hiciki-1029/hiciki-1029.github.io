@@ -8,7 +8,7 @@ status: live
 featured: false
 cover: /systems/disc-assessment/cover.jpg
 span: "2"
-tags: ["全栈", "边缘部署", "自动同步", "异常告警"]
+tags: ["独立开发", "公网运行", "自动同步", "异常提醒"]
 pipeline: ["40 题作答", "实时计分", "生成报告", "写回数据表", "邮箱匹配人员", "异常告警"]
 media:
   - type: video

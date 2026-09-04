@@ -1,11 +1,11 @@
 ---
 // 个人 AI 工作系统：中央是「我」的卡通形象，外围是在运行的能力节点
 const nodes = [
-  { label: "采集", x: 220, y: 58, c: "sage" },
-  { label: "蒸馏", x: 372, y: 132, c: "ochre" },
-  { label: "自动推送", x: 378, y: 300, c: "sage" },
-  { label: "常驻服务", x: 220, y: 386, c: "ochre" },
-  { label: "多模型路由", x: 62, y: 300, c: "sage" },
+  { label: "收集资料", x: 220, y: 58, c: "sage" },
+  { label: "提炼要点", x: 372, y: 132, c: "ochre" },
+  { label: "定时发送", x: 378, y: 300, c: "sage" },
+  { label: "自动运行", x: 220, y: 386, c: "ochre" },
+  { label: "不同 AI 分工", x: 62, y: 300, c: "sage" },
   { label: "知识库", x: 68, y: 132, c: "ochre" },
 ];
 ---
@@ -35,7 +35,7 @@ const nodes = [
     <!-- 外围节点 -->
     {nodes.map((n) => (
       <g class="sat">
-        <rect x={n.x - 44} y={n.y - 19} width="88" height="38" rx="19" fill="#fbf8f1" stroke="#d3c8b2" />
+        <rect x={n.x - 48} y={n.y - 19} width="96" height="38" rx="19" fill="#fbf8f1" stroke="#d3c8b2" />
         <text x={n.x} y={n.y + 5} text-anchor="middle" font-size="13.5" fill="#3d3a34" font-family="'Noto Sans SC',sans-serif">{n.label}</text>
       </g>
     ))}

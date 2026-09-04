@@ -17,7 +17,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
   <article class="narrow prose about-prose">
     <p>
-      我做了十余年组织与人才发展，现在在一家近两千人的公司负责人才发展。我大概是那种对「人」和「事」都想弄明白的人：理工科的底子让我习惯追问背后的原理与结构；做了这么多年与人相关的工作，又让我对人怀着同样的好奇——一个人为什么犹豫、卡在哪里、需要怎样的支持。所以我很少停在一份方案上，更愿意一路跟到它真正落地、被人用起来。
+      我有十余年组织与人才发展的工作经历，现在在一家近两千人的公司负责人才发展。我大概是那种对「人」和「事」都想弄明白的人：理工科的底子让我习惯追问背后的原理与结构；做了这么多年与人相关的工作，又让我对人怀着同样的好奇——一个人为什么犹豫、卡在哪里、需要怎样的支持。所以我很少停在一份方案上，更愿意一路跟到它真正落地、被人用起来。
     </p>
 
     <h2 class="akw"><span class="k">判断</span><span class="g">先看清，再动手</span></h2>
@@ -25,7 +25,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       我习惯在动手之前先把问题看清：一件事是否真的重要、是不是真实的需求，比尽快交出一份漂亮方案更要紧。我很少从模板出发，更愿意走到一线去倾听和观察，<strong>让判断落在真实的人和具体的处境上</strong>。即便一个项目已经成熟，若判断它此刻并非最优解，我也会把它停下来，换成更轻、更贴近当下的方式。这是我对结果负责的方式。
     </p>
 
-    <h2 class="akw"><span class="k">建造</span><span class="g">把想法做成能跑的产品</span></h2>
+    <h2 class="akw"><span class="k">建造</span><span class="g">把想法做成能用的产品</span></h2>
     <p>
       这两年，我投入大量精力去做一件传统 HR 较少涉足的事：用 AI 当自己的程序员，指挥它写代码、对接 API 接口，把知识库、人才测评、每日资讯这类日常工作，逐一做成可以打开、可以使用、甚至对外开放的产品，都记录在 <a href="/systems/">「AI 实践」<span class="lnk-arrow">→</span></a>。比起一个人提效，我更在意让一群没有技术背景的同事也能造出自己的工具；<strong>当一种能力从一个人蔓延到一群人，它才真正成为组织的能力</strong>。
     </p>
@@ -52,7 +52,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <a class="btn btn-ghost" href="/systems/">看看 AI 实践 <span class="arrow">→</span></a>
       <a class="btn btn-primary" href="mailto:gongwenxi912@outlook.com">写信给我 <span class="arrow">→</span></a>
     </div>
-    <!-- 教练对话 / 深度交流：后续把微信号或二维码放这里 -->
+
+    <div class="about-wechat">
+      <img src="/me/wechat-qr.png" alt="熙熙的微信二维码，扫码加好友" width="116" height="116" loading="lazy" />
+      <div class="aw-text">
+        <div class="aw-title">也可以加我微信</div>
+        <div class="aw-sub">教练对话或深度交流，扫码加好友，简单备注一下来意就好。</div>
+      </div>
+    </div>
   </article>
 </BaseLayout>
 
@@ -68,6 +75,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   .about-prose a .lnk-arrow { color: var(--ochre-soft); font-size: 0.92em; }
   .about-note { color: var(--muted); font-size: 14.5px; }
   .about-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+  .about-wechat {
+    display: flex; align-items: center; gap: 18px; margin-top: 18px;
+    padding: 18px; border-radius: var(--r-md);
+    background: var(--paper-2); border: 1px solid var(--line);
+  }
+  .about-wechat img {
+    width: 116px; height: 116px; flex: none; border-radius: 12px;
+    background: #fff; padding: 8px; border: 1px solid var(--line);
+  }
+  .aw-title { font-family: var(--serif); font-size: 17px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+  .aw-sub { font-size: 14px; color: var(--muted); line-height: 1.7; }
   .akw {
     display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
     margin: 34px 0 12px; font-family: var(--serif);
@@ -86,5 +104,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     .about-avatar { width: 92px; height: 92px; }
     .akw { gap: 8px; }
     .about-actions .btn { flex: 1 1 auto; justify-content: center; }
+    .about-wechat { flex-direction: column; text-align: center; gap: 12px; }
   }
 </style>

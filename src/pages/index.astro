@@ -29,19 +29,19 @@ const kindLabel = { digest: "蒸馏", note: "笔记", retro: "复盘", essay: "�
 const stats = [
   { to: 200, prefix: "约", suffix: "人", l: "新人培养自动化，横跨 23 个团队，通关率 86.5%" },
   { to: 24, prefix: "", suffix: "件·31人", l: "21 天 AI 创作赛，从作品到上台路演" },
-  { to: 34, prefix: "", suffix: "个", l: "亲手写的 AI 技能，加 14 个常驻自动化" },
+  { to: 34, prefix: "", suffix: "个", l: "自建的 AI 技能，加 14 个定时自动化流程" },
 ];
 
 const beliefs = [
   {
     k: "判断",
     t: "先看清真问题，再动手。",
-    d: "走到一线去听、去看，让判断落在真实的人和处境上。",
+    d: "走到一线去听、去看，让判断落在真实的人和具体处境上。",
   },
   {
-    k: "造物",
-    t: "重复交给系统，判断留给人。",
-    d: "把能自动化的做成产品，把难的对话与取舍留给自己。",
+    k: "建造",
+    t: "能交给 AI 的，就做成产品。",
+    d: "重复的工作让 AI 去跑，难的对话和取舍，留给自己判断。",
   },
   {
     k: "懂人",
@@ -55,9 +55,9 @@ const layers = [
     key: "build",
     num: "01",
     kicker: "做系统",
-    title: "把重复的事，做成能跑的应用",
-    desc: "重复的事交给机器，判断和验收留给人。测评、资讯、知识库，都是真在跑的应用。",
-    tags: ["常驻智能体", "全栈实现", "自动化运营"],
+    title: "把重复工作，做成能用的应用",
+    desc: "重复的工作交给 AI，判断和验收留给自己。测评、资讯、知识库，都是日常在用的应用。",
+    tags: ["AI 自动化", "独立做产品", "稳定运行"],
   },
   {
     key: "lead",
@@ -65,13 +65,13 @@ const layers = [
     kicker: "带团队",
     title: "带一群人一起做 AI",
     desc: "一个人会用还不够。我牵头黑客松、运营兴趣小组，让零技术背景的 HR 也能做出能用的作品。",
-    tags: ["AI 黑客松", "兴趣社群", "作品牵引"],
+    tags: ["AI 黑客松", "兴趣小组", "作品带动"],
   },
   {
     key: "judge",
     num: "03",
     kicker: "判断与人",
-    title: "管「人怎么想」这一层",
+    title: "理解「人怎么想」这一层",
     desc: "十余年组织人才经验，加上教练功底，懂业务也懂人。AI 越强，这层反而越稀缺。",
     tags: ["ICF 教练", "组织诊断", "关键对话"],
   },
@@ -90,12 +90,12 @@ const road = [
     <div class="hero-copy">
       <span class="eyebrow">组织与人才发展 × AI 实践 × ICF 认证教练 · 上海</span>
       <h1>
-        把重复交给系统，<br />
+        把重复的工作任务<span style="white-space:nowrap">交给 AI</span>，<br />
         把「<em>人</em>」留给自己。
       </h1>
       <p class="lede">
-        十余年做组织与人才发展。我以教练的方式理解人，也用 AI 把想法一个个做成真正在跑的产品——
-        <strong>自己做，也带一群没有技术背景的 HR 一起做。</strong>
+        我有十余年组织与人才发展的工作经历。教练让我更懂得理解人，我也用 AI 把一个个想法做成真正能用的产品——
+        <strong>不只是自己做，还带着一群没有技术背景的 HR 一起做。</strong>
       </p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="/systems/">看看这些实践 <span class="arrow">→</span></a>
@@ -210,8 +210,8 @@ const road = [
   <section class="wrap section reveal">
     <div class="sec-head">
       <span class="sec-index">04</span>
-      <h2>数字比形容词可信</h2>
-      <span class="hint">均为脱敏后的阶段性口径</span>
+      <h2>几个数字</h2>
+      <span class="hint">比形容词更能说明问题，均为脱敏后的阶段性口径</span>
     </div>
     <div class="stats stats-3" id="stats">
       {
@@ -244,20 +244,20 @@ const road = [
         <h3>/ now</h3>
         <ul class="now-list">
           <li>把「关键对话 Lab」打磨成能交给一线管理者反复练习的产品；</li>
-          <li>推动团队 AI 作品从黑客松走向日常工作流；</li>
-          <li>持续蒸馏组织与 AI 的前沿报告，每周一篇交叉洞察。</li>
+          <li>让团队在黑客松里做的 AI 作品，真正进到日常工作里；</li>
+          <li>持续读组织与 AI 的前沿报告，每周整理一篇交叉洞察。</li>
         </ul>
         <p style="margin-top:16px;"><a href="/now/">看完整近况 →</a></p>
       </div>
     </div>
   </section>
 
-  <!-- 8 · 我的来路 -->
+  <!-- 8 · 工作经历 -->
   <section class="wrap section reveal">
     <div class="sec-head">
       <span class="sec-index">06</span>
-      <h2>我的来路</h2>
-      <span class="hint">工作经历从简，详细版在简历页</span>
+      <h2>工作经历</h2>
+      <span class="hint">只放最近三段，完整版在简历页</span>
     </div>
     <div class="road">
       {
@@ -284,6 +284,10 @@ const road = [
           <a class="btn btn-primary" href="mailto:gongwenxi912@outlook.com">给我写信 <span class="arrow">→</span></a>
           <a class="btn btn-ghost" href="/about/">更多关于我</a>
         </div>
+      </div>
+      <div class="cta-qr">
+        <img src="/me/wechat-qr.png" alt="熙熙的微信二维码，扫码加好友" width="108" height="108" loading="lazy" />
+        <span>微信扫码加我</span>
       </div>
     </div>
   </section>
