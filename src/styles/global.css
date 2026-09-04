@@ -258,7 +258,7 @@ p { margin: 0; }
 
 /* ---------- Prose（内页） ---------- */
 .page-head { padding: clamp(48px, 8vw, 84px) 0 8px; }
-.page-head h1 { font-size: clamp(30px, 5vw, 44px); margin: 14px 0 0; }
+.page-head h1 { font-size: clamp(26px, 3.6vw, 35px); margin: 14px 0 0; }
 .page-head .sub { color: var(--muted); font-size: 17px; margin-top: 14px; max-width: 40em; }
 .prose { margin: 28px auto 40px; }
 .prose h2 { font-size: 23px; margin: 40px 0 12px; }
