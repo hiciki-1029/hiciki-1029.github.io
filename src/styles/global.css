@@ -197,6 +197,24 @@ p { margin: 0; }
 .sys .meta span + span::before { content: "·"; margin-right: 8px; color: var(--line-strong); }
 .sys.feature { background: linear-gradient(150deg, var(--paper-2), var(--card) 60%); }
 .sys .go { position: absolute; top: 22px; right: 24px; color: var(--muted); font-size: 18px; }
+/* 卡片封面：有演示素材时全宽出血 */
+.sys .cover { margin: -26px -26px 18px; position: relative; overflow: hidden; }
+.sys .cover img {
+  width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block;
+  background: var(--paper-2); border-bottom: 1px solid var(--line);
+  transition: transform 420ms ease;
+}
+.sys:hover .cover img { transform: scale(1.035); }
+.sys .cov-tag {
+  position: absolute; left: 12px; bottom: 12px;
+  font-size: 11.5px; font-weight: 600; letter-spacing: 0.04em;
+  color: #f5f1e8; background: rgba(37,35,31,0.72);
+  padding: 3px 10px; border-radius: 999px; backdrop-filter: blur(2px);
+}
+.sys:has(.cover) .go {
+  top: 12px; right: 12px; width: 30px; height: 30px; display: grid; place-items: center;
+  border-radius: 50%; background: rgba(245,241,232,0.86); backdrop-filter: blur(2px);
+}
 
 /* ---------- 数字锚点 ---------- */
 .stats {

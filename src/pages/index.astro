@@ -149,7 +149,7 @@ const road = [
                 data-to={s.to}
                 data-prefix={s.prefix}
                 data-suffix={s.suffix}
-              >{s.prefix}0</span>
+              >{s.prefix}{s.to}{s.suffix}</span>
             </div>
             <div class="l">{s.l}</div>
           </div>
@@ -173,7 +173,7 @@ const road = [
           <li>推动团队 AI 作品从黑客松走向日常工作流；</li>
           <li>持续蒸馏组织与 AI 的前沿报告，每周一篇交叉洞察。</li>
         </ul>
-        <p style="margin-top:16px;"><a href="/now/">看完整 Now 页 →</a></p>
+        <p style="margin-top:16px;"><a href="/now/">看完整近况 →</a></p>
       </div>
       <div class="panel">
         <h3>最近写的</h3>
@@ -195,7 +195,7 @@ const road = [
             ))
           }
         </ul>
-        <p style="margin-top:14px;"><a href="/writing/">全部文字 →</a></p>
+        <p style="margin-top:14px;"><a href="/writing/">全部文章 →</a></p>
       </div>
     </div>
   </section>
@@ -252,6 +252,8 @@ const road = [
       nums.forEach(function (n) { paint(n, parseInt(n.dataset.to || "0", 10)); });
       return;
     }
+    // 有 JS 才把初值归零、等进入视口再滚动；无 JS / 爬虫保留服务器渲染的终值
+    nums.forEach(function (n) { paint(n, 0); });
     var io = new IntersectionObserver(function (es) {
       es.forEach(function (e) {
         if (e.isIntersecting) { run(); io.disconnect(); }

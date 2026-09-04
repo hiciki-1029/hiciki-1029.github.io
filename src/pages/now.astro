@@ -10,14 +10,13 @@ const updated = writings[0]?.data.date;
 ---
 
 <BaseLayout
-  title="现在"
+  title="近况"
   description="龚文熙现在正在做的事：关键对话 Lab、团队 AI 化与持续的前沿研究。/now 页面保持更新。"
 >
   <section class="narrow page-head">
-    <span class="eyebrow">/ NOW · 现在在做</span>
+    <span class="eyebrow">NOW · 近况</span>
     <h1>最近，我在这几件事上</h1>
     <p class="sub">
-      这是一个 <a href="https://nownownow.com/about" target="_blank" rel="noopener">/now 页</a>——
       不写愿望清单，只写此刻真正投入的事。最近更新：
       {
         updated?.toLocaleDateString("zh-CN", { year: "numeric", month: "long" })

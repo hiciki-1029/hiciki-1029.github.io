@@ -14,9 +14,24 @@ const badgeMap = {
   method: { cls: "method", label: "方法 METHOD" },
 } as const;
 const badge = badgeMap[data.status];
+
+// 有演示素材的卡片，取第一个媒体的封面（视频用 poster，图片用 src）
+const firstMedia = (data.media ?? [])[0];
+const cover = firstMedia
+  ? firstMedia.type === "image"
+    ? firstMedia.src
+    : firstMedia.poster
+  : null;
+const isVideo = firstMedia?.type === "video";
 ---
 
 <a class={`sys span-${data.span} ${data.featured ? "feature" : ""} reveal`} href={`/systems/${sys.id}/`}>
+  {cover && (
+    <div class="cover">
+      <img src={cover} alt="" loading="lazy" decoding="async" />
+      {isVideo && <span class="cov-tag">实机演示</span>}
+    </div>
+  )}
   <span class="go" aria-hidden="true">↗</span>
   <div class="top">
     <span class={`badge ${badge.cls}`}><span class="dot"></span>{badge.label}</span>
