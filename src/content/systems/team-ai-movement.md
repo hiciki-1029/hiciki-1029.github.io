@@ -6,6 +6,7 @@ layer: lead
 year: "2026"
 status: method
 featured: false
+cover: /systems/team-ai-movement/cover.jpg
 span: "2"
 tags: ["AI 转型", "黑客松", "社群运营", "组织能力"]
 pipeline: ["打样作品", "搭台办赛", "社群陪跑", "知识自动入库", "沉淀为模板"]

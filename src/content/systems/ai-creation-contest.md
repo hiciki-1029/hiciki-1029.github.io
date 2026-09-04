@@ -6,6 +6,7 @@ layer: build
 year: "2026"
 status: method
 featured: true
+cover: /systems/ai-creation-contest/cover.jpg
 span: "3"
 tags: ["AI 共创", "赛制设计", "学习平台", "作品路演"]
 pipeline: ["定位调研", "赛制与平台", "21 天共创", "试玩会初筛", "精品路演", "作品上线"]

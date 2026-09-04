@@ -6,6 +6,7 @@ layer: build
 year: "2026"
 status: live
 featured: false
+cover: /systems/hr-intel-agent/cover.jpg
 span: "2"
 tags: ["常驻智能体", "信息蒸馏", "定时自动化"]
 pipeline: ["多源采集", "统一蒸馏", "跨报告交叉", "定时推送", "健康自检"]

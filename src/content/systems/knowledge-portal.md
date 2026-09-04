@@ -6,6 +6,7 @@ layer: build
 year: "2025—2026"
 status: live
 featured: true
+cover: /systems/knowledge-portal/cover.jpg
 span: "3"
 tags: ["Next.js", "飞书", "向量检索", "证据接地"]
 pipeline: ["多端采集", "结构化蒸馏", "入库留痕", "可溯源问答", "签名发布"]

@@ -6,6 +6,7 @@ layer: judge
 year: "2026"
 status: building
 featured: true
+cover: /systems/critical-conversation-lab/cover.jpg
 span: "3"
 tags: ["Python", "对话引擎", "ICF 教练", "领导力"]
 pipeline: ["选择难谈话场景", "AI 动态对练", "SCARF×TA 实时引擎", "四维评分复盘", "成长画像"]

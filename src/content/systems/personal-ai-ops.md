@@ -6,6 +6,7 @@ layer: build
 year: "2025—2026"
 status: live
 featured: false
+cover: /systems/personal-ai-ops/cover.jpg
 span: "6"
 tags: ["多智能体编排", "自建 Skill", "常驻服务", "工作流设计"]
 pipeline: ["任务识别", "模型路由", "Skill 执行", "常驻自动化", "健康检查", "回写知识库"]

@@ -15,21 +15,24 @@ const badgeMap = {
 } as const;
 const badge = badgeMap[data.status];
 
-// 有演示素材的卡片，取第一个媒体的封面（视频用 poster，图片用 src）
-const firstMedia = (data.media ?? [])[0];
-const cover = firstMedia
+// 卡片封面：优先用设计封面 cover；没填则回退到第一个媒体（视频 poster / 图片 src）
+const media = data.media ?? [];
+const firstMedia = media[0];
+const fallback = firstMedia
   ? firstMedia.type === "image"
     ? firstMedia.src
     : firstMedia.poster
   : null;
-const isVideo = firstMedia?.type === "video";
+const cover = data.cover ?? fallback;
+// 只要案例里含视频，就标「实机演示」
+const hasVideo = media.some((m) => m.type === "video");
 ---
 
 <a class={`sys span-${data.span} ${data.featured ? "feature" : ""} reveal`} href={`/systems/${sys.id}/`}>
   {cover && (
     <div class="cover">
       <img src={cover} alt="" loading="lazy" decoding="async" />
-      {isVideo && <span class="cov-tag">实机演示</span>}
+      {hasVideo && <span class="cov-tag">实机演示</span>}
     </div>
   )}
   <span class="go" aria-hidden="true">↗</span>

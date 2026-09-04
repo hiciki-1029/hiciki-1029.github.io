@@ -15,6 +15,8 @@ const systems = defineCollection({
     // live=在运行  building=建设中  method=方法/脱敏
     status: z.enum(["live", "building", "method"]),
     featured: z.boolean().default(false),
+    // 卡片封面（设计图，16:9）；不填则回退取第一个 media 的 poster/src
+    cover: z.string().optional(),
     // bento 跨度：3=半宽大卡 2=三分之一 6=整行
     span: z.enum(["3", "2", "6"]).default("2"),
     tags: z.array(z.string()).default([]),
