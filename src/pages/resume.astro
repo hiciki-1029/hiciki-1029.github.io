@@ -26,19 +26,6 @@ const jobs = [
   },
 ];
 
-const edu = [
-  {
-    school: "香港大学",
-    degree: "管理心理学 · 硕士（优秀毕业生）",
-    when: "2022.07 — 2023.12",
-  },
-  {
-    school: "江汉文理学院",
-    degree: "自动化 · 本科",
-    when: "2008.09 — 2012.06",
-  },
-];
-
 const certs = [
   "ICF 国际教练联盟 认证教练",
   "SFI 系统引导师",
@@ -51,7 +38,7 @@ const certs = [
 
 <BaseLayout
   title="工作经历"
-  description="龚文熙的完整简历：十余年组织人才发展经历、教育背景与专业认证。"
+  description="龚文熙的简历：十余年组织人才发展经历与专业认证。"
 >
   <section class="narrow page-head">
     <span class="eyebrow">RESUME · 简历</span>
@@ -64,32 +51,28 @@ const certs = [
   </section>
 
   <section class="narrow" style="padding-top:24px;">
-    <h2 style="font-size:14px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin:24px 0 14px;">工作经历</h2>
-    {
-      jobs.map((j) => (
-        <div class="resume-block">
-          <h3>
-            {j.co} · {j.role}
-          </h3>
-          <div class="when">{j.when}</div>
-          <ul>
-            {j.points.map((p) => <li>{p}</li>)}
-          </ul>
-        </div>
-      ))
-    }
+    <h2 style="font-size:14px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin:24px 0 18px;">工作经历</h2>
+    <div class="tl">
+      {
+        jobs.map((j) => (
+          <div class="tl-item">
+            <div class="tl-rail"><span class="tl-dot" aria-hidden="true"></span></div>
+            <div class="tl-body">
+              <div class="tl-top">
+                <h3>
+                  {j.co} · {j.role}
+                </h3>
+                <span class="when">{j.when}</span>
+              </div>
+              <ul>
+                {j.points.map((p) => <li>{p}</li>)}
+              </ul>
+            </div>
+          </div>
+        ))
+      }
+    </div>
     <p style="font-size:13.5px;color:var(--muted);margin:-6px 2px 0;">更早：晨光科力普（培训主管）、伊顿（培训专员），完整履历可邮件索取。</p>
-
-    <h2 style="font-size:14px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin:32px 0 14px;">教育背景</h2>
-    {
-      edu.map((e) => (
-        <div class="resume-block">
-          <h3>{e.school}</h3>
-          <div class="when">{e.when}</div>
-          <ul><li>{e.degree}</li></ul>
-        </div>
-      ))
-    }
 
     <h2 style="font-size:14px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin:32px 0 14px;">专业认证</h2>
     <div class="cert-chips" style="margin-bottom:8px;">

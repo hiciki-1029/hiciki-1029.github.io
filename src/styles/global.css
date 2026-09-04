@@ -331,6 +331,35 @@ p { margin: 0; }
 .cert-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
 .cert-chips span { font-size: 13px; padding: 5px 12px; border-radius: 999px; background: var(--paper-2); border: 1px solid var(--line); color: var(--ink-soft); }
 
+/* 简历 · 纵向时间轴 */
+.tl { position: relative; }
+.tl-item { display: grid; grid-template-columns: 24px minmax(0, 1fr); column-gap: 16px; }
+.tl-rail { position: relative; }
+.tl-rail::before {
+  content: ""; position: absolute; top: 4px; bottom: -8px; left: 50%;
+  width: 2px; transform: translateX(-50%); background: var(--line-strong);
+}
+.tl-item:last-child .tl-rail::before { bottom: calc(100% - 14px); }
+.tl-dot {
+  position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
+  width: 11px; height: 11px; border-radius: 50%; z-index: 1;
+  background: var(--card); border: 2.5px solid var(--ochre);
+}
+.tl-body {
+  margin-bottom: 16px; padding: 20px 24px; border-radius: var(--r-md);
+  background: var(--card); border: 1px solid var(--line);
+}
+.tl-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; }
+.tl-body h3 { margin: 0; font-size: 18px; }
+.tl-body .when { font-size: 13px; color: var(--ochre-soft); font-weight: 600; }
+.tl-body ul { margin: 10px 0 0; padding-left: 1.15em; color: var(--ink-soft); font-size: 14.5px; line-height: 1.7; }
+.tl-body li { margin-bottom: 6px; }
+.tl-body li:last-child { margin-bottom: 0; }
+@media (max-width: 560px) {
+  .tl-item { grid-template-columns: 20px minmax(0, 1fr); column-gap: 12px; }
+  .tl-body { padding: 16px 18px; }
+}
+
 /* ---------- Footer ---------- */
 .site-footer { margin-top: clamp(64px, 9vw, 96px); background: var(--ink); color: #c6c0b6; }
 .site-footer .inner { padding: 56px 0 44px; display: flex; flex-wrap: wrap; gap: 28px; justify-content: space-between; align-items: flex-end; }
