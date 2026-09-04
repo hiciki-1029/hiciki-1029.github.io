@@ -8,18 +8,46 @@ import Marquee from "../components/Marquee.astro";
 const systems = (await getCollection("systems")).sort(
   (a, b) => a.data.order - b.data.order
 );
+// 首页只精选 4 个最能代表广度与差异的实践，其余进列表页
+const homeOrder = [
+  "knowledge-portal",
+  "ssr-suite",
+  "critical-conversation-lab",
+  "ai-creation-contest",
+];
+const homeSystems = systems
+  .filter((s) => homeOrder.includes(s.id))
+  .sort((a, b) => homeOrder.indexOf(a.id) - homeOrder.indexOf(b.id));
+
 const writings = (await getCollection("writing"))
   .filter((w) => w.data.public)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 3);
 const kindLabel = { digest: "蒸馏", note: "笔记", retro: "复盘", essay: "随笔" };
 
+// 数字做减法：只留三个最有冲击力的
 const stats = [
-  { to: 69, prefix: "", suffix: "期日报", l: "另有 11 期周报，资讯智能体每天自动送达" },
   { to: 200, prefix: "约", suffix: "人", l: "新人培养自动化，横跨 23 个团队，通关率 86.5%" },
   { to: 24, prefix: "", suffix: "件·31人", l: "21 天 AI 创作赛，从作品到上台路演" },
   { to: 34, prefix: "", suffix: "个", l: "亲手写的 AI 技能，加 14 个常驻自动化" },
-  { to: 24, prefix: "", suffix: "份", l: "前沿报告蒸馏，附来源、可回溯" },
+];
+
+const beliefs = [
+  {
+    k: "判断",
+    t: "先看清真问题，再动手。",
+    d: "走到一线去听、去看，让判断落在真实的人和处境上。",
+  },
+  {
+    k: "造物",
+    t: "重复交给系统，判断留给人。",
+    d: "把能自动化的做成产品，把难的对话与取舍留给自己。",
+  },
+  {
+    k: "懂人",
+    t: "成长，只能自己长出来。",
+    d: "人在被真正听见、被信任的关系里，才会慢慢生长。",
+  },
 ];
 
 const layers = [
@@ -45,7 +73,7 @@ const layers = [
     kicker: "判断与人",
     title: "管「人怎么想」这一层",
     desc: "十余年组织人才经验，加上教练功底，懂业务也懂人。AI 越强，这层反而越稀缺。",
-    tags: ["ICF 教练", "组织诊断", "关键对话"],
+    tags: ["教练对话", "组织诊断", "关键对话"],
   },
 ];
 
@@ -60,18 +88,19 @@ const road = [
   <!-- 1 · Hero -->
   <section class="wrap hero hero-grid">
     <div class="hero-copy">
-      <span class="eyebrow">人才发展 × AI 工程化 × ICF 教练 · 上海</span>
+      <span class="eyebrow">组织与人才发展 × AI 实践 × 教练 · 上海</span>
       <h1>
-        我运行着一套<br />
-        「组织 × AI」的<em>工作系统</em>。
+        把重复交给系统，<br />
+        把「<em>人</em>」留给自己。
       </h1>
       <p class="lede">
-        十余年做组织与人才发展。这两年我把重复的事交给系统，把判断和对话留给人——
-        <strong>自己造能用的系统，也带整个 HR 团队一起做。</strong>
+        十余年做组织与人才发展。我以教练的方式理解人，也用 AI 把想法一个个做成真正在跑的产品——
+        <strong>自己做，也带一群没有技术背景的 HR 一起做。</strong>
       </p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="/systems/">看看这些实践 <span class="arrow">→</span></a>
-        <a class="btn btn-ghost" href="/resume/">读我的简历</a>
+        <a class="btn btn-ghost" href="/about/">关于我</a>
+        <a class="hero-mail" href="mailto:gongwenxi912@outlook.com">给我写信 <span class="arrow">→</span></a>
       </div>
     </div>
     <HeroSystem />
@@ -79,12 +108,34 @@ const road = [
 
   <div class="wrap"><Marquee /></div>
 
-  <!-- 2 · 三层能力 -->
+  <!-- 2 · 我相信 -->
+  <section class="wrap section reveal">
+    <div class="beliefs">
+      <div class="beliefs-aside">
+        <span class="beliefs-kicker">我相信</span>
+        <p class="beliefs-sub">三件做人和做事里，一直没怎么变过的事。</p>
+      </div>
+      <div class="beliefs-grid">
+        {
+          beliefs.map((b) => (
+            <div class="belief">
+              <span class="b-k">{b.k}</span>
+              <h3>{b.t}</h3>
+              <p>{b.d}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · 我怎么工作 -->
   <section class="wrap section reveal">
     <div class="sec-head">
-      <span class="sec-index">A</span>
-      <h2>我的三块基本功</h2>
+      <span class="sec-index">01</span>
+      <h2>我怎么工作</h2>
       <span class="hint">做系统 · 带团队 · 懂人</span>
+      <img class="sec-stamp" src="/me/pose-build.jpg" alt="熙熙在电脑前把想法做成产品" loading="lazy" />
     </div>
     <div class="layers">
       {
@@ -120,26 +171,49 @@ const road = [
     </div>
   </section>
 
-  <!-- 3 · 活系统证据墙 -->
+  <!-- 4 · 我怎么想（观点前置） -->
   <section class="wrap section reveal">
     <div class="sec-head">
-      <span class="sec-index">B</span>
-      <h2>几件正在运行的真事</h2>
-      <span class="hint">点进去看「问题—做法—验证—边界」</span>
+      <span class="sec-index">02</span>
+      <h2>我怎么想</h2>
+      <span class="hint">把想清楚的事，写下来</span>
     </div>
-    <div class="bento">
-      {systems.map((s) => <SystemCard sys={s} />)}
+    <div class="think-grid">
+      {
+        writings.map((w) => (
+          <a class="think" href={`/writing/${w.id}/`}>
+            <span class="think-kind">{kindLabel[w.data.kind]}</span>
+            <h3>{w.data.title}</h3>
+            <p>{w.data.summary}</p>
+            <span class="think-go">读这篇 <span class="arrow">→</span></span>
+          </a>
+        ))
+      }
     </div>
+    <p class="grid-more"><a href="/writing/">看全部文章 →</a></p>
   </section>
 
-  <!-- 4 · 数字锚点 -->
+  <!-- 5 · 我做的东西（精选 4 个） -->
   <section class="wrap section reveal">
     <div class="sec-head">
-      <span class="sec-index">C</span>
+      <span class="sec-index">03</span>
+      <h2>我做的东西</h2>
+      <span class="hint">精选四个，点进去看「问题—做法—验证—边界」</span>
+    </div>
+    <div class="bento">
+      {homeSystems.map((s) => <SystemCard sys={s} />)}
+    </div>
+    <p class="grid-more"><a href="/systems/">查看全部 {systems.length} 个 AI 实践 →</a></p>
+  </section>
+
+  <!-- 6 · 数字锚点 -->
+  <section class="wrap section reveal">
+    <div class="sec-head">
+      <span class="sec-index">04</span>
       <h2>数字比形容词可信</h2>
       <span class="hint">均为脱敏后的阶段性口径</span>
     </div>
-    <div class="stats" id="stats">
+    <div class="stats stats-3" id="stats">
       {
         stats.map((s) => (
           <div class="stat">
@@ -158,14 +232,14 @@ const road = [
     </div>
   </section>
 
-  <!-- 5 · 现在在做 + 最新文字 -->
+  <!-- 7 · 最近在做 -->
   <section class="wrap section reveal">
     <div class="sec-head">
-      <span class="sec-index">D</span>
-      <h2>现在在做</h2>
+      <span class="sec-index">05</span>
+      <h2>最近在做</h2>
       <span class="hint">随做随更</span>
     </div>
-    <div class="now-grid">
+    <div class="now-single">
       <div class="panel dark">
         <h3>/ now</h3>
         <ul class="now-list">
@@ -175,36 +249,14 @@ const road = [
         </ul>
         <p style="margin-top:16px;"><a href="/now/">看完整近况 →</a></p>
       </div>
-      <div class="panel">
-        <h3>最近写的</h3>
-        <ul class="writing-list">
-          {
-            writings.map((w) => (
-              <li>
-                <a href={`/writing/${w.id}/`}>
-                  <span class="d">
-                    {w.data.date.toLocaleDateString("zh-CN", {
-                      year: "numeric",
-                      month: "2-digit",
-                    })}{" "}
-                    · {kindLabel[w.data.kind]}
-                  </span>
-                  <span>{w.data.title}</span>
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-        <p style="margin-top:14px;"><a href="/writing/">全部文章 →</a></p>
-      </div>
     </div>
   </section>
 
-  <!-- 6 · 来路（工作经历从简） -->
+  <!-- 8 · 我的来路 -->
   <section class="wrap section reveal">
     <div class="sec-head">
-      <span class="sec-index">E</span>
-      <h2>来路</h2>
+      <span class="sec-index">06</span>
+      <h2>我的来路</h2>
       <span class="hint">工作经历从简，详细版在简历页</span>
     </div>
     <div class="road">
@@ -219,6 +271,21 @@ const road = [
       }
     </div>
     <p class="road-more"><a href="/resume/">看完整简历与教育、认证 →</a></p>
+  </section>
+
+  <!-- 9 · 联系 -->
+  <section class="wrap section reveal">
+    <div class="cta">
+      <img class="cta-img" src="/me/pose-listen.jpg" alt="熙熙专注倾听的样子" loading="lazy" />
+      <div class="cta-text">
+        <h2>想聊聊，就给我写封信</h2>
+        <p>人才发展、AI 要怎么在组织里落地，或者一次教练对话——都欢迎。</p>
+        <div class="cta-actions">
+          <a class="btn btn-primary" href="mailto:gongwenxi912@outlook.com">给我写信 <span class="arrow">→</span></a>
+          <a class="btn btn-ghost" href="/about/">更多关于我</a>
+        </div>
+      </div>
+    </div>
   </section>
 </BaseLayout>
 

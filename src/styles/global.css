@@ -328,6 +328,82 @@ p { margin: 0; }
 .site-footer a { color: #d9d2c2; }
 .site-footer .fine { width: 100%; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 18px; font-size: 12.5px; color: #8f897b; line-height: 1.7; }
 
+/* ---------- Hero 文本型联系入口 ---------- */
+.hero-mail {
+  display: inline-flex; align-items: center; gap: 7px; align-self: center;
+  color: var(--ink-soft); font-size: 15px;
+  text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 4px;
+}
+.hero-mail:hover { color: var(--ochre); text-decoration-color: var(--ochre); }
+.hero-mail .arrow { transition: transform 140ms ease; }
+.hero-mail:hover .arrow { transform: translateX(3px); }
+
+/* ---------- 我相信 ---------- */
+.beliefs {
+  display: grid; grid-template-columns: 0.85fr 2.15fr;
+  gap: clamp(20px, 3vw, 42px); align-items: center;
+  padding: clamp(26px, 3.4vw, 42px); border-radius: var(--r-lg);
+  background: linear-gradient(150deg, var(--paper-2), var(--card) 62%);
+  border: 1px solid var(--line);
+}
+.beliefs-kicker { font-family: var(--serif); font-size: 27px; font-weight: 700; color: var(--ink); }
+.beliefs-kicker::before {
+  content: ""; display: block; width: 26px; height: 2px; background: var(--ochre-soft); margin-bottom: 12px;
+}
+.beliefs-sub { margin-top: 12px; font-size: 14px; color: var(--muted); line-height: 1.7; }
+.beliefs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 26px; }
+.belief { padding-left: 22px; border-left: 1px solid var(--line-strong); }
+.belief:first-child { border-left: 0; padding-left: 0; }
+.belief .b-k { font-size: 12px; letter-spacing: 0.14em; color: var(--ochre-soft); font-weight: 600; }
+.belief h3 { margin: 10px 0 8px; font-size: 19px; line-height: 1.5; }
+.belief p { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+/* 章节标题旁的卡通小印章 */
+.sec-stamp {
+  width: 64px; height: 64px; border-radius: 50%; object-fit: cover; flex: none;
+  margin-left: auto; border: 2px solid var(--card);
+  box-shadow: 0 2px 10px -4px rgba(37, 35, 31, 0.3);
+}
+
+/* ---------- 我怎么想（观点卡） ---------- */
+.think-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.think {
+  display: flex; flex-direction: column; padding: 24px; border-radius: var(--r-md);
+  background: var(--card); border: 1px solid var(--line); text-decoration: none; color: var(--ink);
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+}
+.think:hover { transform: translateY(-3px); box-shadow: var(--shadow-soft); border-color: var(--line-strong); }
+.think-kind {
+  align-self: flex-start; font-size: 11.5px; font-weight: 600; letter-spacing: 0.06em;
+  color: var(--sage-deep); background: rgba(148, 216, 195, 0.16); padding: 3px 10px; border-radius: 999px;
+}
+.think h3 { margin: 14px 0 8px; font-size: 17.5px; line-height: 1.5; }
+.think p { flex: 1; font-size: 14px; color: var(--muted); line-height: 1.65; }
+.think-go { margin-top: 14px; font-size: 13.5px; color: var(--ochre); display: inline-flex; align-items: center; gap: 6px; }
+.think-go .arrow { transition: transform 140ms ease; }
+.think:hover .think-go .arrow { transform: translateX(3px); }
+
+.grid-more { margin: 20px 2px 0; font-size: 14.5px; text-align: right; }
+
+/* 首页数字精简为三栏 */
+.stats-3 { grid-template-columns: repeat(3, 1fr); }
+.now-single { max-width: 760px; }
+
+/* ---------- 结尾联系带 ---------- */
+.cta {
+  display: flex; align-items: center; gap: clamp(20px, 3vw, 38px);
+  padding: clamp(26px, 3.6vw, 44px); border-radius: var(--r-lg);
+  background: linear-gradient(150deg, var(--paper-2), var(--card) 60%);
+  border: 1px solid var(--line);
+}
+.cta-img {
+  width: clamp(88px, 12vw, 118px); height: clamp(88px, 12vw, 118px); flex: none;
+  border-radius: 50%; object-fit: cover; border: 3px solid var(--card); box-shadow: var(--shadow-soft);
+}
+.cta-text h2 { margin: 0 0 8px; font-size: clamp(20px, 2.6vw, 26px); }
+.cta-text p { color: var(--muted); font-size: 15.5px; margin: 0 0 18px; }
+.cta-actions { display: flex; flex-wrap: wrap; gap: 12px 20px; }
+
 /* ---------- 动效：克制的滚动渐入 ---------- */
 .reveal { opacity: 0; transform: translateY(14px); transition: opacity 600ms ease, transform 600ms ease; }
 .reveal.in { opacity: 1; transform: none; }
@@ -346,6 +422,11 @@ p { margin: 0; }
   .stats { grid-template-columns: repeat(2, 1fr); }
   .now-grid { grid-template-columns: 1fr; }
   .case-grid { grid-template-columns: 1fr; }
+  .beliefs { grid-template-columns: 1fr; gap: 18px; }
+  .beliefs-grid { grid-template-columns: 1fr; gap: 0; }
+  .belief { padding-left: 0; border-left: 0; padding-top: 14px; border-top: 1px solid var(--line); }
+  .belief:first-child { padding-top: 0; border-top: 0; }
+  .think-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 560px) {
   body { font-size: 16px; }
@@ -358,7 +439,13 @@ p { margin: 0; }
   .bento { grid-template-columns: 1fr; }
   .sys.span-3, .sys.span-2, .sys.span-6 { grid-column: span 1; }
   .stats { grid-template-columns: 1fr 1fr; }
+  .stats-3 { grid-template-columns: 1fr; }
   .stop { flex: 1 1 100%; border-right: 0; border-bottom: 1px solid var(--line); }
   .stop:last-child { border-bottom: 0; }
   .hero-actions .btn { width: 100%; justify-content: center; }
+  .hero-actions .hero-mail { width: 100%; justify-content: center; }
+  .sec-stamp { width: 52px; height: 52px; }
+  .cta { flex-direction: column; text-align: center; }
+  .cta-actions { justify-content: center; width: 100%; }
+  .cta-actions .btn { flex: 1 1 auto; justify-content: center; }
 }

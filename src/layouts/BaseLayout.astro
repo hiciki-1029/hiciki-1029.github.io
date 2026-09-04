@@ -9,7 +9,7 @@ interface Props {
 }
 const {
   title,
-  description = "龚文熙（熙熙 / Ciki）：十余年组织人才发展 × AI 工程化 × ICF 教练，把组织里的真实任务做成能跑、能验收、能回写的系统。",
+  description = "龚文熙（熙熙 / Ciki）：十余年组织与人才发展，以教练洞察人性，借助 AI 把想法做成真正在跑、能用起来的产品。",
 } = Astro.props;
 const fullTitle = title ? `${title} · 熙熙 Ciki` : "熙熙 Ciki · 组织 × AI 工作系统";
 const canonical = new URL(Astro.url.pathname, Astro.site ?? "https://www.hiciki.me");

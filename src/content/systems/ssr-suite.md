@@ -8,7 +8,7 @@ status: method
 featured: false
 cover: /systems/ssr-suite/cover.jpg
 span: "3"
-tags: ["NestJS", "实时互动", "自动化运营", "学习体验"]
+tags: ["实时互动", "自动化运营", "学习体验"]
 pipeline: ["15 场访谈定位", "报名与学习广场", "实时星图大屏", "启动会网页", "FAQ 机器人", "自动化回写"]
 media:
   - type: video

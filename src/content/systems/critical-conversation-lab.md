@@ -1,6 +1,6 @@
 ---
 title: "关键对话 Lab：让管理者和 AI 对练一场难谈话"
-tagline: "把 ICF 教练、SCARF 威胁—奖赏模型与交互分析（TA）写进引擎，做一个可以反复排练「辞退、降薪、绩效面谈」的 AI 陪练。"
+tagline: "把教练对话框架、SCARF 威胁—奖赏模型与交互分析（TA）写进引擎，做一个可以反复排练「辞退、降薪、绩效面谈」的 AI 陪练。"
 short: "和 AI 对练一场难谈话"
 layer: judge
 year: "2026"
@@ -8,7 +8,7 @@ status: building
 featured: true
 cover: /systems/critical-conversation-lab/cover.jpg
 span: "3"
-tags: ["Python", "对话引擎", "ICF 教练", "领导力"]
+tags: ["对话引擎", "教练对话", "领导力"]
 pipeline: ["选择难谈话场景", "AI 动态对练", "SCARF×TA 实时引擎", "四维评分复盘", "成长画像"]
 order: 2
 ---
