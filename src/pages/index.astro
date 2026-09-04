@@ -21,35 +21,35 @@ const homeSystems = systems
 
 const layers = [
   {
-    key: "build",
+    key: "td",
     num: "01",
-    kicker: "做系统",
-    title: "把重复工作，做成能用的应用",
-    desc: "重复的工作交给 AI，判断和验收留给自己。测评、资讯、知识库，都是日常在用的应用。",
-    tags: ["AI 自动化", "独立做产品", "稳定运行"],
+    kicker: "人才发展",
+    title: "十余年，一直做「人」的工作",
+    desc: "从校招新人培养、管理者发展到组织诊断，我在近两千人的公司里，把一套培养体系慢慢搭起来、跑下去。",
+    tags: ["培养体系", "管理者发展", "组织诊断"],
   },
   {
-    key: "lead",
+    key: "build",
     num: "02",
-    kicker: "带团队",
-    title: "带一群人一起做 AI",
-    desc: "一个人会用还不够。我牵头黑客松、运营兴趣小组，让零技术背景的 HR 也能做出能用的作品。",
-    tags: ["AI 黑客松", "兴趣小组", "作品带动"],
+    kicker: "AI 实践",
+    title: "用 AI 把想法做成能用的产品",
+    desc: "我把 AI 当自己的程序员，指挥它写代码、对接接口，把测评、资讯、知识库做成日常在用的东西，也带没有技术背景的同事一起做。",
+    tags: ["AI 自动化", "独立做产品", "带教推广"],
   },
   {
-    key: "judge",
+    key: "coach",
     num: "03",
-    kicker: "判断与人",
-    title: "理解「人怎么想」这一层",
-    desc: "十余年组织人才经验，加上教练功底，懂业务也懂人。AI 越强，这层反而越稀缺。",
-    tags: ["ICF 教练", "组织诊断", "关键对话"],
+    kicker: "教练与人",
+    title: "懂业务，也听得懂一个人",
+    desc: "作为 ICF 认证教练，我做过上百小时深度对话，习惯走到一线，听懂一个人真实的卡点，也听懂组织里没说出口的问题。",
+    tags: ["ICF 教练", "关键对话", "一线倾听"],
   },
 ];
 
 const road = [
   { yr: "2018–2021", co: "爱奇艺", rl: "HRBP / 培训" },
   { yr: "2021–2022", co: "小红书", rl: "人才发展" },
-  { yr: "2022—今", co: "心动网络", rl: "人才发展 · 近 2000 人" },
+  { yr: "2022—今", co: "心动游戏", rl: "人才发展 · 近 2000 人" },
 ];
 ---
 
@@ -69,7 +69,7 @@ const road = [
       <div class="hero-actions">
         <a class="btn btn-primary" href="/systems/">看看这些实践 <span class="arrow">→</span></a>
         <a class="btn btn-ghost" href="/about/">关于我</a>
-        <a class="hero-mail" href="mailto:gongwenxi912@outlook.com">给我写信 <span class="arrow">→</span></a>
+        <a class="hero-mail" href="mailto:gongwenxi912@outlook.com">随时联系我 <span class="arrow">→</span></a>
       </div>
     </div>
     <HeroSystem />
@@ -81,7 +81,7 @@ const road = [
   <section class="wrap section reveal">
     <div class="belief-one">
       <span class="b1-k">我相信</span>
-      <p class="belief-line">先走到一线把真问题看清，亲手把想法做成能用的东西，再把耐心，留给一个个具体的人。</p>
+      <p class="belief-line">我相信每个人身上都有自我生长的力量，而被听见、被信任，会让它慢慢长出来。</p>
     </div>
   </section>
 
@@ -90,7 +90,7 @@ const road = [
     <div class="sec-head">
       <span class="sec-index">01</span>
       <h2>我怎么工作</h2>
-      <span class="hint">做系统 · 带团队 · 看见人</span>
+      <span class="hint">人才发展 · AI 实践 · 教练</span>
       <img class="sec-stamp" src="/me/pose-build.jpg" alt="熙熙在电脑前把想法做成产品" loading="lazy" />
     </div>
     <div class="layers">
@@ -98,21 +98,22 @@ const road = [
         layers.map((l) => (
           <div class={`layer layer-${l.key}`}>
             <div class="licon" aria-hidden="true">
+              {l.key === "td" && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <rect x="9" y="3" width="6" height="6" rx="1.5" /><rect x="3" y="15" width="6" height="6" rx="1.5" /><rect x="15" y="15" width="6" height="6" rx="1.5" />
+                  <path d="M12 9v3M12 12H6v3M12 12h6v3" />
+                </svg>
+              )}
               {l.key === "build" && (
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
                   <rect x="3" y="3" width="7" height="7" rx="2" /><rect x="14" y="3" width="7" height="7" rx="2" />
                   <rect x="3" y="14" width="7" height="7" rx="2" /><rect x="14" y="14" width="7" height="7" rx="2" />
                 </svg>
               )}
-              {l.key === "lead" && (
+              {l.key === "coach" && (
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-                  <circle cx="9" cy="8" r="3.2" /><path d="M3.5 20c.6-3.4 3-5 5.5-5s4.9 1.6 5.5 5" />
-                  <path d="M16 5.2a3 3 0 0 1 0 5.6M17.5 15.2c1.8.7 3 2.2 3.3 4.8" />
-                </svg>
-              )}
-              {l.key === "judge" && (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-                  <circle cx="12" cy="12" r="9" /><path d="M12 7v5l3.2 2" />
+                  <path d="M4 5.5h16a1 1 0 0 1 1 1V15a1 1 0 0 1-1 1H9.5l-4.2 3v-3H4a1 1 0 0 1-1-1V6.5a1 1 0 0 1 1-1z" />
+                  <path d="M8 10.5h.01M12 10.5h.01M16 10.5h.01" stroke-linecap="round" />
                 </svg>
               )}
             </div>
@@ -166,10 +167,10 @@ const road = [
     <div class="cta">
       <img class="cta-img" src="/me/pose-listen.jpg" alt="熙熙专注倾听的样子" loading="lazy" />
       <div class="cta-text">
-        <h2>想聊聊，就给我写封信</h2>
+        <h2>想聊聊，随时联系我</h2>
         <p>人才发展、AI 要怎么在组织里落地，或者一次教练对话——都欢迎。</p>
         <div class="cta-actions">
-          <a class="btn btn-primary" href="mailto:gongwenxi912@outlook.com">给我写信 <span class="arrow">→</span></a>
+          <a class="btn btn-primary" href="mailto:gongwenxi912@outlook.com">随时联系我 <span class="arrow">→</span></a>
           <a class="btn btn-ghost" href="/about/">更多关于我</a>
         </div>
       </div>
