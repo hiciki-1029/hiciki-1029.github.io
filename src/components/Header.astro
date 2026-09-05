@@ -1,9 +1,9 @@
 ---
 const path = Astro.url.pathname;
 const nav = [
-  { href: "/systems/", label: "AI实践" },
-  { href: "/writing/", label: "一些思考" },
   { href: "/about/", label: "关于我" },
+  { href: "/systems/", label: "AI实践", key: true },
+  { href: "/writing/", label: "一些思考" },
   { href: "/resume/", label: "工作经历" },
 ];
 const isActive = (href: string) =>
@@ -18,7 +18,11 @@ const isActive = (href: string) =>
     <nav class="site-nav" aria-label="主导航">
       {
         nav.map((n) => (
-          <a href={n.href} aria-current={isActive(n.href) ? "page" : undefined}>
+          <a
+            href={n.href}
+            class={n.key ? "nav-key" : undefined}
+            aria-current={isActive(n.href) ? "page" : undefined}
+          >
             {n.label}
           </a>
         ))
