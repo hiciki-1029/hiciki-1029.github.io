@@ -54,28 +54,30 @@ const road = [
 ---
 
 <BaseLayout>
-  <!-- 1 · Hero -->
-  <section class="wrap hero hero-grid">
-    <div class="hero-copy">
-      <span class="eyebrow">组织与人才发展 × AI 实践 × ICF 认证教练 · 上海</span>
-      <h1>
-        把重复的工作任务<span style="white-space:nowrap">交给 AI</span>，<br />
-        把「<em>人</em>」留给自己。
-      </h1>
-      <p class="lede">
-        我有十余年组织与人才发展的工作经历。教练让我更懂得理解人，我也用 AI 把一个个想法做成真正能用的产品——
-        <strong>不只是自己做，还带着一群没有技术背景的 HR 一起做。</strong>
-      </p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="/systems/">看看这些实践 <span class="arrow">→</span></a>
-        <a class="btn btn-ghost" href="/about/">关于我</a>
-        <a class="hero-mail" href="mailto:gongwenxi912@outlook.com">随时联系我 <span class="arrow">→</span></a>
+  <!-- 1 · Hero（品牌色场域） -->
+  <section class="hero-band">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="wrap hero hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow"><span class="eb-dot" aria-hidden="true"></span>组织与人才发展 × AI 实践 × ICF 认证教练 · 上海</span>
+        <h1>
+          把重复的工作任务<span style="white-space:nowrap">交给 AI</span>，<br />
+          <span style="white-space:nowrap">把「<em>人</em>」留给自己。</span>
+        </h1>
+        <p class="lede">
+          我有十余年组织与人才发展的工作经历。教练让我更懂得理解人，我也用 AI 把一个个想法做成真正能用的产品——
+          <strong>不只是自己做，还带着一群没有技术背景的 HR 一起做。</strong>
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="/systems/">看看这些实践 <span class="arrow">→</span></a>
+          <a class="btn btn-ghost" href="/about/">关于我</a>
+          <a class="hero-mail" href="mailto:gongwenxi912@outlook.com">随时联系我 <span class="arrow">→</span></a>
+        </div>
       </div>
+      <HeroSystem />
     </div>
-    <HeroSystem />
+    <div class="wrap"><Marquee /></div>
   </section>
-
-  <div class="wrap"><Marquee /></div>
 
   <!-- 2 · 我相信（一句信念） -->
   <section class="wrap belief-sec reveal">

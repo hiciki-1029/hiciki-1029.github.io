@@ -52,7 +52,12 @@ const nodes = [
 
 <style>
   .hero-visual { position: relative; width: 100%; max-width: 460px; margin-left: auto; min-width: 0; }
-  .hero-visual svg { width: 100%; height: auto; display: block; }
+  .hero-visual::before {
+    content: ""; position: absolute; left: 50%; top: 50%; z-index: 0;
+    width: 52%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%;
+    background: radial-gradient(circle, rgba(184, 73, 42, 0.14), rgba(184, 73, 42, 0) 70%);
+  }
+  .hero-visual svg { width: 100%; height: auto; display: block; position: relative; z-index: 1; }
   .link { stroke-dasharray: 4 5; animation: dash 14s linear infinite; }
   .flow.sage { fill: #8d867b; }
   .flow.ochre { fill: #c05a38; }
@@ -61,18 +66,19 @@ const nodes = [
 
   .hero-core {
     position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+    z-index: 2;
     display: flex; flex-direction: column; align-items: center; gap: 9px;
     animation: floaty 7s ease-in-out infinite;
   }
   .hero-core img {
-    width: clamp(118px, 31%, 148px); height: auto; aspect-ratio: 1; border-radius: 50%;
+    width: clamp(124px, 32%, 156px); height: auto; aspect-ratio: 1; border-radius: 50%;
     object-fit: cover; border: 3px solid #ffffff;
-    box-shadow: 0 6px 22px -8px rgba(33, 29, 25, 0.30);
+    box-shadow: 0 10px 30px -10px rgba(150, 52, 27, 0.42);
     background: #f3efe7;
   }
   .hero-core .ring {
-    position: absolute; width: clamp(132px, 34.5%, 164px); aspect-ratio: 1; border-radius: 50%;
-    border: 1.5px dashed rgba(184, 73, 42, 0.45); top: 0; animation: spin 26s linear infinite;
+    position: absolute; width: clamp(138px, 35.5%, 172px); aspect-ratio: 1; border-radius: 50%;
+    border: 1.5px dashed rgba(184, 73, 42, 0.55); top: 0; animation: spin 26s linear infinite;
   }
   .hero-core .name {
     font-family: var(--sans, sans-serif); font-size: 13px; letter-spacing: 0.08em; font-weight: 500;
