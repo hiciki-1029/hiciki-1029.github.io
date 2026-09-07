@@ -16,7 +16,8 @@ const jobs = [
   },
   {
     co: "小红书",
-    logo: "/co/xhs.png",
+    logo: "/co/xhs.svg",
+    glyph: true,
     intro: "生活方式内容社区",
     role: "人才发展（TD）",
     when: "2021.05 — 2022.05 · 上海",
@@ -126,7 +127,7 @@ const certGroups = [
             <div class="tl-rail"><span class="tl-dot" aria-hidden="true"></span></div>
             <div class="tl-body">
               <div class="tl-head">
-                <span class="tl-hlogo"><img src={j.logo} alt={j.co + " logo"} loading="lazy" /></span>
+                <span class="tl-hlogo"><img class={j.glyph ? "glyph" : ""} src={j.logo} alt={j.co} loading="lazy" /></span>
                 <div class="tl-headtext">
                   <div class="tl-top">
                     <h3>

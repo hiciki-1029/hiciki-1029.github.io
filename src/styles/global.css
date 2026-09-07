@@ -316,11 +316,10 @@ p { margin: 0; }
 .stop { flex: 1 1 150px; padding: 20px 22px; border-right: 1px solid var(--line); }
 .stop:last-child { border-right: 0; }
 .stop .co-logo {
-  display: flex; align-items: center; justify-content: center;
-  height: 46px; margin-bottom: 12px; padding: 0 12px;
-  background: var(--paper); border: 1px solid var(--line); border-radius: 12px;
+  display: flex; align-items: center; justify-content: flex-start;
+  height: 30px; margin-bottom: 12px;
 }
-.stop .co-logo img { max-height: 26px; max-width: 100%; width: auto; object-fit: contain; }
+.stop .co-logo img { height: 26px; width: auto; max-width: 100%; object-fit: contain; }
 .stop .yr { font-family: var(--sans); font-size: 12.5px; color: var(--ochre-soft); font-weight: 600; letter-spacing: 0.04em; }
 .stop .co { margin-top: 6px; font-family: var(--sans); font-weight: 600; font-size: 16.5px; letter-spacing: -0.01em; }
 .stop .rl { font-size: 13px; color: var(--muted); margin-top: 2px; }
@@ -404,11 +403,10 @@ p { margin: 0; }
 }
 .tl-head { display: flex; align-items: center; gap: 14px; }
 .tl-hlogo {
-  flex: none; display: flex; align-items: center; justify-content: center;
-  min-width: 44px; height: 42px; padding: 0 12px;
-  background: var(--paper); border: 1px solid var(--line); border-radius: 12px;
+  flex: none; width: 150px; display: flex; align-items: center; justify-content: flex-start;
+  height: 26px;
 }
-.tl-hlogo img { max-height: 24px; max-width: 128px; width: auto; object-fit: contain; }
+.tl-hlogo img { height: 24px; width: auto; max-width: 128px; object-fit: contain; }
 .tl-headtext { min-width: 0; flex: 1; }
 .tl-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; }
 .tl-body h3 { margin: 0; font-size: 18px; }
@@ -458,8 +456,8 @@ p { margin: 0; }
 @media (max-width: 560px) {
   .tl-item { grid-template-columns: 16px minmax(0, 1fr); column-gap: 11px; }
   .tl-head { flex-direction: column; align-items: flex-start; gap: 9px; }
-  .tl-hlogo { min-width: 38px; height: 36px; padding: 0 9px; border-radius: 10px; }
-  .tl-hlogo img { max-height: 19px; max-width: 92px; }
+  .tl-hlogo { height: 22px; }
+  .tl-hlogo img { height: 20px; max-width: 120px; }
   .tl-item:last-child .tl-rail::before { bottom: calc(100% - 16px); }
   .tl-body { padding: 16px 18px; }
   .rh-avatar { width: 96px; height: 96px; order: -1; }
