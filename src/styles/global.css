@@ -406,7 +406,7 @@ p { margin: 0; }
 /* ---------- Footer ---------- */
 .site-footer { margin-top: clamp(64px, 9vw, 96px); background: var(--ink); color: #c6c0b6; }
 .site-footer .inner { padding: 56px 0 44px; display: flex; flex-wrap: wrap; gap: 28px; justify-content: space-between; align-items: flex-end; }
-.site-footer .foot-sign { color: #f3ece3; font-family: var(--serif); font-weight: 500; font-size: 19px; margin: 0 0 14px; letter-spacing: 0.01em; }
+.site-footer .foot-sign { color: #f3ece3; font-family: var(--serif); font-weight: 500; font-size: 19px; margin: 0 0 14px; max-width: 34em; line-height: 1.65; letter-spacing: 0.01em; }
 .site-footer .links { display: flex; flex-wrap: wrap; gap: 20px; font-size: 15px; }
 .site-footer a { color: #ddd8cf; }
 .site-footer .fine { width: 100%; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 18px; font-size: 12.5px; color: #98928a; line-height: 1.7; }
