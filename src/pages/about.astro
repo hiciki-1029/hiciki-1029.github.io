@@ -1,11 +1,15 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Crumb from "../components/Crumb.astro";
 ---
 
 <BaseLayout
   title="关于我"
   description="熙熙（Ciki / 龚文熙）：十余年组织与人才发展，亲手把 AI 做成能用的产品，也是一名持续修习的教练。"
 >
+  <div class="narrow" style="padding-top:clamp(28px,5vw,48px);">
+    <Crumb current="关于我" />
+  </div>
   <section class="narrow about-head">
     <img class="about-avatar" src="/me/avatar.jpg" alt="熙熙（Ciki）的卡通形象" width="132" height="132" />
     <div>
@@ -69,7 +73,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 </BaseLayout>
 
 <style>
-  .about-head { display: flex; align-items: center; gap: 22px; padding-top: clamp(40px, 7vw, 72px); }
+  .about-head { display: flex; align-items: center; gap: 22px; padding-top: 8px; }
   .about-avatar {
     width: 132px; height: 132px; flex: none; border-radius: 50%; object-fit: cover;
     border: 3px solid var(--card); box-shadow: var(--shadow-soft); background: var(--paper-2);

@@ -1,0 +1,41 @@
+---
+// 统一面包屑：始终以「首页」开头，保证每个子页面都有明确的回主页路径
+// parent: { href, label } 当前栏目的上级（可空）；current: 当前页名称（不可点）
+const { parent, current } = Astro.props;
+---
+
+<nav class="crumbs" aria-label="面包屑导航">
+  <a href="/">首页</a>
+  {
+    parent && (
+      <>
+        <span class="sep" aria-hidden="true">/</span>
+        <a href={parent.href}>{parent.label}</a>
+      </>
+    )
+  }
+  {
+    current && (
+      <>
+        <span class="sep" aria-hidden="true">/</span>
+        <span class="cur" aria-current="page">{current}</span>
+      </>
+    )
+  }
+</nav>
+
+<style>
+  .crumbs {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 9px;
+    font-family: var(--sans, sans-serif); font-size: 13px; color: var(--muted);
+    margin-bottom: 18px;
+  }
+  .crumbs a {
+    color: var(--ink-soft); text-decoration: none;
+    padding: 3px 9px; border-radius: 999px; border: 1px solid var(--line);
+    background: var(--card); transition: color .18s ease, border-color .18s ease, background .18s ease;
+  }
+  .crumbs a:hover { color: var(--ochre-deep); border-color: var(--ochre-soft); background: var(--clay-tint); }
+  .crumbs .sep { color: var(--line-strong); }
+  .crumbs .cur { color: var(--muted); }
+</style>

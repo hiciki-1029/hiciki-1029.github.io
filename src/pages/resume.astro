@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Crumb from "../components/Crumb.astro";
 
 const jobs = [
   {
@@ -40,7 +41,7 @@ const caps = [
   {
     key: "td",
     title: "人才发展 · TD",
-    desc: "十余年从长视频、内容社区做到游戏行业：历经 HRBP、培训与组织文化，再到统筹人才发展，搭过新人与管理者培养体系、领导力提升与组织诊断。我越来越确信，成长不是靠课堆出来的，而是在真实业务和被信任的关系里长出来。",
+    desc: "十余年从长视频、内容社区做到游戏行业：做过 HRBP、培训与组织文化，再到统筹人才发展；从新人培养、管理者发展，到领导力提升、组织诊断，都系统地做过一遍。我越来越确信，成长不是靠课堆出来的，而是在真实业务和被信任的关系里长出来。",
   },
   {
     key: "build",
@@ -72,6 +73,9 @@ const certGroups = [
   title="工作经历"
   description="龚文熙的简历：十余年组织人才发展经历、AI 实践与专业认证。"
 >
+  <div class="narrow" style="padding-top:clamp(28px,5vw,48px);">
+    <Crumb current="工作经历" />
+  </div>
   <section class="narrow page-head resume-hero">
     <div class="rh-text">
       <span class="eyebrow">RESUME · 简历</span>

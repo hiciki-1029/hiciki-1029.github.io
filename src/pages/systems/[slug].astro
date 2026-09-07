@@ -2,6 +2,7 @@
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Pipeline from "../../components/Pipeline.astro";
+import Crumb from "../../components/Crumb.astro";
 
 export async function getStaticPaths() {
   const systems = await getCollection("systems");
@@ -20,6 +21,7 @@ const badge = badgeMap[sys.data.status];
 
 <BaseLayout title={sys.data.title} description={sys.data.tagline}>
   <section class="narrow page-head">
+    <Crumb parent={{ href: "/systems/", label: "AI 实践" }} />
     <span class={`badge ${badge.cls}`} style="margin-bottom:18px;">
       <span class="dot"></span>{badge.label} · {sys.data.year}
     </span>
@@ -74,6 +76,19 @@ const badge = badgeMap[sys.data.status];
       )
     }
 
-    <p style="margin-top:40px;"><a href="/systems/">← 返回全部系统</a></p>
+    <div class="post-nav">
+      <a href="/systems/">← 回到 AI 实践</a>
+      <a href="/">回到首页 →</a>
+    </div>
   </article>
 </BaseLayout>
+
+<style>
+  .post-nav {
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px;
+    margin-top: 44px; padding-top: 20px; border-top: 1px solid var(--line);
+    font-family: var(--sans, sans-serif); font-size: 14.5px;
+  }
+  .post-nav a { color: var(--ink-soft); text-decoration: none; }
+  .post-nav a:hover { color: var(--ochre-deep); }
+</style>

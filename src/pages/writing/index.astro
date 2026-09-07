@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Crumb from "../../components/Crumb.astro";
 
 const writings = (await getCollection("writing"))
   .filter((w) => w.data.public)
@@ -13,6 +14,7 @@ const kindLabel = { digest: "报告蒸馏", note: "笔记", retro: "复盘", ess
   description="龚文熙关于组织、人才与 AI 的持续写作：前沿报告蒸馏、工作复盘与方法论随笔，保持更新。"
 >
   <section class="wrap page-head">
+    <Crumb current="一些思考" />
     <span class="eyebrow">WRITING · 持续输出</span>
     <h1>把想清楚的事，写下来</h1>
     <p class="sub">

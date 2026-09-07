@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Crumb from "../../components/Crumb.astro";
 
 export async function getStaticPaths() {
   const writings = await getCollection("writing");
@@ -16,6 +17,7 @@ const kindLabel = { digest: "报告蒸馏", note: "笔记", retro: "复盘", ess
 
 <BaseLayout title={post.data.title} description={post.data.summary}>
   <section class="narrow page-head">
+    <Crumb parent={{ href: "/writing/", label: "一些思考" }} />
     <span class="eyebrow">
       {kindLabel[post.data.kind]}{post.data.source ? ` · ${post.data.source}` : ""}
     </span>
@@ -31,6 +33,19 @@ const kindLabel = { digest: "报告蒸馏", note: "笔记", retro: "复盘", ess
 
   <article class="narrow prose">
     <Content />
-    <p style="margin-top:40px;"><a href="/writing/">← 返回全部文章</a></p>
+    <div class="post-nav">
+      <a href="/writing/">← 回到文章列表</a>
+      <a href="/">回到首页 →</a>
+    </div>
   </article>
 </BaseLayout>
+
+<style>
+  .post-nav {
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px;
+    margin-top: 44px; padding-top: 20px; border-top: 1px solid var(--line);
+    font-family: var(--sans, sans-serif); font-size: 14.5px;
+  }
+  .post-nav a { color: var(--ink-soft); text-decoration: none; }
+  .post-nav a:hover { color: var(--ochre-deep); }
+</style>
