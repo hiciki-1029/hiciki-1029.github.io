@@ -1,0 +1,283 @@
+- generic [active] [ref=e1]:
+  - link "跳到正文" [ref=e2] [cursor=pointer]:
+    - /url: "#content"
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - link "熙熙 CIKI · HICIKI.ME" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - text: 熙熙
+        - generic [ref=e6]: CIKI · HICIKI.ME
+      - navigation "主导航" [ref=e7]:
+        - link "关于我" [ref=e8] [cursor=pointer]:
+          - /url: /about/
+        - link "AI实践" [ref=e9] [cursor=pointer]:
+          - /url: /systems/
+        - link "一些思考" [ref=e10] [cursor=pointer]:
+          - /url: /writing/
+        - link "工作经历" [ref=e11] [cursor=pointer]:
+          - /url: /resume/
+  - main [ref=e12]:
+    - generic [ref=e13]:
+      - generic [ref=e14]:
+        - generic [ref=e15]:
+          - generic [ref=e16]: 组织与人才发展 × AI 实践 × ICF 认证教练 · 上海
+          - heading [level=1] [ref=e18]:
+            - text: 把重复的工作任务交给 AI，
+            - generic [ref=e19]:
+              - text: 把「
+              - emphasis [ref=e20]: 人
+              - text: 」留给自己。
+          - paragraph [ref=e21]:
+            - text: 我有十余年组织与人才发展的工作经历。教练让我更懂得理解人，我也用 AI 把一个个想法做成真正能用的产品——
+            - strong [ref=e22]: 不只是自己做，还带着一群没有技术背景的 HR 一起做。
+          - generic [ref=e23]:
+            - link "看看这些实践 →" [ref=e24] [cursor=pointer]:
+              - /url: /systems/
+              - text: 看看这些实践
+              - generic [ref=e25]: →
+            - link "关于我" [ref=e26] [cursor=pointer]:
+              - /url: /about/
+            - link "随时联系我 →" [ref=e27] [cursor=pointer]:
+              - /url: mailto:gongwenxi912@outlook.com
+              - text: 随时联系我
+              - generic [ref=e28]: →
+        - generic [ref=e29]:
+          - img [aria-hidden] [ref=e30]:
+            - generic [ref=e44]: 知识门户
+            - generic [ref=e47]: 人才测评
+            - generic [ref=e50]: 每日资讯
+            - generic [ref=e53]: 培养系统
+            - generic [ref=e56]: 创作大赛
+            - generic [ref=e59]: 对话演练
+          - button "和熙熙打个招呼" [ref=e62] [cursor=pointer]:
+            - generic: 你好呀，欢迎来到我的小宇宙～
+            - img "熙熙（Ciki）的卡通形象，点一下会打招呼" [ref=e64]
+            - generic [ref=e65]: 熙熙 · Ciki
+      - generic [ref=e68]:
+        - generic [ref=e69]:
+          - text: 一线访谈
+          - generic [ref=e70]: ✦
+        - generic [ref=e71]:
+          - text: 人才培养
+          - generic [ref=e72]: ✦
+        - generic [ref=e73]:
+          - text: AI 创作大赛
+          - generic [ref=e74]: ✦
+        - generic [ref=e75]:
+          - text: 教练对话
+          - generic [ref=e76]: ✦
+        - generic [ref=e77]:
+          - text: 知识库门户
+          - generic [ref=e78]: ✦
+        - generic [ref=e79]:
+          - text: 在线测评
+          - generic [ref=e80]: ✦
+        - generic [ref=e81]:
+          - text: 自动化工作流
+          - generic [ref=e82]: ✦
+        - generic [ref=e83]:
+          - text: 带团队做 AI
+          - generic [ref=e84]: ✦
+        - generic [ref=e85]:
+          - text: 每日情报
+          - generic [ref=e86]: ✦
+        - generic [ref=e87]:
+          - text: 关键对话
+          - generic [ref=e88]: ✦
+        - generic [ref=e89]:
+          - text: 21 天共创
+          - generic [ref=e90]: ✦
+        - generic [ref=e91]:
+          - text: 34 个自建技能
+          - generic [ref=e92]: ✦
+        - generic [ref=e93]:
+          - text: 14 个常驻自动化
+          - generic [ref=e94]: ✦
+        - generic [ref=e95]:
+          - text: 可溯源问答
+          - generic [ref=e96]: ✦
+        - generic [ref=e97]:
+          - text: 一线访谈
+          - generic [ref=e98]: ✦
+        - generic [ref=e99]:
+          - text: 人才培养
+          - generic [ref=e100]: ✦
+        - generic [ref=e101]:
+          - text: AI 创作大赛
+          - generic [ref=e102]: ✦
+        - generic [ref=e103]:
+          - text: 教练对话
+          - generic [ref=e104]: ✦
+        - generic [ref=e105]:
+          - text: 知识库门户
+          - generic [ref=e106]: ✦
+        - generic [ref=e107]:
+          - text: 在线测评
+          - generic [ref=e108]: ✦
+        - generic [ref=e109]:
+          - text: 自动化工作流
+          - generic [ref=e110]: ✦
+        - generic [ref=e111]:
+          - text: 带团队做 AI
+          - generic [ref=e112]: ✦
+        - generic [ref=e113]:
+          - text: 每日情报
+          - generic [ref=e114]: ✦
+        - generic [ref=e115]:
+          - text: 关键对话
+          - generic [ref=e116]: ✦
+        - generic [ref=e117]:
+          - text: 21 天共创
+          - generic [ref=e118]: ✦
+        - generic [ref=e119]:
+          - text: 34 个自建技能
+          - generic [ref=e120]: ✦
+        - generic [ref=e121]:
+          - text: 14 个常驻自动化
+          - generic [ref=e122]: ✦
+        - generic [ref=e123]:
+          - text: 可溯源问答
+          - generic [ref=e124]: ✦
+    - generic [ref=e126]:
+      - text: “
+      - paragraph [ref=e127]: 我相信每个人身上都有自我生长的力量，而被听见、被信任，会让它慢慢长出来。
+    - generic [ref=e128]:
+      - generic [ref=e129]:
+        - generic [ref=e130]: "01"
+        - heading "我怎么工作" [level=2] [ref=e131]
+        - generic [ref=e132]: 人才发展 · AI 实践 · 教练
+        - img "熙熙在电脑前把想法做成产品" [ref=e133]
+      - generic [ref=e134]:
+        - generic [ref=e135]:
+          - generic: "01"
+          - generic [ref=e142]: 人才发展
+          - heading "十余年，一直做「人」的工作" [level=3] [ref=e143]
+          - paragraph [ref=e144]: 从校招新人培养、领导力提升到组织诊断，我在近两千人的公司里，把一套培养体系慢慢搭起来、跑下去。
+          - generic [ref=e145]:
+            - generic [ref=e146]: 培养体系
+            - generic [ref=e147]: 领导力提升
+            - generic [ref=e148]: 组织诊断
+        - generic [ref=e149]:
+          - generic: "02"
+          - generic [ref=e156]: AI 实践
+          - heading "用 AI 把想法做成能用的产品" [level=3] [ref=e157]
+          - paragraph [ref=e158]: 我把 AI 当自己的程序员，指挥它写代码、对接接口，把测评、资讯、知识库做成日常在用的东西，也带没有技术背景的同事一起做。
+          - generic [ref=e159]:
+            - generic [ref=e160]: AI 自动化
+            - generic [ref=e161]: 独立做产品
+            - generic [ref=e162]: 带教推广
+        - generic [ref=e163]:
+          - generic: "03"
+          - generic [ref=e167]: 教练与人
+          - heading "懂业务，也听得懂一个人" [level=3] [ref=e168]
+          - paragraph [ref=e169]: 作为 ICF 认证教练，我做过上百小时深度对话，习惯走到一线，听懂一个人真实的卡点，也听懂组织里没说出口的问题。
+          - generic [ref=e170]:
+            - generic [ref=e171]: ICF 教练
+            - generic [ref=e172]: 关键对话
+            - generic [ref=e173]: 一线倾听
+    - generic [ref=e174]:
+      - generic [ref=e175]:
+        - generic [ref=e176]: "02"
+        - heading "我做的东西" [level=2] [ref=e177]
+        - generic [ref=e178]: 精选四个，点进去看「问题—做法—验证—边界」
+      - generic [ref=e179]:
+        - link "实机演示 在运行 LIVE 个人知识库门户：让每一份沉淀都能被再调用 会自己进、能被问，每句回答都有出处 2025—2026 ·知识门户 ·可溯源问答 ·有据可查" [ref=e180] [cursor=pointer]:
+          - /url: /systems/knowledge-portal/
+          - generic [ref=e181]: 实机演示
+          - generic [aria-hidden] [ref=e183]: ↗
+          - generic [ref=e184]: 在运行 LIVE
+          - heading "个人知识库门户：让每一份沉淀都能被再调用" [level=3] [ref=e187]
+          - paragraph [ref=e188]: 会自己进、能被问，每句回答都有出处
+          - generic [ref=e189]:
+            - generic [ref=e190]: 2025—2026
+            - generic [ref=e191]: ·知识门户
+            - generic [ref=e192]: ·可溯源问答
+            - generic [ref=e193]: ·有据可查
+        - link "实机演示 方法 METHOD 校招生培养系统：一场数月项目的数字化底座 报名、星图、答疑，全线上化 2025—2026 ·实时互动 ·自动化运营 ·学习体验" [ref=e194] [cursor=pointer]:
+          - /url: /systems/ssr-suite/
+          - generic [ref=e195]: 实机演示
+          - generic [aria-hidden] [ref=e197]: ↗
+          - generic [ref=e198]: 方法 METHOD
+          - heading "校招生培养系统：一场数月项目的数字化底座" [level=3] [ref=e201]
+          - paragraph [ref=e202]: 报名、星图、答疑，全线上化
+          - generic [ref=e203]:
+            - generic [ref=e204]: 2025—2026
+            - generic [ref=e205]: ·实时互动
+            - generic [ref=e206]: ·自动化运营
+            - generic [ref=e207]: ·学习体验
+        - link "建设中 BUILDING 关键对话 Lab：让管理者和 AI 对练一场难谈话 和 AI 对练一场难谈话 2026 ·对话引擎 ·ICF 教练 ·领导力" [ref=e208] [cursor=pointer]:
+          - /url: /systems/critical-conversation-lab/
+          - generic [aria-hidden] [ref=e210]: ↗
+          - generic [ref=e211]: 建设中 BUILDING
+          - heading "关键对话 Lab：让管理者和 AI 对练一场难谈话" [level=3] [ref=e214]
+          - paragraph [ref=e215]: 和 AI 对练一场难谈话
+          - generic [ref=e216]:
+            - generic [ref=e217]: "2026"
+            - generic [ref=e218]: ·对话引擎
+            - generic [ref=e219]: ·ICF 教练
+            - generic [ref=e220]: ·领导力
+        - link "实机演示 方法 METHOD 21 天 AI 创作大赛：让一群新人用 AI 把游戏做上线 不上工具课，办一场 21 天比赛 2026 ·AI 共创 ·赛制设计 ·学习平台 ·作品路演" [ref=e221] [cursor=pointer]:
+          - /url: /systems/ai-creation-contest/
+          - generic [ref=e222]: 实机演示
+          - generic [aria-hidden] [ref=e224]: ↗
+          - generic [ref=e225]: 方法 METHOD
+          - heading "21 天 AI 创作大赛：让一群新人用 AI 把游戏做上线" [level=3] [ref=e228]
+          - paragraph [ref=e229]: 不上工具课，办一场 21 天比赛
+          - generic [ref=e230]:
+            - generic [ref=e231]: "2026"
+            - generic [ref=e232]: ·AI 共创
+            - generic [ref=e233]: ·赛制设计
+            - generic [ref=e234]: ·学习平台
+            - generic [ref=e235]: ·作品路演
+      - paragraph [ref=e236]:
+        - link "查看全部 8 个 AI 实践 →" [ref=e237] [cursor=pointer]:
+          - /url: /systems/
+    - generic [ref=e238]:
+      - generic [ref=e239]:
+        - generic [ref=e240]: "03"
+        - heading "工作经历" [level=2] [ref=e241]
+        - generic [ref=e242]: 只放最近三段，完整版在简历页
+      - generic [ref=e243]:
+        - generic [ref=e244]:
+          - generic [ref=e245]: 2018–2021
+          - generic [ref=e246]: 爱奇艺
+          - generic [ref=e247]: HRBP / 培训
+        - generic [ref=e248]:
+          - generic [ref=e249]: 2021–2022
+          - generic [ref=e250]: 小红书
+          - generic [ref=e251]: 人才发展
+        - generic [ref=e252]:
+          - generic [ref=e253]: 2022—今
+          - generic [ref=e254]: 心动游戏
+          - generic [ref=e255]: 人才发展 · 近 2000 人
+      - paragraph [ref=e256]:
+        - link "看完整简历与认证 →" [ref=e257] [cursor=pointer]:
+          - /url: /resume/
+    - generic [ref=e259]:
+      - img "熙熙专注倾听的样子" [ref=e260]
+      - generic [ref=e261]:
+        - heading "想聊聊，随时联系我" [level=2] [ref=e262]
+        - paragraph [ref=e263]: 人才发展、AI 要怎么在组织里落地，或者一次教练对话——都欢迎。
+        - generic [ref=e264]:
+          - link "随时联系我 →" [ref=e265] [cursor=pointer]:
+            - /url: mailto:gongwenxi912@outlook.com
+            - text: 随时联系我
+            - generic [ref=e266]: →
+          - link "更多关于我" [ref=e267] [cursor=pointer]:
+            - /url: /about/
+      - generic [ref=e268]:
+        - img "熙熙的微信二维码，扫码加好友" [ref=e269]
+        - generic [ref=e270]: 微信扫码加我
+  - contentinfo [ref=e271]:
+    - generic [ref=e272]:
+      - generic [ref=e273]:
+        - paragraph [ref=e274]: 祝我们在 AI 时代，拥有更温热、也更有爱的人生。
+        - generic [ref=e275]:
+          - link "gongwenxi912@outlook.com" [ref=e276] [cursor=pointer]:
+            - /url: mailto:gongwenxi912@outlook.com
+          - link "GitHub" [ref=e277] [cursor=pointer]:
+            - /url: https://github.com/hiciki-1029
+          - link "简历 / Resume" [ref=e278] [cursor=pointer]:
+            - /url: /resume/
+      - generic [aria-hidden] [ref=e279]: 上海 · Shanghai
+      - paragraph [ref=e280]: © 2026 龚文熙（熙熙 / Ciki）· Astro 静态生成、GitHub Pages 托管。组织案例均已脱敏。

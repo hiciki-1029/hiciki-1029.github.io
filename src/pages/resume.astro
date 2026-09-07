@@ -3,22 +3,25 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 const jobs = [
   {
+    mono: "心",
     co: "心动游戏",
     role: "人才发展（TD）",
     when: "2022.05 — 至今 · 上海",
     points: [
       "覆盖近 2000 人组织的新人与管理者培养体系，累计培养近百名基层管理者；",
       "主导校招生培养、领导力提升、新员工通关等核心培养项目；",
-      "把资讯、测评、知识沉淀、培养运营做成可运行的 AI 系统，并牵头 HR 团队 AI 黑客松与兴趣小组。",
+      "把资讯、测评、知识沉淀、培养运营做成能用的 AI 系统，并牵头 HR 团队 AI 黑客松与兴趣小组。",
     ],
   },
   {
+    mono: "红",
     co: "小红书",
     role: "人才发展（TD）",
     when: "2021.05 — 2022.05 · 上海",
     points: ["负责人才发展相关项目，支持快速增长期的组织能力建设。"],
   },
   {
+    mono: "爱",
     co: "爱奇艺",
     role: "HRBP / 培训主管",
     when: "2018.04 — 2021.05 · 上海",
@@ -26,37 +29,98 @@ const jobs = [
   },
 ];
 
-const certs = [
-  "ICF 国际教练联盟 认证教练",
-  "SFI 系统引导师",
-  "TTI DISC 行为风格 + 激励因子认证",
-  "CCP 职业生涯规划师",
-  "KNX 人才盘点认证",
-  "MBTI / OPQ / 大五人格认证",
+const caps = [
+  {
+    key: "td",
+    title: "人才发展 · TD",
+    desc: "十余年一直做「人」的工作：在近两千人的公司里搭起新人与管理者培养体系，也做领导力提升与组织诊断。",
+  },
+  {
+    key: "build",
+    title: "AI 实践 · Builder",
+    desc: "把 AI 当自己的程序员，指挥它写代码、对接接口，把知识、测评、资讯和培养运营做成真正能用的产品，也带着一群 HR 一起做。",
+  },
+  {
+    key: "coach",
+    title: "教练 · Coach",
+    desc: "ICF 认证教练，累计上百小时一对一对话；师从青叶藤叶世夫老师，也修习埃里克森、创问、隐喻等流派。",
+  },
+];
+
+const certGroups = [
+  { label: "教练与引导", items: ["ICF 国际教练联盟 认证教练", "SFI 系统引导师"] },
+  {
+    label: "测评与人才",
+    items: [
+      "TTI DISC 行为风格 + 激励因子认证",
+      "CCP 职业生涯规划师",
+      "KNX 人才盘点认证",
+      "MBTI / OPQ / 大五人格认证",
+    ],
+  },
 ];
 ---
 
 <BaseLayout
   title="工作经历"
-  description="龚文熙的简历：十余年组织人才发展经历与专业认证。"
+  description="龚文熙的简历：十余年组织人才发展经历、AI 实践与专业认证。"
 >
-  <section class="narrow page-head">
-    <span class="eyebrow">RESUME · 简历</span>
-    <h1>龚文熙 <span style="color:var(--muted);font-size:0.6em;font-family:var(--sans);">Ciki Gong</span></h1>
-    <p class="sub">
-      人才发展专家 · ICF 认证教练 · 组织 × AI 实践者 · 上海<br />
-      <a href="mailto:gongwenxi912@outlook.com">gongwenxi912@outlook.com</a> ·
-      <a href="https://github.com/hiciki-1029" target="_blank" rel="noopener">github.com/hiciki-1029</a>
-    </p>
+  <section class="narrow page-head resume-hero">
+    <div class="rh-text">
+      <span class="eyebrow">RESUME · 简历</span>
+      <h1>龚文熙 <span class="rh-en">Ciki Gong</span></h1>
+      <p class="sub">
+        人才发展 · ICF 认证教练 · 组织 × AI 实践者 · 上海<br />
+        <a href="mailto:gongwenxi912@outlook.com">gongwenxi912@outlook.com</a> ·
+        <a href="https://github.com/hiciki-1029" target="_blank" rel="noopener">github.com/hiciki-1029</a>
+      </p>
+    </div>
+    <img class="rh-avatar" src="/me/avatar.jpg" alt="熙熙的卡通形象" width="132" height="132" />
   </section>
 
-  <section class="narrow" style="padding-top:24px;">
-    <h2 style="font-size:14px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin:24px 0 18px;">工作经历</h2>
+  <section class="narrow" style="padding-top:20px;">
+    <!-- 我在做的三件事：能力概览 -->
+    <h2 class="resume-h2">我在做的三件事</h2>
+    <div class="rcap">
+      {
+        caps.map((c) => (
+          <div class={`rcap-row rcap-${c.key}`}>
+            <div class="licon" aria-hidden="true">
+              {c.key === "td" && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <rect x="9" y="3" width="6" height="6" rx="1.5" /><rect x="3" y="15" width="6" height="6" rx="1.5" /><rect x="15" y="15" width="6" height="6" rx="1.5" />
+                  <path d="M12 9v3M12 12H6v3M12 12h6v3" />
+                </svg>
+              )}
+              {c.key === "build" && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <rect x="3" y="3" width="7" height="7" rx="2" /><rect x="14" y="3" width="7" height="7" rx="2" />
+                  <rect x="3" y="14" width="7" height="7" rx="2" /><rect x="14" y="14" width="7" height="7" rx="2" />
+                </svg>
+              )}
+              {c.key === "coach" && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <path d="M4 5.5h16a1 1 0 0 1 1 1V15a1 1 0 0 1-1 1H9.5l-4.2 3v-3H4a1 1 0 0 1-1-1V6.5a1 1 0 0 1 1-1z" />
+                  <path d="M8 10.5h.01M12 10.5h.01M16 10.5h.01" stroke-linecap="round" />
+                </svg>
+              )}
+            </div>
+            <div>
+              <h3>{c.title}</h3>
+              <p>{c.desc}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- 工作经历时间轴 -->
+    <h2 class="resume-h2">工作经历</h2>
     <div class="tl">
       {
         jobs.map((j) => (
           <div class="tl-item">
-            <div class="tl-rail"><span class="tl-dot" aria-hidden="true"></span></div>
+            <div class="tl-rail"><span class="tl-badge" aria-hidden="true">{j.mono}</span></div>
             <div class="tl-body">
               <div class="tl-top">
                 <h3>
@@ -72,18 +136,31 @@ const certs = [
         ))
       }
     </div>
-    <p style="font-size:13.5px;color:var(--muted);margin:-6px 2px 0;">更早：晨光科力普（培训主管）、伊顿（培训专员），完整履历可邮件索取。</p>
+    <p class="resume-earlier">更早：晨光科力普（培训主管）、伊顿（培训专员），完整履历可邮件索取。</p>
 
-    <h2 style="font-size:14px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin:32px 0 14px;">专业认证</h2>
-    <div class="cert-chips" style="margin-bottom:8px;">
-      {certs.map((c) => <span>{c}</span>)}
+    <!-- 专业认证 -->
+    <h2 class="resume-h2">专业认证</h2>
+    <div class="cert-groups">
+      {
+        certGroups.map((g) => (
+          <div class="cert-group">
+            <span class="cg-label">{g.label}</span>
+            <div class="cert-chips">{g.items.map((c) => <span>{c}</span>)}</div>
+          </div>
+        ))
+      }
     </div>
-    <p style="font-size:14px;color:var(--muted);margin:12px 2px 0;line-height:1.7;">
-      教练训练：师从青叶藤 · 叶世夫老师，并修习埃里克森、创问、隐喻等流派。
-    </p>
 
-    <p class="prose" style="margin-top:30px;color:var(--muted);font-size:14px;">
-      更能说明问题的不是履历，而是我做过的系统——<a href="/systems/">去看看 →</a>
-    </p>
+    <!-- 底部引导：去看亲手做的东西 -->
+    <div class="resume-cta">
+      <div>
+        <h3>比起一份履历，更想让你看到我亲手做出来的东西</h3>
+        <p>知识门户、在线测评、关键对话 Lab……都在「AI 实践」里，有过程也有演示。</p>
+      </div>
+      <div class="resume-cta-actions">
+        <a class="btn btn-primary" href="/systems/">看看 AI 实践 <span class="arrow">→</span></a>
+        <a class="btn btn-ghost" href="mailto:gongwenxi912@outlook.com">随时联系我</a>
+      </div>
+    </div>
   </section>
 </BaseLayout>

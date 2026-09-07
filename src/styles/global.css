@@ -374,23 +374,26 @@ p { margin: 0; }
 .cert-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
 .cert-chips span { font-size: 13px; padding: 5px 12px; border-radius: 999px; background: var(--paper-2); border: 1px solid var(--line); color: var(--ink-soft); }
 
-/* 简历 · 纵向时间轴 */
+/* 简历 · 纵向时间轴（公司字牌） */
 .tl { position: relative; }
-.tl-item { display: grid; grid-template-columns: 24px minmax(0, 1fr); column-gap: 16px; }
+.tl-item { display: grid; grid-template-columns: 46px minmax(0, 1fr); column-gap: 16px; }
 .tl-rail { position: relative; }
 .tl-rail::before {
-  content: ""; position: absolute; top: 4px; bottom: -8px; left: 50%;
+  content: ""; position: absolute; top: 6px; bottom: -10px; left: 50%;
   width: 2px; transform: translateX(-50%); background: var(--line-strong);
 }
-.tl-item:last-child .tl-rail::before { bottom: calc(100% - 14px); }
-.tl-dot {
-  position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
-  width: 11px; height: 11px; border-radius: 50%; z-index: 1;
-  background: var(--card); border: 2.5px solid var(--ochre);
+.tl-item:last-child .tl-rail::before { bottom: calc(100% - 40px); }
+.tl-badge {
+  position: relative; z-index: 1; display: grid; place-items: center;
+  width: 46px; height: 46px; border-radius: 14px;
+  background: linear-gradient(150deg, rgba(184,73,42,0.14), rgba(207,122,80,0.10));
+  border: 1px solid rgba(184,73,42,0.22);
+  color: var(--ochre-deep); font-family: var(--serif); font-size: 20px; font-weight: 600;
 }
 .tl-body {
   margin-bottom: 16px; padding: 20px 24px; border-radius: var(--r-md);
   background: var(--card); border: 1px solid var(--line);
+  box-shadow: 0 1px 2px rgba(36,27,21,0.03);
 }
 .tl-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; }
 .tl-body h3 { margin: 0; font-size: 18px; }
@@ -398,9 +401,53 @@ p { margin: 0; }
 .tl-body ul { margin: 10px 0 0; padding-left: 1.15em; color: var(--ink-soft); font-size: 14.5px; line-height: 1.7; }
 .tl-body li { margin-bottom: 6px; }
 .tl-body li:last-child { margin-bottom: 0; }
+
+/* 简历 · 头部 + 能力概览 + 认证分组 + 底部引导 */
+.resume-hero { display: flex; align-items: center; justify-content: space-between; gap: 28px; flex-wrap: wrap; }
+.rh-en { color: var(--muted); font-size: 0.55em; font-family: var(--sans); font-weight: 500; margin-left: 8px; }
+.rh-avatar {
+  width: 132px; height: 132px; border-radius: 50%; object-fit: cover; flex: none;
+  border: 3px solid #fff; box-shadow: 0 12px 30px -12px rgba(150,52,27,0.4);
+  background: var(--paper-2);
+}
+.resume-h2 {
+  font-size: 14px; letter-spacing: 0.12em; color: var(--muted);
+  text-transform: uppercase; margin: 34px 0 16px; font-weight: 600;
+}
+.rcap { display: flex; flex-direction: column; gap: 12px; }
+.rcap-row {
+  display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px;
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--r-md);
+}
+.rcap-row .licon { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; flex: none; }
+.rcap-row .licon svg { width: 23px; height: 23px; }
+.rcap-td .licon { color: var(--ochre); background: rgba(184,73,42,0.10); }
+.rcap-build .licon, .rcap-coach .licon { color: var(--ink); background: rgba(36,27,21,0.05); }
+.rcap-row h3 { margin: 2px 0 6px; font-size: 16.5px; }
+.rcap-row p { margin: 0; font-size: 14.3px; line-height: 1.7; color: var(--ink-soft); }
+.resume-earlier { font-size: 13.5px; color: var(--muted); margin: -4px 2px 0; }
+.cert-groups { display: flex; flex-direction: column; gap: 14px; }
+.cert-group { display: grid; grid-template-columns: 88px minmax(0,1fr); gap: 14px; align-items: start; }
+.cg-label { font-size: 13px; color: var(--muted); padding-top: 7px; }
+.cert-group .cert-chips { margin-top: 0; }
+.resume-cta {
+  margin-top: 38px; padding: 26px 28px; border-radius: var(--r-lg);
+  background: linear-gradient(150deg, rgba(184,73,42,0.07), rgba(207,122,80,0.04));
+  border: 1px solid rgba(184,73,42,0.2);
+  display: flex; flex-wrap: wrap; gap: 18px; align-items: center; justify-content: space-between;
+}
+.resume-cta h3 { margin: 0 0 8px; font-size: 18px; }
+.resume-cta p { margin: 0; font-size: 14.3px; color: var(--ink-soft); max-width: 30em; line-height: 1.65; }
+.resume-cta-actions { display: flex; gap: 10px; flex-wrap: wrap; flex: none; }
 @media (max-width: 560px) {
-  .tl-item { grid-template-columns: 20px minmax(0, 1fr); column-gap: 12px; }
+  .tl-item { grid-template-columns: 40px minmax(0, 1fr); column-gap: 12px; }
+  .tl-badge { width: 40px; height: 40px; border-radius: 12px; font-size: 17px; }
+  .tl-item:last-child .tl-rail::before { bottom: calc(100% - 36px); }
   .tl-body { padding: 16px 18px; }
+  .rh-avatar { width: 96px; height: 96px; order: -1; }
+  .cert-group { grid-template-columns: 1fr; gap: 8px; }
+  .cg-label { padding-top: 0; }
+  .resume-cta { padding: 22px 20px; }
 }
 
 /* ---------- Footer ---------- */
