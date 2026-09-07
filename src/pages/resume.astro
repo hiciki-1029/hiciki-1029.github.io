@@ -3,8 +3,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 const jobs = [
   {
-    mono: "心",
     co: "心动游戏",
+    logo: "/co/xd.svg",
+    intro: "游戏研发与发行 · TapTap 母公司",
     role: "人才发展（TD）",
     when: "2022.05 — 至今 · 上海",
     points: [
@@ -14,15 +15,17 @@ const jobs = [
     ],
   },
   {
-    mono: "红",
     co: "小红书",
+    logo: "/co/xhs.png",
+    intro: "生活方式内容社区",
     role: "人才发展（TD）",
     when: "2021.05 — 2022.05 · 上海",
     points: ["负责人才发展相关项目，支持快速增长期的组织能力建设。"],
   },
   {
-    mono: "爱",
     co: "爱奇艺",
+    logo: "/co/iqiyi.svg",
+    intro: "在线视频与娱乐内容平台",
     role: "HRBP / 培训主管",
     when: "2018.04 — 2021.05 · 上海",
     points: ["承担业务伙伴与培训管理职责，贯通招聘、培训与业务支持。"],
@@ -120,13 +123,19 @@ const certGroups = [
       {
         jobs.map((j) => (
           <div class="tl-item">
-            <div class="tl-rail"><span class="tl-badge" aria-hidden="true">{j.mono}</span></div>
+            <div class="tl-rail"><span class="tl-dot" aria-hidden="true"></span></div>
             <div class="tl-body">
-              <div class="tl-top">
-                <h3>
-                  {j.co} · {j.role}
-                </h3>
-                <span class="when">{j.when}</span>
+              <div class="tl-head">
+                <span class="tl-hlogo"><img src={j.logo} alt={j.co + " logo"} loading="lazy" /></span>
+                <div class="tl-headtext">
+                  <div class="tl-top">
+                    <h3>
+                      {j.co} · {j.role}
+                    </h3>
+                    <span class="when">{j.when}</span>
+                  </div>
+                  <p class="tl-intro">{j.intro}</p>
+                </div>
               </div>
               <ul>
                 {j.points.map((p) => <li>{p}</li>)}

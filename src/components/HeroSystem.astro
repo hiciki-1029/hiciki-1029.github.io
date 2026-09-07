@@ -1,12 +1,12 @@
 ---
-// 个人 AI 工作系统：中央是「我」的卡通形象，外围是在运行的能力节点
+// 个人 AI 工作系统：中央是「我」的卡通形象，外围是我的能力关键词
 const nodes = [
-  { label: "知识门户", x: 220, y: 58, c: "sage" },
-  { label: "人才测评", x: 372, y: 132, c: "ochre" },
-  { label: "每日资讯", x: 378, y: 300, c: "sage" },
-  { label: "培养系统", x: 220, y: 386, c: "ochre" },
-  { label: "创作大赛", x: 62, y: 300, c: "sage" },
-  { label: "对话演练", x: 68, y: 132, c: "ochre" },
+  { label: "知识系统", x: 220, y: 58, c: "sage" },
+  { label: "人才发展", x: 372, y: 132, c: "ochre" },
+  { label: "AI 产品", x: 378, y: 300, c: "sage" },
+  { label: "关键对话", x: 220, y: 386, c: "ochre" },
+  { label: "团队赋能", x: 62, y: 300, c: "sage" },
+  { label: "Coach 对话", x: 68, y: 132, c: "ochre" },
 ];
 ---
 
@@ -47,6 +47,7 @@ const nodes = [
     <span class="ring" aria-hidden="true"></span>
     <img src="/me/avatar.jpg" alt="熙熙（Ciki）的卡通形象，点一下会打招呼" width="200" height="200" loading="eager" />
     <span class="name">熙熙 · Ciki</span>
+    <span class="welcome">欢迎来到熙熙的小宇宙</span>
   </div>
 </div>
 
@@ -83,6 +84,10 @@ const nodes = [
   .hero-core .name {
     font-family: var(--sans, sans-serif); font-size: 13px; letter-spacing: 0.08em; font-weight: 500;
     color: #76706a; background: rgba(255, 255, 255, 0.85); padding: 2px 10px; border-radius: 999px;
+  }
+  .hero-core .welcome {
+    font-family: var(--serif, serif); font-size: 12px; letter-spacing: 0.06em;
+    color: #b8492a; margin-top: -3px;
   }
   /* 点一下头像，冒出一句招呼 */
   .hero-core { cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; }
@@ -129,10 +134,10 @@ const nodes = [
     if (!core || !bubble || core.dataset.sayReady) return;
     core.dataset.sayReady = "1";
     const lines = [
-      "你好呀，欢迎来到我的小宇宙～",
+      "你好呀，很高兴遇见你～",
       "把重复的工作交给 AI，把「人」留给自己。",
       "慢慢来，稳稳的也很好。",
-      "很高兴遇见你，随便逛逛吧 :)",
+      "随便逛逛吧，也许会有惊喜 :)",
     ];
     let i = 0;
     let hideTimer = null;

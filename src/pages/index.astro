@@ -47,9 +47,9 @@ const layers = [
 ];
 
 const road = [
-  { yr: "2018–2021", co: "爱奇艺", rl: "HRBP / 培训" },
-  { yr: "2021–2022", co: "小红书", rl: "人才发展" },
-  { yr: "2022—今", co: "心动游戏", rl: "人才发展 · 近 2000 人" },
+  { yr: "2018–2021", co: "爱奇艺", rl: "HRBP / 培训", logo: "/co/iqiyi.svg", intro: "在线视频与娱乐内容平台" },
+  { yr: "2021–2022", co: "小红书", rl: "人才发展", logo: "/co/xhs.png", intro: "生活方式内容社区" },
+  { yr: "2022—今", co: "心动游戏", rl: "人才发展 · 近 2000 人", logo: "/co/xd.svg", intro: "游戏研发与发行 · TapTap 母公司" },
 ];
 ---
 
@@ -153,9 +153,11 @@ const road = [
       {
         road.map((r) => (
           <div class="stop">
+            <span class="co-logo"><img src={r.logo} alt={r.co + " logo"} loading="lazy" /></span>
             <div class="yr">{r.yr}</div>
             <div class="co">{r.co}</div>
             <div class="rl">{r.rl}</div>
+            <p class="co-intro">{r.intro}</p>
           </div>
         ))
       }
