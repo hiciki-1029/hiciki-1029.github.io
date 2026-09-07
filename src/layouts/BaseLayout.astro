@@ -47,6 +47,30 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? "https://www.hiciki.
     </main>
     <Footer />
 
+    <!-- 联系弹窗：任何带 data-contact 的元素点击后打开 -->
+    <div class="contact-overlay" id="contactModal" aria-hidden="true">
+      <div class="contact-card" role="dialog" aria-modal="true" aria-label="联系熙熙">
+        <button class="contact-x" type="button" data-contact-close aria-label="关闭">✕</button>
+        <h3>联系熙熙</h3>
+        <p class="contact-sub">人才发展、AI 如何在组织里落地，或者一次教练对话——都欢迎找我聊聊。</p>
+        <div class="contact-grid">
+          <div class="contact-wechat">
+            <img src="/me/wechat-qr.png" width="132" height="132" alt="熙熙的微信二维码，扫码加好友" loading="lazy" />
+            <span>微信扫码加我</span>
+          </div>
+          <div class="contact-mail">
+            <div class="cm-label">邮箱</div>
+            <button class="cm-copy" type="button" data-copy="gongwenxi912@outlook.com">
+              <span class="cm-addr">gongwenxi912@outlook.com</span>
+              <span class="cm-btn">复制</span>
+            </button>
+            <a class="cm-direct" href="mailto:gongwenxi912@outlook.com">或直接写封邮件 →</a>
+            <div class="cm-note">看到后我会尽快回复 :)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script>
       // 克制动效：仅在元素进入视口时渐入；不支持/减少动态时 CSS 已兜底为常显
       (function () {
@@ -71,6 +95,63 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? "https://www.hiciki.
         } catch (err) {
           document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("in"); });
         }
+      })();
+
+      // 联系弹窗：data-contact 打开，遮罩/✕/Esc 关闭；邮箱一键复制
+      (function () {
+        try {
+          var modal = document.getElementById("contactModal");
+          if (!modal) return;
+          var lastFocus = null;
+          function open(e) {
+            if (e) e.preventDefault();
+            lastFocus = document.activeElement;
+            modal.classList.add("open");
+            modal.setAttribute("aria-hidden", "false");
+            document.body.style.overflow = "hidden";
+            var x = modal.querySelector(".contact-x");
+            if (x) x.focus();
+          }
+          function close() {
+            modal.classList.remove("open");
+            modal.setAttribute("aria-hidden", "true");
+            document.body.style.overflow = "";
+            if (lastFocus && lastFocus.focus) lastFocus.focus();
+          }
+          document.addEventListener("click", function (e) {
+            var opener = e.target.closest ? e.target.closest("[data-contact]") : null;
+            if (opener) return open(e);
+            if (e.target === modal || (e.target.closest && e.target.closest("[data-contact-close]"))) return close();
+          });
+          document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape" && modal.classList.contains("open")) close();
+          });
+          var copyBtn = modal.querySelector("[data-copy]");
+          if (copyBtn) {
+            copyBtn.addEventListener("click", function () {
+              var text = copyBtn.getAttribute("data-copy") || "";
+              var tag = copyBtn.querySelector(".cm-btn");
+              function done() {
+                copyBtn.classList.add("copied");
+                if (tag) tag.textContent = "已复制 ✓";
+                setTimeout(function () {
+                  copyBtn.classList.remove("copied");
+                  if (tag) tag.textContent = "复制";
+                }, 1600);
+              }
+              if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(done).catch(fallback);
+              } else { fallback(); }
+              function fallback() {
+                var ta = document.createElement("textarea");
+                ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+                document.body.appendChild(ta); ta.select();
+                try { document.execCommand("copy"); done(); } catch (err) {}
+                document.body.removeChild(ta);
+              }
+            });
+          }
+        } catch (err) {}
       })();
     </script>
   </body>
