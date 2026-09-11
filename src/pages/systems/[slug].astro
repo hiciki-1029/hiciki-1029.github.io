@@ -44,27 +44,30 @@ const badge = badgeMap[sys.data.status];
   }
 
   <article class="narrow prose">
-    <Content />
-
     {
       sys.data.media.length > 0 && (
-        <div class="gallery">
-          {sys.data.media.map((m) =>
-            m.type === "image" ? (
-              <figure class="shot">
-                <img src={m.src} alt={m.caption} loading="lazy" />
-                {m.caption && <figcaption>{m.caption}</figcaption>}
-              </figure>
-            ) : (
-              <figure class="shot">
-                <video controls preload="none" poster={m.poster} src={m.src}></video>
-                {m.caption && <figcaption>{m.caption}</figcaption>}
-              </figure>
-            )
-          )}
+        <div class="media-block">
+          <div class="media-label">作品实拍</div>
+          <div class="gallery">
+            {sys.data.media.map((m) =>
+              m.type === "image" ? (
+                <figure class="shot">
+                  <img src={m.src} alt={m.caption} loading="lazy" />
+                  {m.caption && <figcaption>{m.caption}</figcaption>}
+                </figure>
+              ) : (
+                <figure class="shot">
+                  <video controls preload="none" poster={m.poster} src={m.src}></video>
+                  {m.caption && <figcaption>{m.caption}</figcaption>}
+                </figure>
+              )
+            )}
+          </div>
         </div>
       )
     }
+
+    <Content />
 
     {
       sys.data.link && (
@@ -84,6 +87,11 @@ const badge = badgeMap[sys.data.status];
 </BaseLayout>
 
 <style>
+  .media-label {
+    font-family: var(--sans, sans-serif); font-size: 12.5px; font-weight: 600;
+    letter-spacing: .14em; color: var(--ochre-deep); margin-bottom: 14px;
+  }
+  .media-block .gallery { margin-top: 0; margin-bottom: 30px; }
   .post-nav {
     display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px;
     margin-top: 44px; padding-top: 20px; border-top: 1px solid var(--line);
