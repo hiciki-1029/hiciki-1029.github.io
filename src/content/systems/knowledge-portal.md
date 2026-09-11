@@ -16,7 +16,7 @@ media:
   - type: video
     src: /systems/knowledge-portal/knowledge-portal.mp4
     poster: /systems/knowledge-portal/knowledge-portal.jpg
-    caption: "实机演示：首页待处理 → 向知识库提问（Copilot）→ 五段式回答，逐条附原始来源"
+    caption: "实机演示：先逛资料库、洞察与我的观察，再向知识库提问（Copilot），五段式回答逐条附原始来源"
 order: 1
 ---
 
