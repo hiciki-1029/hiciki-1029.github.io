@@ -80,11 +80,23 @@ import Crumb from "../components/Crumb.astro";
       <button type="button" class="btn btn-primary" data-contact>随时联系我 <span class="arrow">→</span></button>
     </div>
 
-    <div class="about-wechat">
-      <img src="/me/wechat-qr.png" alt="熙熙的微信二维码，扫码加好友" width="116" height="116" loading="lazy" />
-      <div class="aw-text">
-        <div class="aw-title">也可以加我微信</div>
-        <div class="aw-sub">教练对话或深度交流，扫码加好友，简单备注一下来意就好。</div>
+    <div class="wx-card">
+      <span class="wxc-fold" aria-hidden="true"></span>
+      <div class="wxc-left">
+        <svg class="wxc-wave" viewBox="0 0 58 11" width="58" height="11" fill="none" aria-hidden="true">
+          <path d="M2 6 q4.5 -5 9 0 t9 0 t9 0 t9 0 t9 0 t9 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+        </svg>
+        <div class="wxc-name">熙熙 <span class="wxc-en">Ciki</span></div>
+        <div class="wxc-topics">教练对话 · 人才发展 · AI 实践</div>
+        <p class="wxc-note">想做一次教练对话，或就人才发展、AI 落地深聊，扫码加我就好，简单备注一下来意。</p>
+        <span class="wxc-arows" aria-hidden="true">››››››</span>
+      </div>
+      <span class="wxc-sep" aria-hidden="true"></span>
+      <div class="wxc-right">
+        <div class="wxc-qr">
+          <img src="/me/wechat-qr.png" alt="熙熙的微信二维码，扫码加好友" width="150" height="150" loading="eager" decoding="async" />
+        </div>
+        <div class="wxc-cap">微信扫码加好友</div>
       </div>
     </div>
   </article>
@@ -102,17 +114,40 @@ import Crumb from "../components/Crumb.astro";
   .about-prose a .lnk-arrow { color: var(--ochre-soft); font-size: 0.92em; }
   .about-note { color: var(--muted); font-size: 14.5px; }
   .about-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
-  .about-wechat {
-    display: flex; align-items: center; gap: 18px; margin-top: 18px;
-    padding: 18px; border-radius: var(--r-md);
-    background: var(--paper-2); border: 1px solid var(--line);
+  /* 微信 · 票根名片：左信息 / 虚线 / 右二维码，装订孔 + 右上折角 + 贴纸厚度 */
+  .wx-card {
+    position: relative; display: flex; align-items: stretch; gap: 24px;
+    margin-top: 24px; padding: 28px 28px; overflow: hidden;
+    border: 1px solid var(--line); border-radius: var(--r-lg);
+    background:
+      radial-gradient(circle 3px at 18px 18px, rgba(36, 27, 21, 0.32) 97%, transparent 99%) ,
+      radial-gradient(circle 3px at 18px calc(100% - 18px), rgba(36, 27, 21, 0.32) 97%, transparent 99%),
+      radial-gradient(circle 3px at calc(100% - 18px) calc(100% - 18px), rgba(36, 27, 21, 0.32) 97%, transparent 99%),
+      var(--card);
+    box-shadow: 4px 4px 0 var(--sand), var(--shadow-pop);
   }
-  .about-wechat img {
-    width: 116px; height: 116px; flex: none; border-radius: 12px;
-    background: #fff; padding: 8px; border: 1px solid var(--line);
+  .wxc-fold {
+    position: absolute; top: 0; right: 0; z-index: 2; width: 27px; height: 27px;
+    background: linear-gradient(225deg, var(--paper-3) 0 50%, transparent 50%);
+    border-bottom-left-radius: 10px; box-shadow: -1px 1px 3px rgba(33, 29, 25, 0.12);
   }
-  .aw-title { font-family: var(--sans); font-size: 17px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
-  .aw-sub { font-size: 14px; color: var(--muted); line-height: 1.7; }
+  .wxc-left { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: center; gap: 13px; position: relative; z-index: 1; }
+  .wxc-wave { color: var(--ochre-soft); opacity: 0.85; }
+  .wxc-name { font-family: var(--serif); font-weight: 700; font-size: 24px; color: var(--ink); letter-spacing: 0.01em; line-height: 1.15; }
+  .wxc-en { font-family: var(--sans); font-weight: 500; font-size: 14px; color: var(--muted); letter-spacing: 0.1em; margin-left: 9px; }
+  .wxc-topics {
+    align-self: flex-start; font-size: 13px; font-weight: 600; letter-spacing: 0.05em;
+    color: #fdf6ef; padding: 7px 14px; border-radius: 9px;
+    background: linear-gradient(135deg, var(--ochre), var(--ochre-soft));
+    box-shadow: 0 8px 16px -10px rgba(184, 73, 42, 0.6);
+  }
+  .wxc-note { margin: 0; font-size: 14px; line-height: 1.75; color: var(--ink-soft); max-width: 33em; }
+  .wxc-arows { color: var(--ochre-soft); font-size: 15px; font-weight: 600; letter-spacing: 0.16em; user-select: none; }
+  .wxc-sep { flex: none; width: 0; align-self: stretch; margin: 2px 0; border-left: 1.5px dashed var(--line-strong); }
+  .wxc-right { flex: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
+  .wxc-qr { background: #fff; padding: 10px; border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow-soft); }
+  .wxc-qr img { display: block; width: 148px; height: 148px; }
+  .wxc-cap { font-size: 12.5px; color: var(--muted); letter-spacing: 0.05em; }
   .akw {
     display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
     margin: 34px 0 12px; font-family: var(--sans);
@@ -155,6 +190,11 @@ import Crumb from "../components/Crumb.astro";
     .about-avatar { width: 92px; height: 92px; }
     .akw { gap: 8px; }
     .about-actions .btn { flex: 1 1 auto; justify-content: center; }
-    .about-wechat { flex-direction: column; text-align: center; gap: 12px; }
+    .wx-card { flex-direction: column; gap: 18px; padding: 26px 22px; text-align: center; box-shadow: 3px 3px 0 var(--sand), var(--shadow-pop); }
+    .wxc-left { align-items: center; }
+    .wxc-topics { align-self: center; }
+    .wxc-note { margin-left: auto; margin-right: auto; }
+    .wxc-sep { width: 100%; height: 0; border-left: 0; border-top: 1.5px dashed var(--line-strong); margin: 2px 0; }
+    .wxc-qr img { width: 150px; height: 150px; }
   }
 </style>
