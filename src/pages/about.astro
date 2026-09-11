@@ -49,6 +49,24 @@ import Crumb from "../components/Crumb.astro";
       工作之外，我会把不少时间留给自己：运动、看书，去看喜欢的音乐节，也常一个人去旅行，在陌生的城市待几天。我是 INFJ，需要一些慢下来、和自己相处的时间。这些看似和工作无关的事，最后往往又回到了工作里。
     </p>
 
+    <div class="life-strip" role="group" aria-label="工作之外的生活片段：一个人旅行、看音乐节、在黄昏里散步，还有家里的猫">
+      <figure>
+        <img src="/me/life/life-jeju-seagull.jpg" alt="济州的渡轮上，我伸手喂一只海鸥" loading="lazy" decoding="async" />
+      </figure>
+      <figure>
+        <img src="/me/life/life-datong-eaves.jpg" alt="大同古建的飞檐，和屋脊上的小兽" loading="lazy" decoding="async" />
+      </figure>
+      <figure>
+        <img src="/me/life/life-music-crowd.jpg" alt="音乐节现场，满场的灯光和举起的手" loading="lazy" decoding="async" />
+      </figure>
+      <figure>
+        <img src="/me/life/life-dusk-street.jpg" alt="黄昏的街道上，有人骑车经过" loading="lazy" decoding="async" />
+      </figure>
+      <figure>
+        <img src="/me/life/life-cat.jpg" alt="阳光落在木地板上，家里的布偶猫" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+
     <p class="about-note">
       本站组织案例均已脱敏，不展示内部系统与员工数据，仅保留可公开分享的方法与结果。
     </p>
@@ -108,6 +126,30 @@ import Crumb from "../components/Crumb.astro";
     transform: translateY(-4px);
   }
   .akw .g { font-size: 13.5px; color: var(--muted); letter-spacing: 0.04em; }
+
+  /* 工作之外 · 生活胶片带：直角相纸、耳语柔影、纸质留白 */
+  .life-strip {
+    display: flex; gap: 12px; margin: 20px 0 6px;
+    overflow-x: auto; overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 10px;
+    scrollbar-width: thin; scrollbar-color: var(--line-strong) transparent;
+  }
+  .life-strip::-webkit-scrollbar { height: 6px; }
+  .life-strip::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 999px; }
+  .life-strip::-webkit-scrollbar-track { background: transparent; }
+  .life-strip figure {
+    flex: none; margin: 0; height: clamp(158px, 30vw, 204px);
+    scroll-snap-align: start; overflow: hidden;
+    background: var(--paper-2); box-shadow: var(--shadow-soft);
+  }
+  .life-strip img { height: 100%; width: auto; display: block; }
+  /* 宽屏下让胶片带轻轻突破阅读栏、舒展成一条 */
+  @media (min-width: 1120px) {
+    .life-strip { margin-left: -160px; margin-right: -160px; gap: 14px; }
+    .life-strip figure { height: 226px; }
+  }
+
   @media (max-width: 560px) {
     .about-head { gap: 16px; }
     .about-avatar { width: 92px; height: 92px; }
