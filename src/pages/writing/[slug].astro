@@ -13,9 +13,35 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 const kindLabel = { digest: "报告蒸馏", note: "笔记", retro: "复盘", essay: "随笔" };
+
+const SITE = "https://www.hiciki.me";
+const selfUrl = `${SITE}/writing/${post.id}/`;
+const published = post.data.date.toISOString().slice(0, 10); // 只要日期，去掉 UTC 零点带来的时区歧义
+const jsonLd = {
+  "@type": "BlogPosting",
+  "@id": `${selfUrl}#post`,
+  headline: post.data.title,
+  description: post.data.summary,
+  url: selfUrl,
+  mainEntityOfPage: selfUrl,
+  image: `${SITE}/og/writing-${post.id}.png`,
+  inLanguage: "zh-CN",
+  datePublished: published,
+  dateModified: published,
+  author: { "@id": `${SITE}/#person` },
+  publisher: { "@id": `${SITE}/#person` },
+  ...(post.data.source ? { about: post.data.source } : {}),
+  isPartOf: { "@id": `${SITE}/#website` },
+};
 ---
 
-<BaseLayout title={post.data.title} description={post.data.summary}>
+<BaseLayout
+  title={post.data.title}
+  description={post.data.summary}
+  image={`/og/writing-${post.id}.png`}
+  imageAlt={`${post.data.title} —— ${post.data.summary}`}
+  jsonLd={jsonLd}
+>
   <section class="narrow page-head">
     <Crumb parent={{ href: "/writing/", label: "一些思考" }} />
     <span class="eyebrow">

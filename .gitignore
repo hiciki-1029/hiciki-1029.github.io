@@ -11,3 +11,5 @@ demo/
 .planning/
 docs/
 *.log
+# 生成脚本的本地缓存（Google Fonts CSS 副本、og 版式样张）
+scripts/.cache/

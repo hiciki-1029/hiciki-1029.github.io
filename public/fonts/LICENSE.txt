@@ -1,0 +1,23 @@
+字体来源与授权
+================
+
+本目录下的 .woff2 文件是从 Google Fonts 下载后自托管的副本，
+按站点实际用字裁剪（见 scripts/build-fonts.mjs），文件内容未做修改。
+
+  inter.*.woff2          Inter               Copyright 2016 The Inter Project Authors
+  noto-sans-sc.*.woff2   Noto Sans SC        Copyright 2012 Google Inc. / Adobe
+  noto-serif-sc.*.woff2  Noto Serif SC       Copyright 2012 Google Inc. / Adobe
+
+三款字体都以 SIL Open Font License 1.1 发布，允许免费使用、修改与再分发
+（包括自托管），条件是保留本授权声明、且不得单独售卖字体本身。
+完整授权文本见：
+
+  https://openfontlicense.org/
+  https://github.com/notofonts/noto-cjk/blob/main/LICENSE
+  https://github.com/rsms/inter/blob/master/LICENSE.txt
+
+字体项目主页：
+
+  https://fonts.google.com/noto/specimen/Noto+Sans+SC
+  https://fonts.google.com/noto/specimen/Noto+Serif+SC
+  https://rsms.me/inter/

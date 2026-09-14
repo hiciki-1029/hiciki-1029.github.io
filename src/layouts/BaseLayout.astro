@@ -6,13 +6,52 @@ import "../styles/global.css";
 interface Props {
   title?: string;
   description?: string;
+  /** 分享卡图片路径。默认用站点通用卡；项目页/文章页传各自生成的卡 */
+  image?: string;
+  /** 表达该页的一句话，供 og:image:alt 与读屏使用 */
+  imageAlt?: string;
+  /** 该页自己的结构化数据节点，会并入页面底部的 @graph */
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 const {
   title,
   description = "龚文熙（熙熙 / Ciki）：十余年组织与人才发展工作经历，以教练洞察人性，用 AI 把想法做成真正能用的产品。",
+  image = "/og/site.png",
+  imageAlt = "熙熙 Ciki · 组织与人才发展 × AI 实践 × ICF 认证教练",
+  jsonLd,
 } = Astro.props;
+const SITE = "https://www.hiciki.me";
+const site = (Astro.site ?? SITE).toString().replace(/\/+$/, "");
 const fullTitle = title ? `${title} · 熙熙 Ciki` : "熙熙 Ciki · 组织 × AI 工作系统";
-const canonical = new URL(Astro.url.pathname, Astro.site ?? "https://www.hiciki.me");
+const canonical = new URL(Astro.url.pathname, Astro.site ?? SITE);
+const ogImage = new URL(image, Astro.site ?? SITE);
+
+const jsonLdGraph = [
+  {
+    "@type": "Person",
+    "@id": `${site}/#person`,
+    name: "龚文熙",
+    alternateName: ["熙熙", "Ciki", "嘻嘻是熙熙"],
+    url: `${site}/`,
+    image: `${site}/me/avatar.jpg`,
+    jobTitle: "组织与人才发展",
+    description: "十余年组织与人才发展工作经历，以教练洞察人性，用 AI 把想法做成真正能用的产品。",
+    address: { "@type": "PostalAddress", addressLocality: "上海", addressCountry: "CN" },
+    email: "mailto:gongwenxi912@outlook.com",
+    knowsAbout: ["组织发展", "人才发展", "教练对话", "AI 工作流", "知识管理", "人才测评"],
+    sameAs: ["https://github.com/hiciki-1029"],
+  },
+  {
+    "@type": "WebSite",
+    "@id": `${site}/#website`,
+    url: `${site}/`,
+    name: "熙熙 Ciki",
+    inLanguage: "zh-CN",
+    publisher: { "@id": `${site}/#person` },
+    author: { "@id": `${site}/#person` },
+  },
+  ...(Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : []),
+];
 ---
 
 <!doctype html>
@@ -26,18 +65,34 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? "https://www.hiciki.
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="熙熙 Ciki" />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:locale" content="zh_CN" />
     <meta property="og:url" content={canonical} />
+    <!-- 分享卡：飞书 / 领英 / X / Slack / Telegram 严格遵守；微信会优先取这里的图 -->
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:secure_url" content={ogImage} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={imageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
     <title>{fullTitle}</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:ital,wght@0,600;0,700;1,600;1,700&display=swap"
-      rel="stylesheet"
-    />
+    <!-- 无 JS 时正文不应被渐入动效藏住 -->
+    <noscript><style>.reveal{opacity:1 !important;transform:none !important}</style></noscript>
+
+    <!-- 字体自托管于 /fonts/（见 scripts/build-fonts.mjs）。
+         原来走 fonts.googleapis.com / fonts.gstatic.com，大陆常规网络不可达，
+         衬线标题会静默退化成本机宋体。汉字子集按实际用字裁剪，行为与走 Google 一致。 -->
+
+    <!-- 结构化数据：告诉搜索引擎这是谁、写过什么、做过什么。
+         节点随内容 frontmatter 变化，改了 frontmatter 重跑构建即可，不需要手维护。 -->
+    <script type="application/ld+json" set:html={JSON.stringify({ "@context": "https://schema.org", "@graph": jsonLdGraph })} />
   </head>
   <body>
     <a class="skip" href="#content">跳到正文</a>

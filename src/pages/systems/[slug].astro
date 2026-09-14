@@ -17,9 +17,35 @@ const badgeMap = {
   method: { cls: "method", label: "方法 METHOD" },
 } as const;
 const badge = badgeMap[sys.data.status];
+
+const SITE = "https://www.hiciki.me";
+const selfUrl = `${SITE}/systems/${sys.id}/`;
+/* year 是「2025—2026」这样的区间，取起始年份当作创建时间 */
+const startYear = (sys.data.year.match(/\d{4}/) || [])[0];
+const jsonLd = {
+  "@type": "CreativeWork",
+  "@id": `${selfUrl}#work`,
+  name: sys.data.title,
+  description: sys.data.tagline,
+  abstract: sys.data.short ?? sys.data.tagline,
+  url: selfUrl,
+  image: `${SITE}/og/system-${sys.id}.png`,
+  inLanguage: "zh-CN",
+  creator: { "@id": `${SITE}/#person` },
+  author: { "@id": `${SITE}/#person` },
+  keywords: sys.data.tags.join(", "),
+  ...(startYear ? { dateCreated: startYear, temporalCoverage: sys.data.year.replace(/[—–-]/, "/") } : {}),
+  ...(sys.data.link ? { sameAs: sys.data.link } : {}),
+};
 ---
 
-<BaseLayout title={sys.data.title} description={sys.data.tagline}>
+<BaseLayout
+  title={sys.data.title}
+  description={sys.data.tagline}
+  image={`/og/system-${sys.id}.png`}
+  imageAlt={`${sys.data.title} —— ${sys.data.short ?? sys.data.tagline}`}
+  jsonLd={jsonLd}
+>
   <section class="narrow page-head">
     <Crumb parent={{ href: "/systems/", label: "AI 实践" }} />
     <span class={`badge ${badge.cls}`} style="margin-bottom:18px;">
