@@ -9,7 +9,7 @@ summary: "方案已经成型、22 人已经提报，我却选择把一个重项�
 
 但我停下来问了一个问题：**在 AI 开始重塑管理动作的当下，这套沿用三期的重交付逻辑还成立吗？**
 
-我的判断是不成立。于是主动把它转成更耐用的轻量组合：一个[领导力知识库](/systems/knowledge-portal/)、一个[可调用的领导力技能](/systems/personal-ai-ops/)、一个[关键对话 Lab](/systems/critical-conversation-lab/)、一套[在线测评](/systems/disc-assessment/)。确定性的"办完一场班"，换成了不确定但更长期的"留下一套系统"。
+我的判断是不成立。于是主动把它转成更耐用的轻量组合：一个[领导力知识库](/systems/knowledge-portal/)、一个可调用的领导力技能、一个[关键对话 Lab](/systems/critical-conversation-lab/)、一套[在线测评](/systems/disc-assessment/)。确定性的"办完一场班"，换成了不确定但更长期的"留下一套系统"。
 
 复盘三条：
 
