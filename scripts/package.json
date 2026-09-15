@@ -1,0 +1,13 @@
+{
+  "name": "hiciki-site-scripts",
+  "private": true,
+  "description": "站点维护脚本的依赖，故意和仓库根目录隔离：根 package.json 不引任何构建期依赖，deploy.yml 的 npm ci 行为完全不变。",
+  "scripts": {
+    "og": "node build-og.mjs",
+    "fonts": "node build-fonts.mjs",
+    "check-og": "node check-og.mjs"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.63.0"
+  }
+}

@@ -7,6 +7,9 @@
  * 分片按 dist 里的实际用字裁剪，unicode-range 保持 Google 原样，
  * 所以浏览器仍只下载当页用到的分片，行为与走 Google 时一致。
  * 新增内容后重跑：npm run build && node scripts/build-fonts.mjs
+ *
+ * 本文件随后由 scripts/subset-fonts.py 按实际用字再裁一次（体积约 1/4），
+ * 两者都要重跑：npm run build && npm run fonts:build && npm run fonts:subset
  */
 
 @font-face {

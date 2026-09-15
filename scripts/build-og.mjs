@@ -21,17 +21,33 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import path from 'node:path';
 import fs from 'node:fs';
 
-/* playwright-core 优先用仓库里的，没有就退回受管 Node 工作区（ESM 不认 NODE_PATH，显式解析）。 */
+/* playwright-core：先找仓库自己 node_modules（含 scripts/ 下的嵌套安装），
+   再兜底到 PW_ROOT 指定的位置。ESM 不认 NODE_PATH，所以显式解析。 */
 function loadPlaywright() {
   const require = createRequire(import.meta.url);
+  const candidates = [
+    process.env.PW_ROOT && path.join(process.env.PW_ROOT, 'package.json'),
+    process.env.HOME &&
+      path.join(process.env.HOME, '.workbuddy', 'binaries', 'node', 'workspace', 'package.json'),
+  ].filter(Boolean);
+
   try {
     return require('playwright-core');
   } catch {}
-  const fallback = '/Users/gongwenxi/.workbuddy/binaries/node/workspace/package.json';
-  if (fs.existsSync(fallback)) return createRequire(fallback)('playwright-core');
+
+  for (const c of candidates) {
+    if (!fs.existsSync(c)) continue;
+    try {
+      return createRequire(c)('playwright-core');
+    } catch {}
+  }
+
   console.error(
-    '缺少 playwright-core。请在站点仓库里安装：\n  npm i -D playwright-core\n' +
-      '（它不含浏览器，会用本机已装的 Chrome；也可用 CHROME_PATH 指定）'
+    '缺少 playwright-core。任选其一：\n' +
+      '  cd scripts && npm install            # 推荐：依赖隔离在 scripts/ 下，不影响根目录与部署\n' +
+      '  npm i -D playwright-core             # 或者装在仓库根目录\n' +
+      '  PW_ROOT=/某个装了 playwright-core 的目录 node scripts/build-og.mjs\n' +
+      '（playwright-core 不含浏览器，会用本机已装的 Chrome；也可用 CHROME_PATH 指定）'
   );
   process.exit(1);
 }
@@ -168,6 +184,21 @@ cards.push({
   lines: ['把重复的工作任务', '交给 AI，', '把<span class="hl">人</span>留给自己。'],
   size: 'xl',
   sub: '十余年组织与人才发展，以教练洞察人性，用 AI 把想法做成真正能用的产品',
+});
+
+// 0b) 简历页专属卡：/resume/
+// 这是 HR 最可能直接转发给用人部门的一页，值得有自己的卡，而不是共用通用卡。
+cards.push({
+  id: 'resume',
+  out: 'resume.png',
+  railLabel: '简历 RESUME',
+  railStack: ['www.hiciki.me/resume/', 'gongwenxi912@outlook.com'],
+  eyebrow: '心动游戏（TapTap 母公司）· 小红书 · 爱奇艺',
+  title: '十余年组织与人才发展，覆盖近 2000 人的组织',
+  lines: ['十余年组织与人才发展，', '覆盖近 2000 人的组织'],
+  size: 'md',
+  sub: '累计培养近百名基层管理者 · ICF 认证教练 · 上百小时一对一对话',
+  chips: ['人才发展 TD', 'AI 实践 Builder', '教练 Coach'],
 });
 
 // 1) 项目卡：/systems/<slug>/

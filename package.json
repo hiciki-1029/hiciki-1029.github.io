@@ -5,9 +5,13 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "node scripts/check-og.mjs && astro build",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "astro check",
+    "og:build": "node scripts/build-og.mjs",
+    "og:check": "node scripts/check-og.mjs",
+    "fonts:build": "node scripts/build-fonts.mjs",
+    "fonts:subset": "python3 scripts/subset-fonts.py"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

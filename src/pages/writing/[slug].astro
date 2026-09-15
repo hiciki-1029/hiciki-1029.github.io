@@ -1,4 +1,6 @@
 ---
+import fs from "node:fs";
+import path from "node:path";
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Crumb from "../../components/Crumb.astro";
@@ -14,6 +16,10 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 const kindLabel = { digest: "报告蒸馏", note: "笔记", retro: "复盘", essay: "随笔" };
 
+/* og 分享卡路径。缺图就回落到通用卡（同 systems/[slug].astro 的说明）。 */
+const ogPath = `/og/writing-${post.id}.png`;
+const ogImage = fs.existsSync(path.join(process.cwd(), "public", ogPath)) ? ogPath : "/og/site.png";
+
 const SITE = "https://www.hiciki.me";
 const selfUrl = `${SITE}/writing/${post.id}/`;
 const published = post.data.date.toISOString().slice(0, 10); // 只要日期，去掉 UTC 零点带来的时区歧义
@@ -24,7 +30,7 @@ const jsonLd = {
   description: post.data.summary,
   url: selfUrl,
   mainEntityOfPage: selfUrl,
-  image: `${SITE}/og/writing-${post.id}.png`,
+  image: `${SITE}${ogImage}`,
   inLanguage: "zh-CN",
   datePublished: published,
   dateModified: published,
@@ -38,7 +44,7 @@ const jsonLd = {
 <BaseLayout
   title={post.data.title}
   description={post.data.summary}
-  image={`/og/writing-${post.id}.png`}
+  image={ogImage}
   imageAlt={`${post.data.title} —— ${post.data.summary}`}
   jsonLd={jsonLd}
 >

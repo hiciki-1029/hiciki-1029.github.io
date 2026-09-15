@@ -1,4 +1,6 @@
 ---
+import fs from "node:fs";
+import path from "node:path";
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Pipeline from "../../components/Pipeline.astro";
@@ -18,6 +20,11 @@ const badgeMap = {
 } as const;
 const badge = badgeMap[sys.data.status];
 
+/* og 分享卡路径。缺图就回落到通用卡 —— 新增案例时忘了跑 `npm run og:build`，
+   页面仍会照常构建，但分享出去不会是一张破图。构建期还有 scripts/check-og.mjs 硬拦。 */
+const ogPath = `/og/system-${sys.id}.png`;
+const ogImage = fs.existsSync(path.join(process.cwd(), "public", ogPath)) ? ogPath : "/og/site.png";
+
 const SITE = "https://www.hiciki.me";
 const selfUrl = `${SITE}/systems/${sys.id}/`;
 /* year 是「2025—2026」这样的区间，取起始年份当作创建时间 */
@@ -29,7 +36,7 @@ const jsonLd = {
   description: sys.data.tagline,
   abstract: sys.data.short ?? sys.data.tagline,
   url: selfUrl,
-  image: `${SITE}/og/system-${sys.id}.png`,
+  image: `${SITE}${ogImage}`,
   inLanguage: "zh-CN",
   creator: { "@id": `${SITE}/#person` },
   author: { "@id": `${SITE}/#person` },
@@ -42,7 +49,7 @@ const jsonLd = {
 <BaseLayout
   title={sys.data.title}
   description={sys.data.tagline}
-  image={`/og/system-${sys.id}.png`}
+  image={ogImage}
   imageAlt={`${sys.data.title} —— ${sys.data.short ?? sys.data.tagline}`}
   jsonLd={jsonLd}
 >
