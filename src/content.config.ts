@@ -9,6 +9,7 @@ const systems = defineCollection({
     tagline: z.string(),
     // 卡片上用的一句话短标语（做减法）；详情页仍用完整 tagline
     short: z.string().optional(),
+    question: z.string().optional(),
     // build=造系统  lead=带团队  judge=判断与人
     layer: z.enum(["build", "lead", "judge"]),
     year: z.string(),
@@ -48,6 +49,8 @@ const writing = defineCollection({
     kind: z.enum(["digest", "note", "retro", "essay"]),
     source: z.string().optional(),
     summary: z.string(),
+    reviewNote: z.string().optional(),
+    sourceNote: z.string().optional(),
     public: z.boolean().default(true),
   }),
 });

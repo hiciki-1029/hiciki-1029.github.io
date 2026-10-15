@@ -22,7 +22,7 @@ const {
 } = Astro.props;
 const SITE = "https://www.hiciki.me";
 const site = (Astro.site ?? SITE).toString().replace(/\/+$/, "");
-const fullTitle = title ? `${title} · 熙熙 Ciki` : "熙熙 Ciki · 组织 × AI 工作系统";
+const fullTitle = title ? `${title} · 熙熙 Ciki` : "熙熙 Ciki · 人才发展、AI 与人的成长";
 const canonical = new URL(Astro.url.pathname, Astro.site ?? SITE);
 const ogImage = new URL(image, Astro.site ?? SITE);
 
@@ -107,11 +107,11 @@ const jsonLdGraph = [
       <div class="contact-card" role="dialog" aria-modal="true" aria-label="联系熙熙">
         <button class="contact-x" type="button" data-contact-close aria-label="关闭">✕</button>
         <h3>联系熙熙</h3>
-        <p class="contact-sub">人才发展、AI 如何在组织里落地，或者一次教练对话——都欢迎找我聊聊。</p>
+        <p class="contact-sub">同行交流、人才培养与团队 AI 实践的合作，或一次教练对话、一个职业机会，都欢迎。可以先说说你的问题和来意。</p>
         <div class="contact-grid">
           <div class="contact-wechat">
             <img src="/me/wechat-qr.png" width="132" height="132" alt="熙熙的微信二维码，扫码加好友" loading="lazy" />
-            <span>微信扫码加我</span>
+            <span>扫码，或保存图片后识别</span>
           </div>
           <div class="contact-mail">
             <div class="cm-label">邮箱</div>
@@ -180,6 +180,13 @@ const jsonLdGraph = [
           });
           document.addEventListener("keydown", function (e) {
             if (e.key === "Escape" && modal.classList.contains("open")) close();
+            if (e.key === "Tab" && modal.classList.contains("open")) {
+              var focusable = Array.from(modal.querySelectorAll("button, a[href]"));
+              var first = focusable[0];
+              var last = focusable[focusable.length - 1];
+              if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+              else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+            }
           });
           var copyBtn = modal.querySelector("[data-copy]");
           if (copyBtn) {
@@ -201,7 +208,10 @@ const jsonLdGraph = [
                 var ta = document.createElement("textarea");
                 ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
                 document.body.appendChild(ta); ta.select();
-                try { document.execCommand("copy"); done(); } catch (err) {}
+                try {
+                  if (document.execCommand("copy")) done();
+                  else if (tag) tag.textContent = "请直接写邮件";
+                } catch (err) { if (tag) tag.textContent = "请直接写邮件"; }
                 document.body.removeChild(ta);
               }
             });

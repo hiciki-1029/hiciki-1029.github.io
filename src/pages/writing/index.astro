@@ -3,22 +3,25 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Crumb from "../../components/Crumb.astro";
 
+const writingOrder = ["a-library-that-can-disagree", "before-building-another-project", "listening-before-questions", "action-and-an-unmeasured-life", "who-owns-the-next-step"];
 const writings = (await getCollection("writing"))
   .filter((w) => w.data.public)
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf() ||
+    (writingOrder.indexOf(a.id) < 0 ? 99 : writingOrder.indexOf(a.id)) -
+    (writingOrder.indexOf(b.id) < 0 ? 99 : writingOrder.indexOf(b.id)));
 const kindLabel = { digest: "报告蒸馏", note: "笔记", retro: "复盘", essay: "随笔" };
 ---
 
 <BaseLayout
   title="一些思考"
-  description="龚文熙关于组织、人才与 AI 的持续写作：前沿报告蒸馏、工作复盘与方法论随笔，保持更新。"
+  description="龚文熙关于人才发展、AI 与人的成长的个人判断、实践复盘和阅读记录。"
 >
   <section class="wrap page-head">
     <Crumb current="一些思考" />
-    <span class="eyebrow">WRITING · 持续输出</span>
-    <h1>把想清楚的事，写下来</h1>
+    <span class="eyebrow">WRITING · 思考与复盘</span>
+    <h1>写下判断，也留下问题</h1>
     <p class="sub">
-      报告蒸馏、项目复盘与方法随笔。它们大多先在我的知识系统里生成，再挑可以公开的放到这里——这也是这个站「一直活着」的原因。
+      从项目、阅读和对话里慢慢形成的想法。有些已经试过，有些还在探索；尽量把依据、取舍和没有答案的部分一起写下来。
     </p>
   </section>
 
@@ -35,7 +38,7 @@ const kindLabel = { digest: "报告蒸馏", note: "笔记", retro: "复盘", ess
               year: "numeric",
               month: "long",
             })}{" "}
-            · {kindLabel[w.data.kind]}
+            · {w.data.reviewNote ? "共创待审" : kindLabel[w.data.kind]}
           </div>
           <h3 style="margin:8px 0 6px;font-size:20px;">{w.data.title}</h3>
           <p style="color:var(--muted);font-size:15px;">{w.data.summary}</p>

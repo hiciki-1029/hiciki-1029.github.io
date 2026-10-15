@@ -1,187 +1,184 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import SystemCard from "../components/SystemCard.astro";
-import HeroSystem from "../components/HeroSystem.astro";
-import Marquee from "../components/Marquee.astro";
-
-const systems = (await getCollection("systems")).sort(
-  (a, b) => a.data.order - b.data.order
-);
-// 首页只精选 4 个最能代表广度与差异的实践，其余进列表页
-const homeOrder = [
-  "knowledge-portal",
-  "ssr-suite",
-  "critical-conversation-lab",
-  "ai-creation-contest",
+import PracticeOutline from "../components/PracticeOutline.astro";
+import ReadingShelf from "../components/ReadingShelf.astro";
+const writingOrder = ["a-library-that-can-disagree", "before-building-another-project", "listening-before-questions"];
+const writings = (await getCollection("writing")).filter(w => w.data.public)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf() ||
+    (writingOrder.indexOf(a.id) < 0 ? 99 : writingOrder.indexOf(a.id)) -
+    (writingOrder.indexOf(b.id) < 0 ? 99 : writingOrder.indexOf(b.id))).slice(0, 3);
+const kindLabel = { digest: "报告阅读", note: "笔记", retro: "项目复盘", essay: "个人判断" };
+const ways = [
+  { no: "01", title: "先听懂问题", text: "先想清楚目标，澄清真实需求，再选择合适的方式。比起完成一个项目，我更关心它是否真的有价值。", link: "/about/", label: "更多关于我" },
+  { no: "02", title: "把想法带进实践", text: "AI 让更多想法有机会被做出来。我也关心工具之外的部分：人的需要、反馈，以及成长的可能。", link: "/writing/", label: "看看我的思考" },
+  { no: "03", title: "给人留一点空间", text: "教练学习提醒我：不急着给答案，认真倾听，也允许留白。对话的方向盘，仍在对方手里。", link: "/about/#coach", label: "聊聊教练与倾听" },
 ];
-const homeSystems = systems
-  .filter((s) => homeOrder.includes(s.id))
-  .sort((a, b) => homeOrder.indexOf(a.id) - homeOrder.indexOf(b.id));
-
-const layers = [
-  {
-    key: "td",
-    num: "01",
-    kicker: "人才发展",
-    title: "十余年，只认真一件事：让人成长",
-    desc: "越往前走越确信：人很难靠几次培训被改变，而是在真实的挑战和被信任的关系里长出来的。所以做人才培养，我看重的从来不是排了多少课，而是有没有搭好成长的阶梯，并在关键时刻真诚地扶一把。",
-    tags: ["培养体系", "领导力提升", "组织诊断"],
-  },
-  {
-    key: "build",
-    num: "02",
-    kicker: "AI 实践",
-    title: "用 AI 把想法做成能用的产品",
-    desc: "我把 AI 当自己的程序员，指挥它写代码、对接 API 接口，把测评、资讯、知识库做成日常在用的东西，也带没有技术背景的同事一起做。",
-    tags: ["AI 自动化", "独立做产品", "带教推广"],
-  },
-  {
-    key: "coach",
-    num: "03",
-    kicker: "教练与人",
-    title: "懂业务，也听得懂一个人",
-    desc: "作为 ICF 认证教练，我做过上百小时深度对话，习惯走到一线，听懂一个人真实的卡点，也听懂组织里没说出口的问题。",
-    tags: ["ICF 教练", "关键对话", "一线倾听"],
-  },
-];
-
 const road = [
-  { yr: "2018–2021", co: "爱奇艺", rl: "HRBP / 培训 / 组织文化", logo: "/co/iqiyi.svg", intro: "在线视频与娱乐内容平台" },
-  { yr: "2021–2022", co: "小红书", rl: "人才发展", logo: "/co/xhs.svg", glyph: true, intro: "生活方式内容社区" },
-  { yr: "2022—今", co: "心动游戏", rl: "人才发展 · 近 2000 人", logo: "/co/xd.svg", intro: "游戏研发与发行 · TapTap 母公司" },
+  { yr: "2018–2021", co: "爱奇艺", role: "HRBP / 培训 / 组织文化", logo: "/co/iqiyi.svg" },
+  { yr: "2021–2022", co: "小红书", role: "人才发展", logo: "/co/xhs.svg" },
+  { yr: "2022—今", co: "心动游戏", role: "人才发展", logo: "/co/xd.svg" },
 ];
 ---
 
-<BaseLayout>
-  <!-- 1 · Hero（品牌色场域） -->
-  <section class="hero-band">
-    <div class="hero-glow" aria-hidden="true"></div>
-    <div class="wrap hero hero-grid">
-      <div class="hero-copy">
-        <span class="eyebrow"><span class="eb-dot" aria-hidden="true"></span>组织与人才发展 × AI 实践 × ICF 认证教练 · 上海</span>
-        <h1>
-          把重复的工作任务<span style="white-space:nowrap">交给 AI</span>，<br />
-          <span style="white-space:nowrap">把「<em>人</em>」留给自己。</span>
-        </h1>
-        <p class="lede">
-          我有十余年组织与人才发展的工作经历。教练让我更懂得理解人，我也用 AI 把一个个想法做成真正能用的产品——
-          <strong>不只是自己做，还带着一群没有技术背景的 HR 一起做。</strong>
-        </p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="/systems/">看看这些实践 <span class="arrow">→</span></a>
-          <a class="btn btn-ghost" href="/about/">关于我</a>
-          <button type="button" class="hero-mail" data-contact>随时联系我 <span class="arrow">→</span></button>
+<BaseLayout description="龚文熙（熙熙 / Ciki），人才与组织发展实践者。我关注 AI 改变工作后，人如何学习、判断、协作和成长；以教练理解人，亲手把支持做成实践。">
+  <section class="hero-band home-hero">
+    <div class="wrap opening">
+      <div class="opening-copy">
+        <span class="eyebrow"><span class="eb-dot" aria-hidden="true"></span>人才与组织发展 · AI 实践 · 教练</span>
+        <h1>让人的成长，<br />有地方<em>发生</em>。</h1>
+        <p class="intro">我是熙熙，现居上海，有十余年组织与人才发展的工作经历。</p>
+        <p class="opening-question">AI 正在改变工作。我关心的是：<br /><strong>人如何学习、判断、协作和成长？</strong></p>
+        <div class="opening-actions">
+          <a class="btn btn-primary" href="#practice">看我的实践 <span aria-hidden="true">↓</span></a>
+          <button class="hero-mail" type="button" data-contact>带着问题聊聊 →</button>
         </div>
       </div>
-      <HeroSystem />
+      <figure class="portrait">
+        <span class="portrait-caption">HELLO, I'M CIKI</span>
+        <img src="/me/avatar.jpg" alt="熙熙的卡通形象，手里端着一杯茶" width="320" height="320" fetchpriority="high" />
+        <figcaption>先听懂问题，<br />再决定怎么做。</figcaption>
+        <a href="/about/">多认识我一点 ↗</a>
+      </figure>
     </div>
-    <div class="wrap"><Marquee /></div>
+    <div class="wrap opening-foot"><span>理解人 · 设计支持 · 一起创造</span><a href="/resume/">十余年工作经历 ↗</a></div>
   </section>
 
-  <!-- 2 · 我相信（一句信念） -->
-  <section class="wrap belief-sec reveal">
-    <div class="belief-one">
-      <p class="belief-line">我相信每个人身上都有自我生长的力量，而被听见、被信任，会让它慢慢长出来。</p>
-    </div>
-  </section>
-
-  <!-- 3 · 我怎么工作 -->
-  <section class="wrap section reveal">
+  <section class="wrap section" id="practice">
     <div class="sec-head">
-      <span class="sec-index">01</span>
-      <h2>我怎么工作</h2>
-      <span class="hint">人才发展 · AI 实践 · 教练</span>
-      <img class="sec-stamp" src="/me/pose-build.jpg" alt="熙熙在电脑前把想法做成产品" loading="lazy" />
+      <span class="sec-index">01</span><h2>从人的问题出发</h2>
+      <span class="hint">我关注的四个实践方向</span>
     </div>
-    <div class="layers">
-      {
-        layers.map((l) => (
-          <div class={`layer layer-${l.key}`}>
-            <div class="licon" aria-hidden="true">
-              {l.key === "td" && (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-                  <rect x="9" y="3" width="6" height="6" rx="1.5" /><rect x="3" y="15" width="6" height="6" rx="1.5" /><rect x="15" y="15" width="6" height="6" rx="1.5" />
-                  <path d="M12 9v3M12 12H6v3M12 12h6v3" />
-                </svg>
-              )}
-              {l.key === "build" && (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-                  <rect x="3" y="3" width="7" height="7" rx="2" /><rect x="14" y="3" width="7" height="7" rx="2" />
-                  <rect x="3" y="14" width="7" height="7" rx="2" /><rect x="14" y="14" width="7" height="7" rx="2" />
-                </svg>
-              )}
-              {l.key === "coach" && (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-                  <path d="M4 5.5h16a1 1 0 0 1 1 1V15a1 1 0 0 1-1 1H9.5l-4.2 3v-3H4a1 1 0 0 1-1-1V6.5a1 1 0 0 1 1-1z" />
-                  <path d="M8 10.5h.01M12 10.5h.01M16 10.5h.01" stroke-linecap="round" />
-                </svg>
-              )}
-            </div>
-            <span class="ghost-num">{l.num}</span>
-            <div class="lkicker">{l.kicker}</div>
-            <h3>{l.title}</h3>
-            <p>{l.desc}</p>
-            <div class="tags">{l.tags.map((t) => <span>{t}</span>)}</div>
-          </div>
-        ))
-      }
+    <div id="ai-exploration"><PracticeOutline /></div>
+    <p class="grid-more"><a href="/systems/">具体实践与工具索引 →</a></p>
+  </section>
+
+  <section class="wrap section">
+    <div class="sec-head"><span class="sec-index">02</span><h2>我怎么工作</h2><span class="hint">方法可以不同，先把需求弄清楚</span></div>
+    <div class="ways">
+      {ways.map(w => <article class="way">
+        <span class="way-number">{w.no}</span><h3>{w.title}</h3><p>{w.text}</p><a href={w.link}>{w.label} →</a>
+      </article>)}
     </div>
   </section>
 
-  <!-- 2 · 我做的东西（精选 4 个） -->
-  <section class="wrap section reveal">
-    <div class="sec-head">
-      <span class="sec-index">02</span>
-      <h2>我做的东西</h2>
-      <span class="hint">精选四个，点进去看「问题—做法—验证—边界」</span>
+  <section class="wrap section writing-section">
+    <div class="sec-head"><span class="sec-index">03</span><h2>实践之外，也想一想</h2><span class="hint">把判断写下来，也保留没有答案的部分</span></div>
+    <div class="journal-grid">
+      {writings.map((w, i) => <a class:list={["journal", { "journal-first": i === 0 }]} href={`/writing/${w.id}/`}>
+        <span class="journal-meta">{w.data.reviewNote ? "共创待审" : kindLabel[w.data.kind]} · {w.data.date.toLocaleDateString("zh-CN", {year:"numeric", month:"long"})}</span>
+        <h3>{w.data.title}</h3><p>{w.data.summary}</p><span class="journal-arrow">读这篇 →</span>
+      </a>)}
     </div>
-    <div class="bento">
-      {homeSystems.map((s) => <SystemCard sys={s} />)}
-    </div>
-    <p class="grid-more"><a href="/systems/">查看全部 {systems.length} 个 AI 实践 →</a></p>
+    <p class="grid-more"><a href="/writing/">更多思考 →</a></p>
   </section>
 
-  <!-- 3 · 工作经历 -->
-  <section class="wrap section reveal">
-    <div class="sec-head">
-      <span class="sec-index">03</span>
-      <h2>工作经历</h2>
-      <span class="hint">只放最近三段，完整版在简历页</span>
-    </div>
-    <div class="road">
-      {
-        road.map((r) => (
-          <div class="stop">
-            <span class="co-logo"><img class={r.glyph ? "glyph" : ""} src={r.logo} alt={r.co} loading="lazy" /></span>
-            <div class="yr">{r.yr}</div>
-            <div class="co">{r.co}</div>
-            <div class="rl">{r.rl}</div>
-            <p class="co-intro">{r.intro}</p>
-          </div>
-        ))
-      }
-    </div>
-    <p class="road-more"><a href="/resume/">看完整简历与认证 →</a></p>
+  <section class="wrap section" id="reading">
+    <div class="sec-head"><span class="sec-index">04</span><h2>书里，也有我关心的事</h2><span class="hint">近两年的阅读，留下的一些想法</span></div>
+    <ReadingShelf />
+    <p class="grid-more"><a href="/about/#reading">再翻几本 →</a></p>
   </section>
 
-  <!-- 9 · 联系 -->
-  <section class="wrap section reveal">
-    <div class="cta">
-      <img class="cta-img" src="/me/pose-listen.jpg" alt="熙熙专注倾听的样子" loading="lazy" />
-      <div class="cta-text">
-        <h2>想聊聊，随时联系我</h2>
-        <p>人才发展、AI 要怎么在组织里落地，或者一次教练对话——都欢迎。</p>
-        <div class="cta-actions">
-          <button type="button" class="btn btn-primary" data-contact>随时联系我 <span class="arrow">→</span></button>
-          <a class="btn btn-ghost" href="/about/">更多关于我</a>
-        </div>
+  <section class="wrap section background-section">
+    <div class="background-title"><span class="sec-index">05</span><h2>这些实践背后的经历</h2><a href="/resume/">完整经历与认证 →</a></div>
+    <div class="career-strip">
+      {road.map(r => <div class="career-stop"><img src={r.logo} alt={r.co} width="48" height="48" loading="lazy" /><div><span>{r.yr}</span><h3>{r.co}</h3><p>{r.role}</p></div></div>)}
+    </div>
+  </section>
+
+  <section class="wrap section">
+    <div class="invitation">
+      <div class="invitation-copy">
+        <span class="small-label">LET'S TALK</span><h2>从一个具体问题，<br />开始一段对话。</h2>
+        <p>人才培养怎么更贴近需要，团队怎样跨过 AI 的使用门槛，或管理者如何准备一场困难谈话——都欢迎聊聊。</p>
+        <div class="invite-topics"><span>同行交流</span><span>项目合作</span><span>教练对话</span><span>职业机会</span></div>
+        <button class="btn btn-primary" type="button" data-contact>联系熙熙 →</button>
       </div>
-      <div class="cta-qr">
-        <img src="/me/wechat-qr.png" alt="熙熙的微信二维码，扫码加好友" width="108" height="108" loading="lazy" />
-        <span>微信扫码加我</span>
-      </div>
+      <div class="invitation-side"><img src="/me/pose-listen.jpg" alt="熙熙专注倾听的卡通形象" width="140" height="140" loading="lazy" /><p>可以先说说：<br />你在面对什么，想改变什么。</p></div>
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .opening { display:grid; grid-template-columns:1.4fr 1fr; align-items:center; gap:80px; padding:64px 0 46px; }
+  .opening h1 { margin:24px 0; font-family:var(--serif); font-weight:700; font-size:clamp(42px,5.2vw,64px); line-height:1.3; letter-spacing:-.035em; }
+  .opening h1 em { font-style:normal; color:var(--ochre); position:relative; }
+  .opening h1 em::after { content:""; position:absolute; left:0; right:0; bottom:0; height:9px; border-radius:50%; background:var(--ochre-soft); opacity:.22; }
+  .intro { color:var(--ink-soft); font-size:16px; max-width:29em; }
+  .opening-question { margin-top:18px; font-size:18px; color:var(--ink-soft); line-height:1.9; }
+  .opening-question strong { color:var(--ink); font-weight:600; }
+  .opening-actions { display:flex; align-items:center; gap:28px; margin-top:28px; }
+  .portrait { margin:0; position:relative; text-align:center; justify-self:center; width:100%; max-width:320px; }
+  .portrait-caption { font-size:10px; letter-spacing:.2em; color:var(--ochre-deep); }
+  .portrait img { display:block; width:220px; height:220px; object-fit:cover; margin:18px auto; border-radius:50%; border:9px solid rgba(255,255,255,.7); box-shadow:0 14px 42px -28px var(--ochre); }
+  .portrait figcaption { font-family:var(--serif); font-size:23px; line-height:1.7; }
+  .portrait a { display:inline-block; margin-top:14px; font-size:13px; }
+  .opening-foot { display:flex; justify-content:space-between; align-items:center; padding:18px 0; border-top:1px solid var(--line-strong); color:var(--muted); font-size:13px; }
+  #practice { scroll-margin-top:95px; }
+  #ai-exploration { scroll-margin-top:95px; }
+  .ways { display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--line-strong); border-bottom:1px solid var(--line-strong); }
+  .way { padding:28px 26px; border-right:1px solid var(--line); }
+  .way:first-child { padding-left:0; }
+  .way:last-child { border-right:0; padding-right:0; }
+  .way-number { font-size:12px; color:var(--ochre); }
+  .way h3 { font-family:var(--serif); font-size:23px; margin:8px 0 14px; }
+  .way p { font-size:15px; color:var(--ink-soft); line-height:1.9; margin-bottom:20px; }
+  .way a { font-size:13px; }
+  .journal-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+  .journal { display:flex; flex-direction:column; padding:26px; color:var(--ink); text-decoration:none; background:var(--paper-2); border-radius:var(--r-md); border:1px solid var(--line); transition:border-color .2s; }
+  .journal:hover { border-color:var(--ochre-soft); }
+  .journal-first { background:var(--cream); }
+  .journal-meta { font-size:11px; color:var(--ochre-deep); }
+  .journal h3 { font-family:var(--serif); font-size:20px; line-height:1.6; margin:16px 0 12px; }
+  .journal p { font-size:14px; color:var(--muted); line-height:1.8; }
+  .journal-arrow { margin-top:auto; padding-top:24px; font-size:13px; color:var(--ochre-deep); }
+  .background-title { display:flex; align-items:center; flex-wrap:wrap; gap:13px; }
+  .background-title h2 { font-size:22px; margin:0; }
+  .background-title > a { margin-left:auto; font-size:13px; }
+  .career-strip { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:26px; }
+  .career-stop { display:flex; align-items:center; gap:16px; }
+  .career-stop img { object-fit:contain; border:1px solid var(--line); border-radius:12px; background:#fff; padding:8px; }
+  .career-stop span { font-size:11px; color:var(--muted); }
+  .career-stop h3 { font-size:16px; margin:3px 0; }
+  .career-stop p { font-size:12px; color:var(--muted); }
+  .invitation { display:grid; grid-template-columns:1fr 240px; gap:48px; padding:44px 48px; background:var(--paper-2); border:1px solid var(--line); border-radius:var(--r-lg); align-items:center; }
+  .small-label { font-size:11px; letter-spacing:.18em; color:var(--ochre-deep); }
+  .invitation h2 { font-family:var(--serif); font-size:32px; line-height:1.5; margin:12px 0 20px; }
+  .invitation-copy > p { max-width:38em; font-size:15px; color:var(--ink-soft); }
+  .invite-topics { display:flex; flex-wrap:wrap; gap:14px; margin:20px 0; font-size:12px; color:var(--muted); }
+  .invitation-side { text-align:center; }
+  .invitation-side img { width:140px; height:140px; border-radius:50%; object-fit:cover; }
+  .invitation-side p { margin-top:14px; font-size:13px; color:var(--muted); }
+  @media(max-width:900px) {
+    .opening { gap:30px; grid-template-columns:1.5fr 1fr; }
+    .portrait img { width:160px; height:160px; }
+    .portrait figcaption { font-size:20px; }
+    .ways { grid-template-columns:1fr; }
+    .way, .way:first-child, .way:last-child { padding:22px 0; border-right:0; border-bottom:1px solid var(--line); }
+    .way:last-child { border-bottom:0; }
+    .journal-grid { grid-template-columns:1fr; }
+    .career-strip { gap:18px; }
+    .invitation { grid-template-columns:1fr 150px; gap:24px; padding:30px; }
+  }
+  @media(max-width:560px) {
+    .opening { grid-template-columns:1fr; padding:34px 0 24px; gap:20px; }
+    .opening h1 { font-size:40px; margin:20px 0 18px; }
+    .opening-question { font-size:17px; margin-top:12px; }
+    .opening-actions { gap:20px; margin-top:22px; }
+    .opening-actions .btn { font-size:14px; padding:12px 17px; }
+    .opening-actions .hero-mail { font-size:13px; }
+    .portrait { display:flex; align-items:center; text-align:left; gap:14px; max-width:none; border-top:1px solid var(--line); padding-top:18px; }
+    .portrait-caption { display:none; }
+    .portrait img { width:66px; height:66px; margin:0; border-width:3px; }
+    .portrait figcaption { font-family:var(--sans); font-size:13px; line-height:1.7; }
+    .portrait a { margin:0 0 0 auto; font-size:12px; }
+    .opening-foot { font-size:11px; padding:14px 0; gap:10px; }
+    .career-strip { grid-template-columns:1fr; gap:20px; }
+    .background-title > a { margin-left:0; width:100%; }
+    .invitation { grid-template-columns:1fr; padding:28px 24px; }
+    .invitation h2 { font-size:28px; }
+    .invitation-side { display:none; }
+    .sec-head .hint { width:100%; }
+  }
+</style>
 

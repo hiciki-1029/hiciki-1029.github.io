@@ -1,5 +1,4 @@
 ---
-import { render } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 
 interface Props {
@@ -28,7 +27,7 @@ const cover = data.cover ?? fallback;
 const hasVideo = media.some((m) => m.type === "video");
 ---
 
-<a class={`sys span-${data.span} ${data.featured ? "feature" : ""} reveal`} href={`/systems/${sys.id}/`}>
+<a class={`sys span-${data.span} ${data.featured ? "feature" : ""}`} href={`/systems/${sys.id}/`}>
   {cover && (
     <div class="cover">
       <img src={cover} alt="" loading="lazy" decoding="async" />
@@ -39,6 +38,7 @@ const hasVideo = media.some((m) => m.type === "video");
   <div class="top">
     <span class={`badge ${badge.cls}`}><span class="dot"></span>{badge.label}</span>
   </div>
+  {data.question && <span class="case-question">{data.question}</span>}
   <h3>{data.title}</h3>
   <p>{data.short ?? data.tagline}</p>
   <div class="meta">

@@ -1,33 +1,28 @@
 ---
-import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
 import SystemCard from "../../components/SystemCard.astro";
 import Crumb from "../../components/Crumb.astro";
-
-const systems = (await getCollection("systems")).sort(
-  (a, b) => a.data.order - b.data.order
-);
+const systems = (await getCollection("systems")).sort((a,b) => a.data.order - b.data.order);
 ---
 
 <BaseLayout
-  title="AI实践"
-  description="龚文熙的 AI 实践记录：个人知识库门户、关键对话 Lab、校招生培养系统、HR 情报中台、DISC 在线测评，以及带团队一起做 AI 的方法。"
+  title="实践"
+  description="熙熙的八项 AI 实践与探索，从新人培养、关键对话与知识库，到在线测评、研究助手、工作自动化和团队共创。"
 >
   <section class="wrap page-head">
-    <Crumb current="AI 实践" />
-    <span class="eyebrow">AI PRACTICE · 实践记录</span>
-    <h1>我用 AI 重做的几件事</h1>
+    <Crumb current="实践" />
+    <span class="eyebrow">PRACTICE · 从问题出发</span>
+    <h1>让支持人的办法，真正用起来</h1>
     <p class="sub">
-      每件事都按同一个顺序写：遇到什么<strong>问题</strong>、我<strong>怎么做</strong>的、拿什么<strong>验证</strong>、<strong>边界</strong>在哪。涉及公司的部分都做了脱敏。
+      从新人培养、共同创造，到困难谈话与个人知识积累。这里保留各项实践的背景、做法与演示。
     </p>
     <p class="sub" style="margin-top:8px;">
-      这 8 件里有 4 件来自同一次主动叫停 —— 我停掉了一个办过三期、反馈良好的重培训项目，换成了更耐用的组合。<a href="/writing/judgment-over-certainty/">当时的判断过程 →</a>
+      这里只展示可公开分享的方法与演示，组织与人员信息已脱敏。
     </p>
   </section>
 
   <section class="wrap section" style="padding-top:32px;">
-    <div class="bento">
-      {systems.map((s) => <SystemCard sys={s} />)}
-    </div>
+    <div class="bento">{systems.map(s => <SystemCard sys={s} />)}</div>
   </section>
 </BaseLayout>

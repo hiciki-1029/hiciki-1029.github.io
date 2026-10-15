@@ -1,0 +1,28 @@
+---
+import { books } from "../data/reading";
+interface Props { full?: boolean; }
+const { full = false } = Astro.props;
+const selected = full ? books : books.slice(0, 3);
+---
+
+<p class="reading-intro">关于倾听、行动，也关于感受生活。几本近两年读过、留下过想法的书。</p>
+<div class:list={["reading-shelf", { "reading-full": full }]}>
+  {selected.map(book => <article class="reading-book">
+    <img src={`/books/${book.id}.jpg`} alt={`《${book.title}》封面`} width="92" height="136" loading="lazy" decoding="async" />
+    <div><span class="book-topic">{book.topic}</span><h3>{book.title}</h3><p class="book-author">{book.author}</p><p class="book-note">{book.note}</p>{book.writing && <a class="book-writing" href={book.writing}>读相关思考 →</a>}</div>
+  </article>)}
+</div>
+
+<style>
+  .reading-intro { margin:0 0 26px; font-size:14px; color:var(--muted); }
+  .reading-shelf { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; }
+  .reading-book { display:flex; gap:16px; align-items:flex-start; min-width:0; }
+  .reading-book img { width:80px; height:120px; object-fit:contain; object-position:top; flex:none; filter:drop-shadow(2px 4px 4px #241b1518); }
+  .book-topic { display:block; font-size:10px; color:var(--ochre-deep); margin-bottom:6px; }
+  .reading-book h3 { font-family:var(--serif); font-weight:600; font-size:17px; line-height:1.5; margin:0 0 6px; }
+  .book-author { margin:0; font-size:11px; color:var(--muted); line-height:1.6; }
+  .book-note { margin:12px 0 0; font-size:13px; line-height:1.8; color:var(--ink-soft); }
+  .book-writing { display:inline-block; margin-top:10px; font-size:12px; color:var(--ochre-deep); }
+  .reading-full { grid-template-columns:repeat(2,minmax(0,1fr)); row-gap:32px; }
+  @media(max-width:800px) { .reading-shelf { grid-template-columns:1fr; gap:24px; } .reading-book img { width:72px; height:108px; } }
+</style>

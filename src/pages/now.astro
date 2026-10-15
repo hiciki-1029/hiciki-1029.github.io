@@ -7,7 +7,6 @@ const writings = (await getCollection("writing"))
   .filter((w) => w.data.public)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 5);
-const updated = writings[0]?.data.date;
 ---
 
 <BaseLayout
@@ -19,18 +18,14 @@ const updated = writings[0]?.data.date;
     <span class="eyebrow">NOW · 近况</span>
     <h1>最近，我在忙这几件事</h1>
     <p class="sub">
-      不写愿望清单，只写此刻真正投入的事。最近更新：
-      {
-        updated?.toLocaleDateString("zh-CN", { year: "numeric", month: "long" })
-      }。
+      一份阶段记录。更新于 2026 年 10 月 14 日；下面的产品进度依据 10 月 10 日的记录整理。
     </p>
   </section>
 
   <article class="narrow prose">
     <h2>在打磨的产品</h2>
     <p>
-      把「关键对话 Lab」从一个能用的原型，打磨成可以放心交给一线管理者反复练习的产品：
-      校准 SCARF 压力引擎与姿态检测的评分、补全成长画像、优化桌面端的分发体验。
+      最近在调整关键对话 Lab 的体验：让开场更简单、更快进入练习，用短局与迷你复盘降低使用负担。它仍在打磨中；流程能跑通之后，还需要看真实使用者是否获得帮助。
     </p>
 
     <h2>在推动的组织变化</h2>
@@ -41,8 +36,7 @@ const updated = writings[0]?.data.date;
 
     <h2>在持续的学习</h2>
     <p>
-      保持每周读组织与 AI 的前沿报告、做交叉洞察，主线是「AI 如何重塑组织、管理与人才发展」；
-      同时继续 ICF 教练实践，把教练对话里的真实卡点反哺给关键对话 Lab。
+      持续读组织与 AI 的报告，也读教练和文学。我关注工具如何改变工作，也在练习倾听、留白和不急着给答案。
     </p>
 
     <h2>最近写的</h2>

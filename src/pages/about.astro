@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Crumb from "../components/Crumb.astro";
+import ReadingShelf from "../components/ReadingShelf.astro";
 ---
 
 <BaseLayout
@@ -15,38 +16,33 @@ import Crumb from "../components/Crumb.astro";
     <div>
       <span class="eyebrow">ABOUT · 关于我</span>
       <h1>我是熙熙，也叫 Ciki。</h1>
-      <p class="sub">十余年组织与人才发展：以教练洞察人性，借助 AI 将想法变为产品。现居上海。</p>
+      <p class="sub">做人才发展，也做产品；认真听人说话，也喜欢去看更大的世界。现居上海。</p>
     </div>
   </section>
 
   <article class="narrow prose about-prose">
     <p>
-      我有十余年组织与人才发展的工作经历，现在在一家近两千人的公司负责人才发展。我大概是那种对「人」和「事」都想弄明白的人：理工科的底子让我习惯追问背后的原理与结构；做了这么多年与人相关的工作，又让我对人怀着同样的好奇——一个人为什么犹豫、卡在哪里、需要怎样的支持。所以我很少停在一份方案上，更愿意一路跟到它真正落地、被人用起来。
+      我有十余年组织与人才发展的工作经历，从 HRBP、培训与组织文化，走到新人培养和管理者发展。做得越久，越想弄清楚：一个人此刻真正需要的支持是什么？一场课、一项真实任务、一个方便使用的工具，还是有人认真听他说完？
     </p>
 
     <h2 class="akw"><span class="k">先看清</span><span class="g">到一线去，弄清真问题</span></h2>
     <p>
-      我习惯在动手之前先把问题看清：一件事是否真的重要、是不是真实的需求，比尽快交出一份漂亮方案更要紧。我很少从模板出发，更愿意走到一线去倾听和观察，<strong>让判断落在真实的人和具体的处境上</strong>。即便一个项目已经成熟，若判断它此刻并非最优解，我也会把它停下来，换成更轻、更贴近当下的方式。这是我对结果负责的方式。
+      设计项目之前，我希望先想清楚目标、澄清真实需求，再行动。重要的不是交出一个完整项目，而是它对需要支持的人真的有价值。
     </p>
 
-    <h2 class="akw"><span class="k">亲手做</span><span class="g">把想法做成能用的产品</span></h2>
+    <h2 class="akw" id="ai"><span class="k">亲手做</span><span class="g">把想法做成能用的产品</span></h2>
     <p>
       这两年，我投入大量精力去做一件传统 HR 较少涉足的事：用 AI 当自己的程序员，指挥它写代码、对接 API 接口，把知识库、人才测评、每日资讯这类日常工作，逐一做成可以打开、可以使用、甚至对外开放的产品，都记录在 <a href="/systems/">「AI 实践」<span class="lnk-arrow">→</span></a>。比起一个人提效，我更在意让一群没有技术背景的同事也能造出自己的工具；<strong>当一种能力从一个人蔓延到一群人，它才真正成为组织的能力</strong>。
     </p>
 
-    <h2 class="akw"><span class="k">看见人</span><span class="g">慢下来，等答案自己长出来</span></h2>
+    <h2 class="akw" id="coach"><span class="k">听一听</span><span class="g">不必马上给出答案</span></h2>
     <p>
-      工作之外，这几年我也在持续学习教练（Coach）技术。作为一个偏内向的人，我习惯先观察、先倾听，对言语之下未曾说出口的情绪与需求格外敏感。我跟随青叶藤的叶世夫老师入门，也修习了埃里克森、创问、隐喻等不同流派，积累了上百小时的教练对话。我逐渐确信，<strong>成长无法被灌输，它只能由一个人在被真正听见、被信任的关系里，自己生长出来</strong>。这份慢功夫，也反过来滋养着我做组织工作的方式。
-    </p>
-
-    <h2 class="akw"><span class="k">坚守</span><span class="g">工具会换，有些东西不换</span></h2>
-    <p>
-      因为一直在互联网行业，我比多数人更早、也更具体地经历着 AI 对工作的重塑。但正因如此，我更想把几样东西留在自己手里：<strong>提出好问题的能力、审慎做判断的定力，以及对具体的人的在意</strong>。工具会不断更迭，而这些，是我希望始终保有、也愿意通过工作传递出去的部分。
+      我跟随叶世夫老师学习教练，也持续修习不同流派。学习之初，容易在对话里想着自己有没有问出一个好问题。后来越来越提醒自己：每个人都是唯一的，议题相似也不能预设。认真跟随、允许留白，方向盘仍然在对方手里。这是我持续在练的功夫。
     </p>
 
     <h2 class="akw"><span class="k">工作之外</span><span class="g">把日子过得认真一点</span></h2>
     <p>
-      工作之外，我会把不少时间留给自己：运动、看书，去看喜欢的音乐节，也常一个人去旅行，在陌生的城市待几天。我是 INFJ，需要一些慢下来、和自己相处的时间。这些看似和工作无关的事，最后往往又回到了工作里。
+      我会运动、看书，去音乐节，也会一个人旅行。读李娟和余华时，常被一句生动的形容逗笑：原来普通的风、树木和日常，也能这样被看见。走路、晒太阳、喝咖啡品茶，和朋友一起旅行，都是给我带来能量的事。不一定要从中学到什么，喜欢就很好。
     </p>
 
     <div class="life-strip" role="group" aria-label="工作之外的生活片段：一个人旅行、看音乐节、在黄昏里散步，还有家里的猫">
@@ -67,12 +63,17 @@ import Crumb from "../components/Crumb.astro";
       </figure>
     </div>
 
+    <section class="about-reading" id="reading" aria-labelledby="reading-title">
+      <h2 class="akw" id="reading-title"><span class="k">翻开书</span><span class="g">也翻一翻自己的想法</span></h2>
+      <ReadingShelf full />
+    </section>
+
     <p class="about-note">
       本站组织案例均已脱敏，不展示内部系统与员工数据，仅保留可公开分享的方法与结果。
     </p>
 
     <p class="about-note" style="margin-top:16px;">
-      最近在忙什么，随做随更地写在 <a href="/now/">「近况」</a> 页。
+      最近关注什么，记录在 <a href="/now/">「近况」</a> 页；工作与阅读里的判断，放在 <a href="/writing/">「一些思考」</a>。
     </p>
 
     <div class="about-actions">
@@ -114,6 +115,8 @@ import Crumb from "../components/Crumb.astro";
   .about-prose a .lnk-arrow { color: var(--ochre-soft); font-size: 0.92em; }
   .about-note { color: var(--muted); font-size: 14.5px; }
   .about-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+  #reading, #ai { scroll-margin-top:95px; }
+  .about-reading { margin:36px 0; }
   /* 微信 · 票根名片：左信息 / 虚线 / 右二维码，装订孔 + 右上折角 + 贴纸厚度 */
   .wx-card {
     position: relative; display: flex; align-items: stretch; gap: 24px;

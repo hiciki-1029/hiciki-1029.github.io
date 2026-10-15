@@ -78,6 +78,9 @@ a {
   text-underline-offset: 3px;
 }
 a:hover { text-decoration-color: var(--ochre); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--ochre); outline-offset: 4px; }
+section[id], h2[id] { scroll-margin-top: 100px; }
+.case-question { display:block; color:var(--ochre-deep); font-size:12px; font-weight:600; margin-bottom:10px; }
 
 /* 默认标题用无衬线，靠字号/字重拉开层级；衬线只在 .hero h1 / .brand / blockquote 单独点名 */
 h1, h2, h3, h4 { font-family: var(--sans); color: var(--ink); font-weight: 600; letter-spacing: -0.012em; }
@@ -655,4 +658,11 @@ p { margin: 0; }
   .cta-qr { margin-left: 0; margin-top: 6px; }
   .cta-actions { justify-content: center; width: 100%; }
   .cta-actions .btn { flex: 1 1 auto; justify-content: center; }
+}
+@media (max-width: 400px) {
+  .site-header .bar { gap: 8px; }
+  .site-nav { gap: 4px; font-size: 11px; }
+  .site-nav a { padding: 7px 8px; }
+  .brand { gap: 6px; font-size: 17px; }
+  .brand-mark { width: 25px; height: 25px; }
 }

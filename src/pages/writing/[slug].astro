@@ -61,10 +61,12 @@ const jsonLd = {
         day: "numeric",
       })}
     </p>
+    {post.data.reviewNote && <p class="review-note">{post.data.reviewNote}</p>}
   </section>
 
   <article class="narrow prose">
     <Content />
+    {post.data.sourceNote && <details class="source-note"><summary>写作依据</summary><p>{post.data.sourceNote}</p></details>}
     <div class="post-nav">
       <a href="/writing/">← 回到文章列表</a>
       <a href="/">回到首页 →</a>
@@ -73,6 +75,9 @@ const jsonLd = {
 </BaseLayout>
 
 <style>
+  .review-note { margin-top:20px; padding:12px 16px; border-left:2px solid var(--ochre-soft); background:var(--paper-2); color:var(--ink-soft); font-size:13px; line-height:1.8; }
+  .source-note { margin-top:32px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:13px; line-height:1.8; }
+  .source-note summary { cursor:pointer; }
   .post-nav {
     display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px;
     margin-top: 44px; padding-top: 20px; border-top: 1px solid var(--line);

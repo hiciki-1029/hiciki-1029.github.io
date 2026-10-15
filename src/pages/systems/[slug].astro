@@ -5,6 +5,7 @@ import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Pipeline from "../../components/Pipeline.astro";
 import Crumb from "../../components/Crumb.astro";
+import { practiceOutline } from "../../data/practice";
 
 export async function getStaticPaths() {
   const systems = await getCollection("systems");
@@ -13,6 +14,7 @@ export async function getStaticPaths() {
 
 const { sys } = Astro.props;
 const { Content } = await render(sys);
+const focus = practiceOutline.find(item => item.id === sys.id);
 const badgeMap = {
   live: { cls: "live", label: "在运行 LIVE" },
   building: { cls: "building", label: "建设中 BUILDING" },
@@ -47,8 +49,8 @@ const jsonLd = {
 ---
 
 <BaseLayout
-  title={sys.data.title}
-  description={sys.data.tagline}
+  title={focus?.title ?? sys.data.title}
+  description={focus?.summary ?? sys.data.tagline}
   image={ogImage}
   imageAlt={`${sys.data.title} —— ${sys.data.short ?? sys.data.tagline}`}
   jsonLd={jsonLd}
@@ -58,18 +60,33 @@ const jsonLd = {
     <span class={`badge ${badge.cls}`} style="margin-bottom:18px;">
       <span class="dot"></span>{badge.label} · {sys.data.year}
     </span>
-    <h1>{sys.data.title}</h1>
-    <p class="sub">{sys.data.tagline}</p>
+    {focus && <span class="focus-perspective">{focus.perspective}</span>}
+    <h1>{focus?.title ?? sys.data.title}</h1>
+    <p class="sub">{focus?.question ?? sys.data.tagline}</p>
+    {focus && <p class="focus-summary">{focus.summary}</p>}
     <div class="cert-chips" style="margin-top:18px;">
       {sys.data.tags.map((t) => <span>{t}</span>)}
     </div>
   </section>
 
+  {sys.id === "ssr-suite" && <section class="narrow cultivation" aria-labelledby="cultivation-title">
+    <h2 id="cultivation-title">把培养的几件事连起来</h2>
+    <div class="cultivation-parts">
+      <div><span>01 · 真实任务</span><p>AI 创作大赛让新人从问题出发，组队做出能被体验的作品。</p></div>
+      <div><span>02 · 过程支持</span><p>学习平台、报名组队与 AI 班班承接资料、参与和重复答疑。</p></div>
+      <div><span>03 · 看见具体的人</span><p>通过作品、讲述与反馈，了解一个人的选择和推进过程，留下后续继续观察的线索。</p></div>
+    </div>
+  </section>}
+
+  {focus && focus.related.length > 0 && <section class="narrow related-practice" aria-label="实践之间的关系">
+    {focus.related.map(item => <a href={`/systems/${item.id}/`}><span>{item.label}</span><strong>{item.title} ↗</strong><p>{item.description}</p></a>)}
+  </section>}
+
   {
     sys.data.pipeline.length > 0 && (
       <section class="wrap" style="padding-top:10px;">
         <div class="panel" style="padding:22px 24px;">
-          <div class="pipeline-title">系统链路</div>
+          <div class="pipeline-title">{focus ? "从设计到实践" : "系统链路"}</div>
           <Pipeline steps={sys.data.pipeline} />
         </div>
       </section>
@@ -77,6 +94,9 @@ const jsonLd = {
   }
 
   <article class="narrow prose">
+    {focus && <div class="source-intro"><h2>{sys.data.title}</h2><p>{sys.data.tagline}</p></div>}
+    <Content />
+
     {
       sys.data.media.length > 0 && (
         <div class="media-block">
@@ -100,8 +120,6 @@ const jsonLd = {
       )
     }
 
-    <Content />
-
     {
       sys.data.link && (
         <p style="margin-top:32px;">
@@ -120,6 +138,22 @@ const jsonLd = {
 </BaseLayout>
 
 <style>
+  .cultivation { margin-bottom:26px; }
+  .cultivation h2 { font-family:var(--serif); font-size:21px; margin:0 0 18px; }
+  .cultivation-parts { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+  .cultivation-parts > div { padding-top:14px; border-top:1px solid var(--line-strong); }
+  .cultivation-parts span { font-size:12px; color:var(--ochre-deep); }
+  .cultivation-parts p { margin:8px 0 0; font-size:13px; color:var(--ink-soft); line-height:1.8; }
+  @media(max-width:600px) { .cultivation-parts { grid-template-columns:1fr; gap:14px; } }
+  .focus-perspective { display:block; margin:6px 0 12px; color:var(--ochre-deep); font-size:12px; }
+  .focus-summary { margin:18px 0 0; color:var(--ink-soft); font-size:15px; line-height:1.9; max-width:40em; }
+  .related-practice { display:flex; gap:16px; margin-bottom:24px; }
+  .related-practice a { display:block; flex:1; min-width:0; padding:18px 20px; border:1px solid var(--line); border-radius:var(--r-md); background:var(--paper-2); text-decoration:none; color:var(--ink); }
+  .related-practice span { display:block; color:var(--ochre-deep); font-size:11px; margin-bottom:6px; }
+  .related-practice strong { font-family:var(--serif); font-size:17px; font-weight:600; }
+  .related-practice p { margin:8px 0 0; color:var(--muted); font-size:13px; line-height:1.7; }
+  .source-intro { padding-bottom:14px; border-bottom:1px solid var(--line); }
+  @media(max-width:600px) { .related-practice { flex-direction:column; } }
   .media-label {
     font-family: var(--sans, sans-serif); font-size: 12.5px; font-weight: 600;
     letter-spacing: .14em; color: var(--ochre-deep); margin-bottom: 14px;

@@ -1,0 +1,33 @@
+---
+import { practiceOutline } from "../data/practice";
+---
+
+<div class="practice-outline">
+  {practiceOutline.map(item => (
+    <a class="outline-item" href={`/systems/${item.id}/`}>
+      <span class="outline-number">{item.number}</span>
+      <div><span class="outline-perspective">{item.perspective}</span><h3>{item.title}</h3><p class="outline-question">{item.question}</p><p class="outline-summary">{item.summary}</p><span class="outline-read">看具体做法 →</span></div>
+      <span class="outline-arrow" aria-hidden="true">↗</span>
+    </a>
+  ))}
+</div>
+
+<style>
+  .practice-outline { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); border-top:1px solid var(--line-strong); }
+  .outline-item { display:grid; grid-template-columns:28px 1fr 20px; gap:14px; padding:30px 24px; border-bottom:1px solid var(--line-strong); color:var(--ink); text-decoration:none; transition:background .18s; }
+  .outline-item:nth-child(odd) { padding-left:0; border-right:1px solid var(--line); }
+  .outline-item:hover { background:var(--clay-tint); }
+  .outline-number { color:var(--ochre); font-size:12px; padding-top:6px; }
+  h3 { font-family:var(--serif); font-size:25px; line-height:1.5; margin:7px 0 10px; }
+  p { color:var(--ink-soft); font-size:15px; line-height:1.8; max-width:25em; }
+  .outline-perspective { color:var(--ochre-deep); font-size:11px; }
+  .outline-question { color:var(--ink); margin:0 0 10px; }
+  .outline-summary { color:var(--muted); font-size:13px; margin:0; }
+  .outline-read { display:block; margin-top:18px; color:var(--ochre-deep); font-size:12px; }
+  .outline-arrow { color:var(--ochre); font-size:18px; }
+  @media(max-width:600px) {
+    .practice-outline { grid-template-columns:1fr; }
+    .outline-item, .outline-item:nth-child(odd) { padding:24px 0; border-right:0; gap:10px; grid-template-columns:24px 1fr 18px; }
+    h3 { font-size:23px; }
+  }
+</style>
