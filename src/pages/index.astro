@@ -37,7 +37,10 @@ const road = [
       <figure class="portrait">
         <span class="portrait-caption">HELLO, I'M CIKI</span>
         <img src="/me/avatar.jpg" alt="熙熙的卡通形象，手里端着一杯茶" width="320" height="320" fetchpriority="high" />
-        <figcaption>先听懂问题，<br />再决定怎么做。</figcaption>
+        <figcaption>
+          <span>关心人的成长，<br />也好奇世界的样子。</span>
+          <span class="portrait-tags"><span>人才发展</span><span>AI 实践</span><span>教练</span><span>阅读</span><span>旅行</span></span>
+        </figcaption>
         <a href="/about/">多认识我一点 ↗</a>
       </figure>
     </div>
@@ -46,8 +49,8 @@ const road = [
 
   <section class="wrap section" id="practice">
     <div class="sec-head">
-      <span class="sec-index">01</span><h2>从人的问题出发</h2>
-      <span class="hint">我关注的四个实践方向</span>
+      <span class="sec-index">01</span><h2>从人的需要出发</h2>
+      <span class="hint">在学习、对话与创造中，支持成长</span>
     </div>
     <div id="ai-exploration"><PracticeOutline /></div>
     <p class="grid-more"><a href="/systems/">具体实践与工具索引 →</a></p>
@@ -112,6 +115,8 @@ const road = [
   .portrait-caption { font-size:10px; letter-spacing:.2em; color:var(--ochre-deep); }
   .portrait img { display:block; width:220px; height:220px; object-fit:cover; margin:18px auto; border-radius:50%; border:9px solid rgba(255,255,255,.7); box-shadow:0 14px 42px -28px var(--ochre); }
   .portrait figcaption { font-family:var(--serif); font-size:23px; line-height:1.7; }
+  .portrait-tags { display:flex; flex-wrap:wrap; justify-content:center; gap:6px; margin-top:14px; font-family:var(--sans); font-size:11px; color:var(--ink-soft); }
+  .portrait-tags > span { padding:3px 9px; border:1px solid var(--line); border-radius:20px; background:var(--paper-2); }
   .portrait a { display:inline-block; margin-top:14px; font-size:13px; }
   .opening-foot { display:flex; justify-content:space-between; align-items:center; padding:18px 0; border-top:1px solid var(--line-strong); color:var(--muted); font-size:13px; }
   #practice { scroll-margin-top:95px; }
@@ -167,11 +172,13 @@ const road = [
     .opening-actions { gap:20px; margin-top:22px; }
     .opening-actions .btn { font-size:14px; padding:12px 17px; }
     .opening-actions .hero-mail { font-size:13px; }
-    .portrait { display:flex; align-items:center; text-align:left; gap:14px; max-width:none; border-top:1px solid var(--line); padding-top:18px; }
+    .portrait { display:grid; grid-template-columns:66px minmax(0,1fr); align-items:center; text-align:left; gap:8px 14px; max-width:none; border-top:1px solid var(--line); padding-top:18px; }
     .portrait-caption { display:none; }
-    .portrait img { width:66px; height:66px; margin:0; border-width:3px; }
+    .portrait img { width:66px; height:66px; margin:0; border-width:3px; grid-row:1 / 3; }
     .portrait figcaption { font-family:var(--sans); font-size:13px; line-height:1.7; }
-    .portrait a { margin:0 0 0 auto; font-size:12px; }
+    .portrait-tags { justify-content:flex-start; margin-top:8px; gap:5px; }
+    .portrait-tags > span { padding:2px 7px; }
+    .portrait a { margin:0; font-size:12px; grid-column:2; }
     .opening-foot { font-size:11px; padding:14px 0; gap:10px; }
     .career-strip { grid-template-columns:1fr; gap:20px; }
     .background-title > a { margin-left:0; width:100%; }
