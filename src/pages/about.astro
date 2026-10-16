@@ -6,7 +6,7 @@ import ReadingShelf from "../components/ReadingShelf.astro";
 
 <BaseLayout
   title="关于我"
-  description="熙熙（Ciki / 龚文熙）：十余年组织与人才发展，亲手把 AI 做成能用的产品，也是一名持续修习的教练。"
+  description="认识熙熙的工作经历、AI 实践、教练学习，以及工作之外的阅读与生活。"
 >
   <div class="narrow" style="padding-top:clamp(28px,5vw,48px);">
     <Crumb current="关于我" />
@@ -15,34 +15,47 @@ import ReadingShelf from "../components/ReadingShelf.astro";
     <img class="about-avatar" src="/me/avatar.jpg" alt="熙熙（Ciki）的卡通形象" width="132" height="132" />
     <div>
       <span class="eyebrow">ABOUT · 关于我</span>
-      <h1>我是熙熙，也叫 Ciki。</h1>
-      <p class="sub">我在人才与组织发展领域工作了十余年，关心人的成长，也保持着对生活的好奇。现居上海。</p>
+      <h1>我是熙熙。</h1>
+      <p class="sub">在组织与人才发展领域工作了十余年，现居上海。</p>
     </div>
   </section>
 
   <article class="narrow prose about-prose">
     <p>
-      我有十余年组织与人才发展的工作经历，从 HRBP、培训与组织文化，走到新人培养和管理者发展。做得越久，越想弄清楚：一个人此刻真正需要的支持是什么？一场课、一项真实任务、一个方便使用的工具，还是有人认真听他说完？
+      我大概是那种对“人”和“事”都想弄明白的人。理工科的底子让我习惯追问原理，做了多年与人相关的工作，又让我好奇一个人为什么犹豫、卡在哪里、需要怎样的支持。
+    </p>
+    <p>
+      从 HRBP、培训与组织文化，到新人培养和管理者发展，我越来越在意，一项安排到了具体的人那里，会带来什么。有时候需要一场课，有时候需要一次真实的尝试，也有时候，需要先听他说完。
     </p>
 
-    <h2 class="akw"><span class="k">先看清</span><span class="g">到一线去，弄清真问题</span></h2>
+    <h2 class="akw" id="ai">想明白，也亲手试试</h2>
     <p>
-      设计项目之前，我希望先想清楚目标、澄清真实需求，再行动。重要的不是交出一个完整项目，而是它对需要支持的人真的有价值。
+      这两年，我把 AI 当自己的程序员，指挥它写代码、对接接口，把知识库、人才测评和每日资讯做成日常能用的工具。
+    </p>
+    <p>
+      我也带着没有技术背景的同事一起做。自己做出来很开心，看到同事把想法做成作品，也让我开始思考，培养项目还能给人提供怎样的尝试机会。<a href="/systems/ai-creation-contest/">AI 创作大赛</a>、<a href="/systems/ssr-suite/">新人培养</a>和<a href="/systems/critical-conversation-lab/">关键对话 Lab</a>，都留下了这样的探索。
     </p>
 
-    <h2 class="akw" id="ai"><span class="k">亲手做</span><span class="g">把想法做成能用的产品</span></h2>
+    <h2 class="akw" id="coach">学着听，也学着慢下来</h2>
     <p>
-      这两年，我投入大量精力去做一件传统 HR 较少涉足的事：用 AI 当自己的程序员，指挥它写代码、对接 API 接口，把知识库、人才测评、每日资讯这类日常工作，逐一做成可以打开、可以使用、甚至对外开放的产品，都记录在 <a href="/systems/">「AI 实践」<span class="lnk-arrow">→</span></a>。比起一个人提效，我更在意让一群没有技术背景的同事也能造出自己的工具；<strong>当一种能力从一个人蔓延到一群人，它才真正成为组织的能力</strong>。
+      我跟随叶世夫老师学习教练，也持续修习不同流派。
+    </p>
+    <p>
+      刚开始练习时，我常想着自己有没有问出一个好问题。有时对方还在说，我已经在准备下一句。几次留白练习之后，我才慢慢留意到，自己的急切也会影响对话。
+    </p>
+    <p>
+      现在仍然在练，少一点预设，认真听眼前这个人。相似的议题，放在不同的人身上，也可能有完全不同的意义。
     </p>
 
-    <h2 class="akw" id="coach"><span class="k">听一听</span><span class="g">不必马上给出答案</span></h2>
+    <h2 class="akw">工作之外</h2>
     <p>
-      我跟随叶世夫老师学习教练，也持续修习不同流派。学习之初，容易在对话里想着自己有没有问出一个好问题。后来越来越提醒自己：每个人都是唯一的，议题相似也不能预设。认真跟随、允许留白，方向盘仍然在对方手里。这是我持续在练的功夫。
+      我会运动、看书，去音乐节，也会一个人旅行，在陌生的城市待几天。
     </p>
-
-    <h2 class="akw"><span class="k">工作之外</span><span class="g">把日子过得认真一点</span></h2>
     <p>
-      我会运动、看书，去音乐节，也会一个人旅行。读李娟和余华时，常被一句生动的形容逗笑：原来普通的风、树木和日常，也能这样被看见。走路、晒太阳、喝咖啡品茶，和朋友一起旅行，都是给我带来能量的事。不一定要从中学到什么，喜欢就很好。
+      读李娟和余华时，常被一句生动的形容逗笑。原来普通的风、树木和日常，也能这样被看见。走路、晒太阳、喝咖啡品茶，和朋友一起旅行，都是给我带来能量的事。
+    </p>
+    <p>
+      不一定要从中学到什么，喜欢就很好。
     </p>
 
     <div class="life-strip" role="group" aria-label="工作之外的生活片段：一个人旅行、看音乐节、在黄昏里散步，还有家里的猫">
@@ -64,22 +77,9 @@ import ReadingShelf from "../components/ReadingShelf.astro";
     </div>
 
     <section class="about-reading" id="reading" aria-labelledby="reading-title">
-      <h2 class="akw" id="reading-title"><span class="k">翻开书</span><span class="g">也翻一翻自己的想法</span></h2>
-      <ReadingShelf full />
+      <h2 class="akw" id="reading-title">留下过想法的几本书</h2>
+      <ReadingShelf full showIntro={false} />
     </section>
-
-    <p class="about-note">
-      本站组织案例均已脱敏，不展示内部系统与员工数据，仅保留可公开分享的方法与结果。
-    </p>
-
-    <p class="about-note" style="margin-top:16px;">
-      最近关注什么，记录在 <a href="/now/">「近况」</a> 页；工作与阅读里的判断，放在 <a href="/writing/">「一些思考」</a>。
-    </p>
-
-    <div class="about-actions">
-      <a class="btn btn-ghost" href="/systems/">看看 AI 实践 <span class="arrow">→</span></a>
-      <button type="button" class="btn btn-primary" data-contact>随时联系我 <span class="arrow">→</span></button>
-    </div>
 
     <div class="wx-card">
       <span class="wxc-fold" aria-hidden="true"></span>
@@ -89,7 +89,7 @@ import ReadingShelf from "../components/ReadingShelf.astro";
         </svg>
         <div class="wxc-name">熙熙 <span class="wxc-en">Ciki</span></div>
         <div class="wxc-topics">教练对话 · 人才发展 · AI 实践</div>
-        <p class="wxc-note">想做一次教练对话，或就人才发展、AI 落地深聊，扫码加我就好，简单备注一下来意。</p>
+        <p class="wxc-note">欢迎同行交流，也期待合适的合作和职业机会。加我时，简单说说来意就好。</p>
         <span class="wxc-arows" aria-hidden="true">››››››</span>
       </div>
       <span class="wxc-sep" aria-hidden="true"></span>
@@ -113,8 +113,6 @@ import ReadingShelf from "../components/ReadingShelf.astro";
   .about-prose { margin-top: 30px; }
   .about-prose strong { color: var(--ink); font-weight: 600; }
   .about-prose a .lnk-arrow { color: var(--ochre-soft); font-size: 0.92em; }
-  .about-note { color: var(--muted); font-size: 14.5px; }
-  .about-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
   #reading, #ai { scroll-margin-top:95px; }
   .about-reading { margin:36px 0; }
   /* 微信 · 票根名片：左信息 / 虚线 / 右二维码，装订孔 + 右上折角 + 贴纸厚度 */
@@ -192,7 +190,6 @@ import ReadingShelf from "../components/ReadingShelf.astro";
     .about-head { gap: 16px; }
     .about-avatar { width: 92px; height: 92px; }
     .akw { gap: 8px; }
-    .about-actions .btn { flex: 1 1 auto; justify-content: center; }
     .wx-card { flex-direction: column; gap: 18px; padding: 26px 22px; text-align: center; box-shadow: 3px 3px 0 var(--sand), var(--shadow-pop); }
     .wxc-left { align-items: center; }
     .wxc-topics { align-self: center; }

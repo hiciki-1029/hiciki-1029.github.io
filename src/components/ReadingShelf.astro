@@ -1,11 +1,11 @@
 ---
 import { books } from "../data/reading";
-interface Props { full?: boolean; }
-const { full = false } = Astro.props;
+interface Props { full?: boolean; showIntro?: boolean; }
+const { full = false, showIntro = true } = Astro.props;
 const selected = full ? books : books.slice(0, 3);
 ---
 
-<p class="reading-intro">关于倾听、行动，也关于感受生活。几本近两年读过、留下过想法的书。</p>
+{showIntro && <p class="reading-intro">关于倾听、行动，也关于感受生活。几本近两年读过、留下过想法的书。</p>}
 <div class:list={["reading-shelf", { "reading-full": full }]}>
   {selected.map(book => <article class="reading-book">
     <img src={`/books/${book.id}.jpg`} alt={`《${book.title}》封面`} width="92" height="136" loading="lazy" decoding="async" />
