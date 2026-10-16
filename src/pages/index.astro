@@ -9,11 +9,6 @@ const writings = (await getCollection("writing")).filter(w => w.data.public)
     (writingOrder.indexOf(a.id) < 0 ? 99 : writingOrder.indexOf(a.id)) -
     (writingOrder.indexOf(b.id) < 0 ? 99 : writingOrder.indexOf(b.id))).slice(0, 3);
 const kindLabel = { digest: "报告阅读", note: "笔记", retro: "项目复盘", essay: "个人判断" };
-const ways = [
-  { no: "01", title: "先听懂问题", text: "先想清楚目标，澄清真实需求，再选择合适的方式。比起完成一个项目，我更关心它是否真的有价值。", link: "/about/", label: "更多关于我" },
-  { no: "02", title: "把想法带进实践", text: "AI 让更多想法有机会被做出来。我也关心工具之外的部分：人的需要、反馈，以及成长的可能。", link: "/writing/", label: "看看我的思考" },
-  { no: "03", title: "给人留一点空间", text: "教练学习提醒我：不急着给答案，认真倾听，也允许留白。对话的方向盘，仍在对方手里。", link: "/about/#coach", label: "聊聊教练与倾听" },
-];
 const road = [
   { yr: "2018–2021", co: "爱奇艺", role: "HRBP / 培训 / 组织文化", logo: "/co/iqiyi.svg" },
   { yr: "2021–2022", co: "小红书", role: "人才发展", logo: "/co/xhs.svg" },
@@ -56,17 +51,8 @@ const road = [
     <p class="grid-more"><a href="/systems/">具体实践与工具索引 →</a></p>
   </section>
 
-  <section class="wrap section">
-    <div class="sec-head"><span class="sec-index">02</span><h2>我怎么工作</h2><span class="hint">方法可以不同，先把需求弄清楚</span></div>
-    <div class="ways">
-      {ways.map(w => <article class="way">
-        <span class="way-number">{w.no}</span><h3>{w.title}</h3><p>{w.text}</p><a href={w.link}>{w.label} →</a>
-      </article>)}
-    </div>
-  </section>
-
   <section class="wrap section writing-section">
-    <div class="sec-head"><span class="sec-index">03</span><h2>实践之外，也想一想</h2><span class="hint">把判断写下来，也保留没有答案的部分</span></div>
+    <div class="sec-head"><span class="sec-index">02</span><h2>一些思考</h2><span class="hint">把判断写下来，也保留没有答案的部分</span></div>
     <div class="journal-grid">
       {writings.map((w, i) => <a class:list={["journal", { "journal-first": i === 0 }]} href={`/writing/${w.id}/`}>
         <span class="journal-meta">{w.data.reviewNote ? "共创待审" : kindLabel[w.data.kind]} · {w.data.date.toLocaleDateString("zh-CN", {year:"numeric", month:"long"})}</span>
@@ -77,13 +63,13 @@ const road = [
   </section>
 
   <section class="wrap section" id="reading">
-    <div class="sec-head"><span class="sec-index">04</span><h2>书里，也有我关心的事</h2><span class="hint">近两年的阅读，留下的一些想法</span></div>
+    <div class="sec-head"><span class="sec-index">03</span><h2>书里，也有我关心的事</h2><span class="hint">近两年的阅读，留下的一些想法</span></div>
     <ReadingShelf />
     <p class="grid-more"><a href="/about/#reading">再翻几本 →</a></p>
   </section>
 
   <section class="wrap section background-section">
-    <div class="background-title"><span class="sec-index">05</span><h2>这些实践背后的经历</h2><a href="/resume/">完整经历与认证 →</a></div>
+    <div class="background-title"><span class="sec-index">04</span><h2>这些实践背后的经历</h2><a href="/resume/">完整经历与认证 →</a></div>
     <div class="career-strip">
       {road.map(r => <div class="career-stop"><img src={r.logo} alt={r.co} width="48" height="48" loading="lazy" /><div><span>{r.yr}</span><h3>{r.co}</h3><p>{r.role}</p></div></div>)}
     </div>
@@ -121,14 +107,6 @@ const road = [
   .opening-foot { display:flex; justify-content:space-between; align-items:center; padding:18px 0; border-top:1px solid var(--line-strong); color:var(--muted); font-size:13px; }
   #practice { scroll-margin-top:95px; }
   #ai-exploration { scroll-margin-top:95px; }
-  .ways { display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--line-strong); border-bottom:1px solid var(--line-strong); }
-  .way { padding:28px 26px; border-right:1px solid var(--line); }
-  .way:first-child { padding-left:0; }
-  .way:last-child { border-right:0; padding-right:0; }
-  .way-number { font-size:12px; color:var(--ochre); }
-  .way h3 { font-family:var(--serif); font-size:23px; margin:8px 0 14px; }
-  .way p { font-size:15px; color:var(--ink-soft); line-height:1.9; margin-bottom:20px; }
-  .way a { font-size:13px; }
   .journal-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
   .journal { display:flex; flex-direction:column; padding:26px; color:var(--ink); text-decoration:none; background:var(--paper-2); border-radius:var(--r-md); border:1px solid var(--line); transition:border-color .2s; }
   .journal:hover { border-color:var(--ochre-soft); }
@@ -158,9 +136,6 @@ const road = [
     .opening { gap:30px; grid-template-columns:1.5fr 1fr; }
     .portrait img { width:160px; height:160px; }
     .portrait figcaption { font-size:20px; }
-    .ways { grid-template-columns:1fr; }
-    .way, .way:first-child, .way:last-child { padding:22px 0; border-right:0; border-bottom:1px solid var(--line); }
-    .way:last-child { border-bottom:0; }
     .journal-grid { grid-template-columns:1fr; }
     .career-strip { gap:18px; }
     .invitation { grid-template-columns:1fr 150px; gap:24px; padding:30px; }
