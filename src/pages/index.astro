@@ -26,7 +26,7 @@ const road = [
         <p class="opening-question">AI 正在改变工作。我关心的是：<br /><strong>人如何学习、判断、协作和成长？</strong></p>
         <div class="opening-actions">
           <a class="btn btn-primary" href="#practice">看我的实践 <span aria-hidden="true">↓</span></a>
-          <button class="hero-mail" type="button" data-contact>带着问题聊聊 →</button>
+          <button class="hero-mail" type="button" data-contact>认识一下 →</button>
         </div>
       </div>
       <figure class="portrait">
@@ -52,7 +52,7 @@ const road = [
   </section>
 
   <section class="wrap section writing-section">
-    <div class="sec-head"><span class="sec-index">02</span><h2>一些思考</h2><span class="hint">把判断写下来，也保留没有答案的部分</span></div>
+    <div class="sec-head"><span class="sec-index">02</span><h2>一些思考</h2></div>
     <div class="journal-grid">
       {writings.map((w, i) => <a class:list={["journal", { "journal-first": i === 0 }]} href={`/writing/${w.id}/`}>
         <span class="journal-meta">{w.data.reviewNote ? "共创待审" : kindLabel[w.data.kind]} · {w.data.date.toLocaleDateString("zh-CN", {year:"numeric", month:"long"})}</span>
@@ -64,12 +64,12 @@ const road = [
 
   <section class="wrap section" id="reading">
     <div class="sec-head"><span class="sec-index">03</span><h2>书里，也有我关心的事</h2><span class="hint">近两年的阅读，留下的一些想法</span></div>
-    <ReadingShelf />
+    <ReadingShelf showIntro={false} />
     <p class="grid-more"><a href="/about/#reading">再翻几本 →</a></p>
   </section>
 
   <section class="wrap section background-section">
-    <div class="background-title"><span class="sec-index">04</span><h2>这些实践背后的经历</h2><a href="/resume/">完整经历与认证 →</a></div>
+    <div class="sec-head career-head"><span class="sec-index">04</span><h2>工作经历</h2><a href="/resume/">完整经历与认证 →</a></div>
     <div class="career-strip">
       {road.map(r => <div class="career-stop"><img src={r.logo} alt={r.co} width="48" height="48" loading="lazy" /><div><span>{r.yr}</span><h3>{r.co}</h3><p>{r.role}</p></div></div>)}
     </div>
@@ -78,12 +78,11 @@ const road = [
   <section class="wrap section">
     <div class="invitation">
       <div class="invitation-copy">
-        <span class="small-label">LET'S TALK</span><h2>从一个具体问题，<br />开始一段对话。</h2>
-        <p>人才培养怎么更贴近需要，团队怎样跨过 AI 的使用门槛，或管理者如何准备一场困难谈话——都欢迎聊聊。</p>
+        <span class="small-label">LET'S TALK</span><h2>聊聊工作，<wbr />也聊聊生活。</h2>
         <div class="invite-topics"><span>同行交流</span><span>项目合作</span><span>教练对话</span><span>职业机会</span></div>
         <button class="btn btn-primary" type="button" data-contact>联系熙熙 →</button>
       </div>
-      <div class="invitation-side"><img src="/me/pose-listen.jpg" alt="熙熙专注倾听的卡通形象" width="140" height="140" loading="lazy" /><p>可以先说说：<br />你在面对什么，想改变什么。</p></div>
+      <div class="invitation-side"><img src="/me/pose-listen.jpg" alt="熙熙专注倾听的卡通形象" width="140" height="140" loading="lazy" /></div>
     </div>
   </section>
 </BaseLayout>
@@ -115,9 +114,7 @@ const road = [
   .journal h3 { font-family:var(--serif); font-size:20px; line-height:1.6; margin:16px 0 12px; }
   .journal p { font-size:14px; color:var(--muted); line-height:1.8; }
   .journal-arrow { margin-top:auto; padding-top:24px; font-size:13px; color:var(--ochre-deep); }
-  .background-title { display:flex; align-items:center; flex-wrap:wrap; gap:13px; }
-  .background-title h2 { font-size:22px; margin:0; }
-  .background-title > a { margin-left:auto; font-size:13px; }
+  .career-head > a { margin-left:auto; font-size:13px; }
   .career-strip { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:26px; }
   .career-stop { display:flex; align-items:center; gap:16px; }
   .career-stop img { object-fit:contain; border:1px solid var(--line); border-radius:12px; background:#fff; padding:8px; }
@@ -127,11 +124,9 @@ const road = [
   .invitation { display:grid; grid-template-columns:1fr 240px; gap:48px; padding:44px 48px; background:var(--paper-2); border:1px solid var(--line); border-radius:var(--r-lg); align-items:center; }
   .small-label { font-size:11px; letter-spacing:.18em; color:var(--ochre-deep); }
   .invitation h2 { font-family:var(--serif); font-size:32px; line-height:1.5; margin:12px 0 20px; }
-  .invitation-copy > p { max-width:38em; font-size:15px; color:var(--ink-soft); }
   .invite-topics { display:flex; flex-wrap:wrap; gap:14px; margin:20px 0; font-size:12px; color:var(--muted); }
   .invitation-side { text-align:center; }
   .invitation-side img { width:140px; height:140px; border-radius:50%; object-fit:cover; }
-  .invitation-side p { margin-top:14px; font-size:13px; color:var(--muted); }
   @media(max-width:900px) {
     .opening { gap:30px; grid-template-columns:1.5fr 1fr; }
     .portrait img { width:160px; height:160px; }
@@ -156,7 +151,7 @@ const road = [
     .portrait a { margin:0; font-size:12px; grid-column:2; }
     .opening-foot { font-size:11px; padding:14px 0; gap:10px; }
     .career-strip { grid-template-columns:1fr; gap:20px; }
-    .background-title > a { margin-left:0; width:100%; }
+    .career-head > a { margin-left:0; width:100%; }
     .invitation { grid-template-columns:1fr; padding:28px 24px; }
     .invitation h2 { font-size:28px; }
     .invitation-side { display:none; }

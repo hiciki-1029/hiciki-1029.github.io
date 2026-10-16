@@ -84,6 +84,8 @@ section[id], h2[id] { scroll-margin-top: 100px; }
 
 /* 默认标题用无衬线，靠字号/字重拉开层级；衬线只在 .hero h1 / .brand / blockquote 单独点名 */
 h1, h2, h3, h4 { font-family: var(--sans); color: var(--ink); font-weight: 600; letter-spacing: -0.012em; }
+h1, h2, h3 { text-wrap: balance; }
+p, li { text-wrap: pretty; word-break: normal; overflow-wrap: anywhere; line-break: strict; }
 p { margin: 0; }
 
 .wrap { width: min(var(--wide), calc(100% - 44px)); margin: 0 auto; }
@@ -339,7 +341,7 @@ p { margin: 0; }
 .prose { margin: 28px auto 40px; }
 .prose h2 { font-size: 23px; margin: 40px 0 12px; letter-spacing: -0.015em; }
 .prose h3 { font-size: 18.5px; margin: 26px 0 8px; }
-.prose p { margin: 0 0 14px; color: var(--ink-soft); }
+.prose p { margin: 0 0 1.15em; color: var(--ink-soft); line-height: 1.9; }
 .prose ul { margin: 0 0 14px; padding-left: 1.2em; color: var(--ink-soft); }
 .prose li { margin-bottom: 7px; }
 .prose li::marker { color: var(--ochre-soft); }
