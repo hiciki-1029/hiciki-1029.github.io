@@ -336,10 +336,10 @@ p { margin: 0; }
 
 /* ---------- Prose（内页） ---------- */
 .page-head { padding: clamp(48px, 8vw, 84px) 0 8px; }
-.page-head h1 { font-size: clamp(27px, 3.6vw, 36px); margin: 14px 0 0; letter-spacing: -0.015em; }
-.page-head .sub { color: var(--muted); font-size: 17px; margin-top: 14px; max-width: 40em; }
+.page-head h1 { font-family:var(--serif); font-size: clamp(30px, 3.6vw, 40px); line-height:1.4; margin: 14px 0 0; letter-spacing: -0.015em; }
+.page-head .sub { color: var(--muted); font-size: 17px; line-height:1.85; margin-top: 14px; max-width: 40em; }
 .prose { margin: 28px auto 40px; }
-.prose h2 { font-size: 23px; margin: 40px 0 12px; letter-spacing: -0.015em; }
+.prose h2 { font-size: 23px; line-height:1.5; margin: 40px 0 14px; letter-spacing: -0.015em; }
 .prose h3 { font-size: 18.5px; margin: 26px 0 8px; }
 .prose p { margin: 0 0 1.15em; color: var(--ink-soft); line-height: 1.9; }
 .prose ul { margin: 0 0 14px; padding-left: 1.2em; color: var(--ink-soft); }
@@ -472,6 +472,7 @@ p { margin: 0; }
   .cert-group { grid-template-columns: 1fr; gap: 8px; }
   .cg-label { padding-top: 0; }
   .resume-cta { padding: 22px 20px; }
+  .resume-cta-actions { width:100%; }
 }
 
 /* ---------- Footer ---------- */

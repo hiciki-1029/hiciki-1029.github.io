@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Crumb from "../components/Crumb.astro";
 import ReadingShelf from "../components/ReadingShelf.astro";
+import SectionMark from "../components/SectionMark.astro";
 ---
 
 <BaseLayout
@@ -28,7 +29,7 @@ import ReadingShelf from "../components/ReadingShelf.astro";
       从 HRBP、培训与组织文化，到新人培养和管理者发展，我越来越在意，一项安排到了具体的人那里，会带来什么。有时候需要一场课，有时候需要一次真实的尝试，也有时候，需要先听他说完。
     </p>
 
-    <h2 class="akw" id="ai">想明白，也亲手试试</h2>
+    <h2 class="akw" id="ai"><SectionMark kind="craft" />想明白，也亲手试试</h2>
     <p>
       这两年，我把 AI 当自己的程序员，指挥它写代码、对接接口，把知识库、人才测评和每日资讯做成日常能用的工具。
     </p>
@@ -36,7 +37,7 @@ import ReadingShelf from "../components/ReadingShelf.astro";
       我也带着没有技术背景的同事一起做。自己做出来很开心，看到同事把想法做成作品，也让我开始思考，培养项目还能给人提供怎样的尝试机会。<a href="/systems/ai-creation-contest/">AI 创作大赛</a>、<a href="/systems/ssr-suite/">新人培养</a>和<a href="/systems/critical-conversation-lab/">关键对话 Lab</a>，都留下了这样的探索。
     </p>
 
-    <h2 class="akw" id="coach">学着听，也学着慢下来</h2>
+    <h2 class="akw" id="coach"><SectionMark kind="conversation" />学着听，也学着慢下来</h2>
     <p>
       我跟随叶世夫老师学习教练，也持续修习不同流派。刚开始练习时，我常想着自己有没有问出一个好问题。有时对方还在说，我已经在准备下一句。几次留白练习之后，我才慢慢留意到，自己的急切也会影响对话。
     </p>
@@ -44,7 +45,7 @@ import ReadingShelf from "../components/ReadingShelf.astro";
       现在仍然在练，少一点预设，认真听眼前这个人。相似的议题，放在不同的人身上，也可能有完全不同的意义。
     </p>
 
-    <h2 class="akw">工作之外</h2>
+    <h2 class="akw"><SectionMark kind="leaf" />工作之外</h2>
     <p>
       我会运动、看书，去音乐节，也会一个人旅行，在陌生的城市待几天。读李娟和余华时，常被一句生动的形容逗笑。原来普通的风、树木和日常，也能这样被看见。
     </p>
@@ -71,7 +72,7 @@ import ReadingShelf from "../components/ReadingShelf.astro";
     </div>
 
     <section class="about-reading" id="reading" aria-labelledby="reading-title">
-      <h2 class="akw" id="reading-title">留下过想法的几本书</h2>
+      <h2 class="akw" id="reading-title"><SectionMark kind="book" />留下过想法的几本书</h2>
       <ReadingShelf full showIntro={false} />
     </section>
 
@@ -103,7 +104,7 @@ import ReadingShelf from "../components/ReadingShelf.astro";
     width: 132px; height: 132px; flex: none; border-radius: 50%; object-fit: cover;
     border: 3px solid var(--card); box-shadow: var(--shadow-soft); background: var(--paper-2);
   }
-  .about-head h1 { margin: 10px 0 8px; font-size: clamp(28px, 4.5vw, 40px); }
+  .about-head h1 { margin: 10px 0 8px; font-family:var(--serif); font-size: clamp(30px, 4.5vw, 40px); line-height:1.4; }
   .about-prose { margin-top: 30px; }
   .about-prose strong { color: var(--ink); font-weight: 600; }
   .about-prose a .lnk-arrow { color: var(--ochre-soft); font-size: 0.92em; }
@@ -144,7 +145,7 @@ import ReadingShelf from "../components/ReadingShelf.astro";
   .wxc-qr img { display: block; width: 148px; height: 148px; }
   .wxc-cap { font-size: 12.5px; color: var(--muted); letter-spacing: 0.05em; }
   .akw {
-    display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
+    display: flex; align-items: center; gap: 12px;
     margin: 34px 0 12px; font-family: var(--sans);
   }
   .akw .k {
@@ -169,7 +170,7 @@ import ReadingShelf from "../components/ReadingShelf.astro";
   .life-strip::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 999px; }
   .life-strip::-webkit-scrollbar-track { background: transparent; }
   .life-strip figure {
-    flex: none; margin: 0; height: clamp(158px, 30vw, 204px);
+    flex: none; margin: 0; height: clamp(158px, 30vw, 204px); border:6px solid var(--card); border-bottom-width:20px;
     scroll-snap-align: start; overflow: hidden;
     background: var(--paper-2); box-shadow: var(--shadow-soft);
   }

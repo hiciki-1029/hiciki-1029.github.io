@@ -1,0 +1,24 @@
+---
+interface Props { kind: "book" | "conversation" | "leaf" | "craft" | "people" | "pen"; large?: boolean; }
+const { kind, large = false } = Astro.props;
+const paths = {
+  book: ["M12 6C9 3 4 4 2 5v14c3-1 7-1 10 1 3-2 7-2 10-1V5c-2-1-7-2-10 1Z", "M12 6v14M5 8l4 1M5 12l4 1M15 9l4-1M15 13l4-1"],
+  conversation: ["M4 4h16v12H9l-5 4V4Z", "M8 9h8M8 12h5"],
+  leaf: ["M19 3C9 2 3 8 5 14c2 6 10 5 13-1 2-4 1-10 1-10Z", "M3 22 15 9M8 17l-1-5M12 13l5 1"],
+  craft: ["M4 8h16v13H4V8ZM8 8V4h8v4M4 12h16M10 12v3h4v-3"],
+  people: ["M10 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM20 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z", "M2 21v-5c0-4 10-4 10 0v5M14 13c4-1 8 0 8 3v5"],
+  pen: ["m5 15-1 5 5-1L21 7l-4-4L5 15ZM14 6l4 4M5 15l4 4M12 21h10"],
+};
+---
+<span class:list={["section-mark", { large }]} aria-hidden="true">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
+    {paths[kind].map(d => <path d={d} />)}
+  </svg>
+</span>
+<style>
+  .section-mark { display:inline-flex; flex:none; align-items:center; justify-content:center; width:34px; height:34px; color:var(--ochre-deep); background:var(--paper-2); border-radius:10px; vertical-align:middle; }
+  svg { width:21px; height:21px; }
+  .large { width:88px; height:88px; border-radius:50% 45% 48% 40%; background:var(--sand); color:var(--ochre); transform:rotate(-6deg); }
+  .large svg { width:44px; height:44px; }
+  @media(max-width:560px) { .large { width:58px; height:58px; } .large svg { width:30px; height:30px; } }
+</style>

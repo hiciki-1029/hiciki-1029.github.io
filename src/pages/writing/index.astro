@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Crumb from "../../components/Crumb.astro";
+import SectionMark from "../../components/SectionMark.astro";
 
 const writingOrder = ["a-library-that-can-disagree", "before-building-another-project", "listening-before-questions", "action-and-an-unmeasured-life", "who-owns-the-next-step"];
 const writings = (await getCollection("writing"))
@@ -16,34 +17,49 @@ const kindLabel = { digest: "报告蒸馏", note: "笔记", retro: "复盘", ess
   title="一些思考"
   description="龚文熙关于人才发展、AI 与人的成长的个人判断、实践复盘和阅读记录。"
 >
-  <section class="wrap page-head">
+  <section class="narrow page-head writing-head">
     <Crumb current="一些思考" />
+    <div class="writing-heading"><div>
     <span class="eyebrow">WRITING · 思考与复盘</span>
     <h1>写下判断，也留下问题</h1>
     <p class="sub">
       从项目、阅读和对话里慢慢形成的想法。有些已经试过，有些还在探索；尽量把依据、取舍和没有答案的部分一起写下来。
     </p>
+    </div><SectionMark kind="book" large /></div>
   </section>
 
-  <section class="narrow" style="padding-top:28px;">
+  <section class="narrow essay-index" aria-label="文章列表">
     {
       writings.map((w) => (
         <a
           class="work-item"
           href={`/writing/${w.id}/`}
-          style="display:block;padding:22px 0;border-top:1px solid var(--line);text-decoration:none;color:var(--ink);"
         >
-          <div style="font-size:13px;color:var(--ochre-soft);font-weight:600;letter-spacing:0.04em;">
+          <div class="writing-meta">
             {w.data.date.toLocaleDateString("zh-CN", {
               year: "numeric",
               month: "long",
             })}{" "}
             · {w.data.reviewNote ? "共创待审" : kindLabel[w.data.kind]}
           </div>
-          <h3 style="margin:8px 0 6px;font-size:20px;">{w.data.title}</h3>
-          <p style="color:var(--muted);font-size:15px;">{w.data.summary}</p>
+          <h2>{w.data.title}</h2>
+          <p>{w.data.summary}</p>
+          <span class="writing-arrow" aria-hidden="true">↗</span>
         </a>
       ))
     }
   </section>
 </BaseLayout>
+
+<style>
+ .writing-heading { display:flex; align-items:center; gap:28px; }
+ .writing-heading > div { flex:1; min-width:0; }
+ .essay-index { margin:38px auto 0; }
+ .work-item { display:block; position:relative; padding:28px 40px 28px 0; border-top:1px solid var(--line); text-decoration:none; color:var(--ink); }
+ .writing-meta { font-size:12px; color:var(--ochre-deep); letter-spacing:.04em; }
+ .work-item h2 { margin:10px 0; font-family:var(--serif); font-size:23px; line-height:1.55; font-weight:600; }
+ .work-item p { color:var(--muted); font-size:15px; line-height:1.85; margin:0; }
+ .writing-arrow { position:absolute; right:4px; top:55px; color:var(--ochre); font-size:23px; }
+ .work-item:hover h2 { color:var(--ochre-deep); text-decoration:underline; text-underline-offset:5px; }
+ @media(max-width:560px) { .writing-heading { display:block; position:relative; } .writing-heading > :global(.section-mark) { position:absolute; right:0; top:4px; } .writing-heading h1 { padding-right:64px; } .work-item { padding:25px 26px 25px 0; } .work-item h2 { font-size:21px; } .writing-arrow { font-size:18px; } }
+</style>

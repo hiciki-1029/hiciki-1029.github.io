@@ -3,6 +3,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 import SystemCard from "../../components/SystemCard.astro";
 import Crumb from "../../components/Crumb.astro";
+import SectionMark from "../../components/SectionMark.astro";
 const systems = (await getCollection("systems")).sort((a,b) => a.data.order - b.data.order);
 ---
 
@@ -12,11 +13,16 @@ const systems = (await getCollection("systems")).sort((a,b) => a.data.order - b.
 >
   <section class="wrap page-head">
     <Crumb current="实践" />
-    <span class="eyebrow">PRACTICE · 从问题出发</span>
+    <div class="practice-intro">
+    <div>
+    <span class="eyebrow">PRACTICE · 实践记录</span>
     <h1>让支持人的办法，真正用起来</h1>
     <p class="sub">
       从新人培养、共同创造，到困难谈话与个人知识积累。这里保留各项实践的背景、做法与演示。
     </p>
+    </div>
+    <SectionMark kind="craft" large />
+    </div>
     <p class="sub" style="margin-top:8px;">
       这里只展示可公开分享的方法与演示，组织与人员信息已脱敏。
     </p>
@@ -26,3 +32,8 @@ const systems = (await getCollection("systems")).sort((a,b) => a.data.order - b.
     <div class="bento">{systems.map(s => <SystemCard sys={s} />)}</div>
   </section>
 </BaseLayout>
+
+<style>
+ .practice-intro { display:flex; align-items:center; justify-content:space-between; gap:28px; }
+ @media(max-width:600px) { .practice-intro { align-items:flex-start; gap:12px; } .practice-intro > :global(.section-mark) { display:none; } }
+</style>

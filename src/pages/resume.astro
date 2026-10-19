@@ -164,7 +164,7 @@ const certGroups = [
         certGroups.map((g) => (
           <div class="cert-group">
             <span class="cg-label">{g.label}</span>
-            <div class="cert-chips">{g.items.map((c) => <span>{c}</span>)}</div>
+            <ul class="cert-records">{g.items.map((c) => <li>{c}</li>)}</ul>
           </div>
         ))
       }
@@ -183,3 +183,20 @@ const certGroups = [
     </div>
   </section>
 </BaseLayout>
+
+<style>
+ .resume-hero { padding-top:24px; }
+ .resume-h2 { font-size:22px; line-height:1.5; letter-spacing:-.012em; color:var(--ink); margin:38px 0 18px; }
+ .cert-groups { display:grid; grid-template-columns:1fr 1fr; align-items:start; gap:20px; }
+ .cert-group { display:block; padding:22px; background:var(--paper-2); border:1px solid var(--line); border-radius:12px; }
+ .cg-label { display:block; color:var(--ochre-deep); margin-bottom:14px; }
+ .cert-records { list-style:none; padding:0; margin:0; }
+ .cert-records li { position:relative; padding:10px 0 10px 17px; border-top:1px solid var(--line); font-size:14px; line-height:1.8; color:var(--ink-soft); }
+ .cert-records li::before { content:""; position:absolute; left:1px; top:19px; width:5px; height:5px; border:1px solid var(--ochre-soft); border-radius:50%; }
+ @media(max-width:600px) { .cert-groups { grid-template-columns:1fr; gap:12px; } }
+ @media(max-width:560px) {
+   .resume-hero { display:block; position:relative; }
+   .rh-avatar { position:absolute; right:0; top:24px; width:76px; height:76px; }
+   .rh-text h1 { padding-right:88px; }
+ }
+</style>

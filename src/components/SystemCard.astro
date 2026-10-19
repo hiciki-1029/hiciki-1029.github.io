@@ -14,7 +14,7 @@ const badgeMap = {
 } as const;
 const badge = badgeMap[data.status];
 
-// 卡片封面：优先用设计封面 cover；没填则回退到第一个媒体（视频 poster / 图片 src）
+// 有公开演示时优先展示真实画面；设计封面单独标识，避免混淆。
 const media = data.media ?? [];
 const firstMedia = media[0];
 const fallback = firstMedia
@@ -22,16 +22,14 @@ const fallback = firstMedia
     ? firstMedia.src
     : firstMedia.poster
   : null;
-const cover = data.cover ?? fallback;
-// 只要案例里含视频，就标「实机演示」
-const hasVideo = media.some((m) => m.type === "video");
+const cover = fallback ?? data.cover;
 ---
 
 <a class={`sys span-${data.span} ${data.featured ? "feature" : ""}`} href={`/systems/${sys.id}/`}>
   {cover && (
-    <div class="cover">
+    <div class:list={["cover", { "demo-cover": Boolean(fallback) }]}>
       <img src={cover} alt="" loading="lazy" decoding="async" />
-      {hasVideo && <span class="cov-tag">实机演示</span>}
+      <span class="cov-tag">{fallback ? "演示画面" : "概念插画"}</span>
     </div>
   )}
   <span class="go" aria-hidden="true">↗</span>
@@ -46,3 +44,8 @@ const hasVideo = media.some((m) => m.type === "video");
     {data.tags.map((t) => <span>{t}</span>)}
   </div>
 </a>
+
+<style>
+  .demo-cover { background:#eeeae4; }
+  .demo-cover img { object-fit:contain; padding:14px; }
+</style>

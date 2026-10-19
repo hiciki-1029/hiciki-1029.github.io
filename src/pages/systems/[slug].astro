@@ -67,6 +67,7 @@ const jsonLd = {
     <div class="cert-chips" style="margin-top:18px;">
       {sys.data.tags.map((t) => <span>{t}</span>)}
     </div>
+    {sys.data.media.length > 0 && <a class="demo-jump" href="#case-media">看演示画面 <span aria-hidden="true">↓</span></a>}
   </section>
 
   {sys.id === "ssr-suite" && <section class="narrow cultivation" aria-labelledby="cultivation-title">
@@ -99,7 +100,7 @@ const jsonLd = {
 
     {
       sys.data.media.length > 0 && (
-        <div class="media-block">
+        <div class="media-block" id="case-media">
           <div class="media-label">作品实拍</div>
           <div class="gallery">
             {sys.data.media.map((m) =>
@@ -138,6 +139,8 @@ const jsonLd = {
 </BaseLayout>
 
 <style>
+  .demo-jump { display:inline-flex; align-items:center; gap:12px; margin-top:22px; font-size:14px; color:var(--ochre-deep); text-underline-offset:5px; }
+  .media-block { scroll-margin-top:95px; }
   .cultivation { margin-bottom:26px; }
   .cultivation h2 { font-family:var(--serif); font-size:21px; margin:0 0 18px; }
   .cultivation-parts { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }

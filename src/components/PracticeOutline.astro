@@ -14,7 +14,7 @@ import { practiceOutline } from "../data/practice";
 
 <style>
   .practice-outline { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); border-top:1px solid var(--line-strong); }
-  .outline-item { display:grid; grid-template-columns:28px 1fr 20px; gap:14px; padding:30px 24px; border-bottom:1px solid var(--line-strong); color:var(--ink); text-decoration:none; transition:background .18s; }
+  .outline-item { display:grid; grid-template-columns:28px minmax(0,1fr) 20px; gap:14px; padding:32px 28px; border-bottom:1px solid var(--line-strong); color:var(--ink); text-decoration:none; transition:background .18s; }
   .outline-item:nth-child(odd) { padding-left:0; border-right:1px solid var(--line); }
   .outline-item:hover { background:var(--clay-tint); }
   .outline-number { color:var(--ochre); font-size:12px; padding-top:6px; }
@@ -24,10 +24,12 @@ import { practiceOutline } from "../data/practice";
   .outline-question { color:var(--ink); margin:0 0 10px; }
   .outline-summary { color:var(--muted); font-size:13px; margin:0; }
   .outline-read { display:block; margin-top:18px; color:var(--ochre-deep); font-size:12px; }
-  .outline-arrow { color:var(--ochre); font-size:18px; }
+  .outline-arrow { color:var(--ochre); font-size:18px; transition:transform .18s; }
+  .outline-item:hover .outline-arrow { transform:translate(2px,-2px); }
   @media(max-width:600px) {
     .practice-outline { grid-template-columns:1fr; }
     .outline-item, .outline-item:nth-child(odd) { padding:24px 0; border-right:0; gap:10px; grid-template-columns:24px 1fr 18px; }
     h3 { font-size:23px; }
   }
+  @media(prefers-reduced-motion:reduce) { .outline-item, .outline-arrow { transition:none; } .outline-item:hover .outline-arrow { transform:none; } }
 </style>
