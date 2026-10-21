@@ -158,10 +158,10 @@ function openSourceImage(kind){
  $('image-dialog').querySelector('p').textContent=review?'初审评委工作台实际画面 · 人员、部门及内部工具信息经AI辅助脱敏':work?'作品广场实际画面 · 品牌、姓名与部门经AI辅助脱敏，票数为截取时的状态':'大赛网页截图 · 品牌与内部项目标识已脱敏';$('image-dialog').showModal();
 }
 function bindGallery(){
- const box=$('gallery-scroll'),button=$('gallery-play');let running=false,last=0,direction=1,frame;
+ const box=$('gallery-scroll'),button=$('gallery-play');let running=false,last=0,direction=1,position=0,frame;
  const stop=()=>{running=false;cancelAnimationFrame(frame);button.textContent='滚动浏览';button.setAttribute('aria-pressed','false')};
- const step=t=>{if(!running)return;const max=box.scrollHeight-box.clientHeight;if(max<=0){stop();return}const dt=last?Math.min(t-last,60):0;last=t;box.scrollTop+=direction*dt*.025;if(box.scrollTop>=max-1)direction=-1;if(box.scrollTop<=0)direction=1;frame=requestAnimationFrame(step)};
- button.onclick=()=>{if(running){stop();return}running=true;last=0;button.textContent='暂停滚动';button.setAttribute('aria-pressed','true');frame=requestAnimationFrame(step)};
+ const step=t=>{if(!running)return;const max=box.scrollHeight-box.clientHeight;if(max<=0){stop();return}const dt=last?Math.min(t-last,60):0;last=t;position=Math.max(0,Math.min(max,position+direction*dt*.025));box.scrollTop=position;if(position>=max)direction=-1;if(position<=0)direction=1;frame=requestAnimationFrame(step)};
+ button.onclick=()=>{if(running){stop();return}running=true;last=0;position=box.scrollTop;button.textContent='暂停滚动';button.setAttribute('aria-pressed','true');frame=requestAnimationFrame(step)};
  box.addEventListener('wheel',stop,{passive:true});box.addEventListener('touchstart',stop,{passive:true});box.addEventListener('keydown',stop);$('gallery-expand').onclick=()=>{stop();openSourceImage('works')};showcaseMotionStop=stop;
 }
 
