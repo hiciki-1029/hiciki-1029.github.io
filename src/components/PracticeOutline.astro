@@ -1,35 +1,59 @@
 ---
-import { practiceOutline } from "../data/practice";
+import { selectedPractices } from "../data/selected-practices";
 ---
 
-<div class="practice-outline">
-  {practiceOutline.map(item => (
-    <a class="outline-item" href={`/systems/${item.id}/`}>
-      <span class="outline-number">{item.number}</span>
-      <div><span class="outline-perspective">{item.perspective}</span><h3>{item.title}</h3><p class="outline-question">{item.question}</p><p class="outline-summary">{item.summary}</p><span class="outline-read">看具体做法 →</span></div>
-      <span class="outline-arrow" aria-hidden="true">↗</span>
-    </a>
+<div class="practice-outline" aria-label="三组代表实践">
+  {selectedPractices.map(item => (
+    <article class="outline-item">
+      <a class="outline-image" href={item.href} aria-label={`查看${item.title}`}>
+        <img src={item.image} alt={item.imageAlt} width="1440" height="900" loading="lazy" decoding="async" />
+        <span>{item.imageNote}</span>
+      </a>
+      <div class="outline-copy">
+        <span class="outline-perspective"><span class="outline-number">{item.number}</span>{item.perspective}</span>
+        <h3><a href={item.href}>{item.title}<span class="outline-arrow" aria-hidden="true">↗</span></a></h3>
+        <p class="outline-summary">{item.summary}</p>
+        <p class="outline-stage">{item.stage}</p>
+        <div class="outline-links">
+          <a href={item.href}>{item.linkLabel} →</a>
+          {item.relatedHref && <a class="outline-related" href={item.relatedHref}>{item.relatedLabel} ↗</a>}
+        </div>
+      </div>
+    </article>
   ))}
 </div>
 
 <style>
-  .practice-outline { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); border-top:1px solid var(--line-strong); }
-  .outline-item { display:grid; grid-template-columns:28px minmax(0,1fr) 20px; gap:14px; padding:32px 28px; border-bottom:1px solid var(--line-strong); color:var(--ink); text-decoration:none; transition:background .18s; }
-  .outline-item:nth-child(odd) { padding-left:0; border-right:1px solid var(--line); }
-  .outline-item:hover { background:var(--clay-tint); }
-  .outline-number { color:var(--ochre); font-size:12px; padding-top:6px; }
-  h3 { font-family:var(--serif); font-size:25px; line-height:1.5; margin:7px 0 10px; }
-  p { color:var(--ink-soft); font-size:15px; line-height:1.8; max-width:25em; }
-  .outline-perspective { color:var(--ochre-deep); font-size:11px; }
-  .outline-question { color:var(--ink); margin:0 0 10px; }
-  .outline-summary { color:var(--muted); font-size:13px; margin:0; }
-  .outline-read { display:block; margin-top:18px; color:var(--ochre-deep); font-size:12px; }
-  .outline-arrow { color:var(--ochre); font-size:18px; transition:transform .18s; }
-  .outline-item:hover .outline-arrow { transform:translate(2px,-2px); }
-  @media(max-width:600px) {
-    .practice-outline { grid-template-columns:1fr; }
-    .outline-item, .outline-item:nth-child(odd) { padding:24px 0; border-right:0; gap:10px; grid-template-columns:24px 1fr 18px; }
-    h3 { font-size:23px; }
+  .practice-outline { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:28px; border-top:1px solid var(--line-strong); padding-top:28px; }
+  .outline-item { min-width:0; display:flex; flex-direction:column; }
+  .outline-image { position:relative; display:block; color:var(--ink); border:1px solid var(--line); border-radius:var(--r-md); overflow:hidden; background:var(--paper-2); }
+  .outline-image img { display:block; width:100%; height:auto; aspect-ratio:16/10; object-fit:contain; }
+  .outline-image > span { display:block; padding:9px 12px; border-top:1px solid var(--line); font-size:10px; color:var(--muted); background:var(--paper); }
+  .outline-copy { display:flex; flex-direction:column; flex:1; padding-top:22px; }
+  .outline-perspective { display:flex; align-items:baseline; gap:10px; color:var(--ochre-deep); font-size:11px; }
+  .outline-number { color:var(--ochre); font-size:12px; }
+  h3 { font-family:var(--serif); font-size:23px; line-height:1.55; margin:12px 0 16px; }
+  h3 a { display:block; color:var(--ink); text-decoration:none; padding-right:16px; position:relative; }
+  h3 a:hover { color:var(--ochre-deep); }
+  .outline-arrow { position:absolute; right:0; top:2px; color:var(--ochre); font-family:var(--sans); font-size:16px; }
+  .outline-summary { color:var(--ink-soft); font-size:14px; line-height:1.9; margin:0; }
+  .outline-stage { color:var(--muted); font-size:11px; margin:16px 0 0; padding-top:14px; border-top:1px solid var(--line); }
+  .outline-links { display:flex; flex-wrap:wrap; gap:10px 18px; margin-top:auto; padding-top:18px; font-size:12px; }
+  .outline-links a { display:inline-flex; align-items:center; min-height:32px; text-underline-offset:5px; }
+  .outline-related { color:var(--ink-soft); }
+  @media(max-width:900px) {
+    .practice-outline { grid-template-columns:1fr; gap:28px; }
+    .outline-item { display:grid; grid-template-columns:minmax(0,.85fr) minmax(0,1fr); gap:26px; padding-bottom:28px; border-bottom:1px solid var(--line); }
+    .outline-copy { padding-top:0; }
+    .outline-image { align-self:start; }
   }
-  @media(prefers-reduced-motion:reduce) { .outline-item, .outline-arrow { transition:none; } .outline-item:hover .outline-arrow { transform:none; } }
+  @media(max-width:600px) {
+    .practice-outline { padding-top:24px; gap:32px; }
+    .outline-item { display:flex; gap:0; padding-bottom:32px; }
+    .outline-copy { padding-top:20px; }
+    h3 { font-size:25px; margin:10px 0 14px; }
+    .outline-summary { font-size:15px; }
+    .outline-links { font-size:13px; gap:8px 20px; padding-top:12px; }
+    .outline-links a { min-height:40px; }
+  }
 </style>

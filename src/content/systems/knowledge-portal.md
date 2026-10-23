@@ -1,14 +1,14 @@
 ---
-title: "个人知识库门户：让每一份沉淀都能被再调用"
-tagline: "资料自动进来，先在本地 Obsidian 沉淀成唯一真身，再发布成一个能随时提问、每句回答都带出处的网站——采集、解读、沉淀、发布、问答，接成一条完整链路。"
-short: "会自己进、能被问，每句回答都有出处"
+title: "从个人知识库到数字分身"
+tagline: "从可溯源的知识库出发，整理可信的个人上下文，探索让有权限的 Agent 按任务读取背景、支持实际协作。知识门户已有实践，数字分身仍在逐步探索。"
+short: "让协作少一点从头解释"
 layer: build
 year: "2025—2026"
-status: live
+status: building
 featured: true
 cover: /systems/knowledge-portal/cover.jpg
 span: "3"
-tags: ["知识门户", "可溯源问答", "有据可查"]
+tags: ["可信个人上下文", "按任务协作", "数字分身探索"]
 pipeline: ["多端采集", "四段式解读", "Obsidian 真身沉淀", "签名发布", "可溯源问答"]
 link: "https://github.com/hiciki-1029/book-digest-hq"
 linkLabel: "开源的读书蒸馏器"

@@ -6,6 +6,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import Pipeline from "../../components/Pipeline.astro";
 import Crumb from "../../components/Crumb.astro";
 import { practiceOutline } from "../../data/practice";
+import KnowledgeJourney from "../../components/KnowledgeJourney.astro";
 
 export async function getStaticPaths() {
   const systems = await getCollection("systems");
@@ -15,6 +16,7 @@ export async function getStaticPaths() {
 const { sys } = Astro.props;
 const { Content } = await render(sys);
 const focus = practiceOutline.find(item => item.id === sys.id);
+const isKnowledgeJourney = sys.id === "knowledge-portal";
 const badgeMap = {
   live: { cls: "live", label: "在运行 LIVE" },
   building: { cls: "building", label: "建设中 BUILDING" },
@@ -24,7 +26,7 @@ const badge = badgeMap[sys.data.status];
 
 /* og 分享卡路径。缺图就回落到通用卡 —— 新增案例时忘了跑 `npm run og:build`，
    页面仍会照常构建，但分享出去不会是一张破图。构建期还有 scripts/check-og.mjs 硬拦。 */
-const ogPath = `/og/system-${sys.id}.png`;
+const ogPath = isKnowledgeJourney ? "/og/site.png" : `/og/system-${sys.id}.png`;
 const ogImage = fs.existsSync(path.join(process.cwd(), "public", ogPath)) ? ogPath : "/og/site.png";
 
 const SITE = "https://www.hiciki.me";
@@ -49,12 +51,13 @@ const jsonLd = {
 ---
 
 <BaseLayout
-  title={focus?.title ?? sys.data.title}
-  description={focus?.summary ?? sys.data.tagline}
+  title={isKnowledgeJourney ? sys.data.title : focus?.title ?? sys.data.title}
+  description={isKnowledgeJourney ? sys.data.tagline : focus?.summary ?? sys.data.tagline}
   image={ogImage}
   imageAlt={`${sys.data.title} —— ${sys.data.short ?? sys.data.tagline}`}
   jsonLd={jsonLd}
 >
+  {isKnowledgeJourney ? <KnowledgeJourney sys={sys}><Content /></KnowledgeJourney> : <>
   <section class="narrow page-head">
     <Crumb parent={{ href: "/systems/", label: "AI 实践" }} />
     <span class={`badge ${badge.cls}`} style="margin-bottom:18px;">
@@ -136,6 +139,7 @@ const jsonLd = {
       <a href="/">回到首页 →</a>
     </div>
   </article>
+  </>}
 </BaseLayout>
 
 <style>

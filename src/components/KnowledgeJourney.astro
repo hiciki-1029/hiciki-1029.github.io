@@ -1,0 +1,196 @@
+---
+import type { CollectionEntry } from "astro:content";
+import Crumb from "./Crumb.astro";
+import Pipeline from "./Pipeline.astro";
+interface Props { sys: CollectionEntry<"systems">; }
+const { sys } = Astro.props;
+const firstMedia = sys.data.media[0];
+const furtherMedia = sys.data.media.slice(1);
+const contextKinds = [
+  { title: "接触过的资料", text: "读过、收藏过，先作为参考，不自动成为我的立场。" },
+  { title: "本人认可的判断", text: "由我确认，保留依据、适用范围和确认状态。" },
+  { title: "真实发生的经历", text: "做过什么、产生什么成果，需要能核实，不能靠推测补齐。" },
+];
+---
+
+<section class="narrow page-head journey-head">
+  <Crumb parent={{ href: "/systems/", label: "AI 实践" }} />
+  <span class="journey-kicker">03 · 个人知识与协作</span>
+  <h1>从个人知识库<br />到数字分身</h1>
+  <p class="journey-lead">让 Agent 接到任务时，<br class="desktop-break" />少一点从头解释，多一点对实际需要的理解。</p>
+  <p class="journey-opening">我先做了一个能检索、能找到出处的知识库。用得久了，想继续解决的问题是：读过的资料、做过的事和已经确认的判断，能不能在下一次协作时被用上？</p>
+  <div class="journey-stage"><span></span>知识门户已有实践 · 数字分身持续探索中</div>
+  <nav class="journey-jumps" aria-label="本页阅读入口">
+    <a href="#case-media">先看已有成果 ↓</a>
+    <a href="#context-design">为什么这样设计</a>
+    <a href="#implementation">具体实践记录</a>
+  </nav>
+</section>
+
+<section class="wrap journey-evidence" id="case-media" aria-labelledby="evidence-title">
+  <div class="evidence-heading"><span class="journey-index">01</span><h2 id="evidence-title">先从已经做出的东西看起</h2></div>
+  <div class="evidence-grid">
+    {firstMedia && <figure class="journey-shot">
+      {firstMedia.type === "video" ? <video controls playsinline preload="none" poster={firstMedia.poster} src={firstMedia.src} aria-label="已有知识门户的脱敏实机演示"></video> : <img src={firstMedia.src} alt={firstMedia.caption} loading="lazy" />}
+      <figcaption>{firstMedia.caption}<br /><span>这是已有知识门户的演示，不是数字分身已经完成的演示。</span></figcaption>
+    </figure>}
+    <div class="evidence-copy">
+      <span class="journey-label">已有实践 · 知识门户</span>
+      <h3>资料能找到，<br />回答能回到出处。</h3>
+      <p>书、报告和项目记录可以检索、提问；资料中的结论与“我的观察”分开存放。原有门户、脱敏演示和开源读书工具，都是这项探索的基础。</p>
+      {sys.data.link && <a class="evidence-link" href={sys.data.link} target="_blank" rel="noopener">{sys.data.linkLabel} ↗</a>}
+    </div>
+  </div>
+  {furtherMedia.map(m => <figure class="journey-shot further-shot">{m.type === "video" ? <video controls playsinline preload="none" poster={m.poster} src={m.src} aria-label={m.caption}></video> : <img src={m.src} alt={m.caption} loading="lazy" />}<figcaption>{m.caption}</figcaption></figure>)}
+</section>
+
+<article class="narrow journey-story">
+  <section class="story-section" aria-labelledby="next-question">
+    <div class="story-heading"><span class="journey-index">02</span><h2 id="next-question">从找到资料，到带着背景一起做事</h2></div>
+    <p>我正在以 Obsidian 和 Markdown 为基础，维护个人知识、经历、偏好与协作规则。希望它们能在不同任务里，成为有权限的 Agent 可以调用的背景，而不必每次重新讲一遍。</p>
+    <p>例如交给 Agent 一项写作、研究或项目设计任务时，先让它读取相关材料，知道哪些判断已经确认，哪些经历确实发生过，再开始工作。</p>
+    <aside class="scope-note"><strong>正在建立的协作方式</strong><p>按任务读取个人上下文是当前实践与设计方向；不同 Agent 的接入情况、读取范围和效果，需要分别验证。这里不表示所有客户端都已接通。</p></aside>
+  </section>
+
+  <section class="story-section" id="context-design" aria-labelledby="design-title">
+    <div class="story-heading"><span class="journey-index">03</span><h2 id="design-title">有些界限，要先分清</h2></div>
+    <p>资料越多，越需要知道它以什么身份被使用。读过一个观点，不代表我赞同；AI 对我的观察，也不能直接写成关于我的事实。</p>
+    <div class="context-kinds">{contextKinds.map(item => <div><h3>{item.title}</h3><p>{item.text}</p></div>)}</div>
+    <div class="design-principles">
+      <div><h3>先看任务，再选背景</h3><p>这套积累首先为实际协作服务（Agent First）。写作、研究和项目设计需要的背景不同，不必每次读取全部个人材料。</p></div>
+      <div><h3>保留来源，也允许修正</h3><p>重要判断保留来源、适用范围与确认状态。实际反馈改变了理解，相关记录、目录与检索索引也要一起更新。</p></div>
+      <div><h3>有权限，才读取</h3><p>个人上下文按授权使用。公开页面只展示设计思想与已有脱敏成果，不开放原始身份档案、私人观察或公司内部资料。</p></div>
+    </div>
+    <div class="judgment-note"><span class="journey-label">我希望怎样检验协作</span><p class="judgment-order">判断像我 <span>→</span> 经历贴合 <span>→</span> 表达像我</p><p>先尊重我确认过的判断和真实经历，再考虑表达是不是熟悉。这是设计与验收的方向，不代表 AI 已能稳定模拟我的判断，也不意味着它可以独立代表我发言。</p></div>
+  </section>
+
+  <section class="story-section" aria-labelledby="evolution-title">
+    <div class="story-heading"><span class="journey-index">04</span><h2 id="evolution-title">沿着这个方向，继续往前试</h2></div>
+    <p class="diagram-note">探索路径示意 · 不是已完成的功能清单</p>
+    <ol class="evolution-list">
+      <li><span class="evolution-status">已有基础</span><h3>个人知识积累</h3><p>整理材料，检索与问答，回答能回到出处。</p></li>
+      <li><span class="evolution-status">持续整理</span><h3>可信个人上下文</h3><p>把资料、本人判断、经历和协作规则分清楚。</p></li>
+      <li><span class="evolution-status">逐项验证</span><h3>Agent 按任务协作</h3><p>在授权范围内读取相关背景，检查任务结果是否贴合需要。</p></li>
+      <li><span class="evolution-status">继续探索</span><h3>持续修正的数字分身</h3><p>通过反馈更新理解，不把某次输出当成固定的“我”。</p></li>
+    </ol>
+  </section>
+
+  <section class="story-section" id="implementation" aria-labelledby="implementation-title">
+    <div class="story-heading"><span class="journey-index">05</span><h2 id="implementation-title">想看具体怎么做</h2></div>
+    <p>采集、同步、出处管理和知识门户的实现记录仍保留在这里。它们说明已有知识系统的做法，不作为跨 Agent 协作已经全面验证的证明。</p>
+    <details class="implementation-record">
+      <summary><span>展开原有知识门户实践记录<small>采集 · 解读 · Obsidian · 同步 · 问答</small></span><span class="details-sign" aria-hidden="true"></span></summary>
+      <div class="record-body prose">
+        <p class="record-preface">以下保留原有公开正文。关于运行规模、效果及项目由来的表述，是此前的阶段记录；这次没有重新核验，也不把它们外推到数字分身。</p>
+        <div class="record-pipeline"><span class="journey-label">原知识门户链路</span><Pipeline steps={sys.data.pipeline} /></div>
+        <slot />
+      </div>
+    </details>
+  </section>
+
+  <section class="story-section ongoing" aria-labelledby="ongoing-title">
+    <span class="journey-label">仍在探索</span><h2 id="ongoing-title">下一次协作，能不能少纠正一点？</h2>
+    <p>接下来，我会继续检查：任务有没有读到合适的背景，有没有把资料误当成我的观点，新的反馈有没有写回记录。比起让 AI 说得越来越像我，我更关心它做出的东西，是否更贴合实际需要。</p>
+    <p class="ongoing-boundary">知识门户已有演示；个人上下文持续维护；跨 Agent 的可用范围与协作效果仍需逐项验证。这里呈现的是一项个人实践，不是已经完成的数字人产品。</p>
+  </section>
+
+  <nav class="journey-related" aria-label="相关思考与实践">
+    <a href="/writing/a-library-that-can-disagree/"><span>相关思考</span>知识库里的东西，怎样才算是我的？ ↗</a>
+    <a href="/systems/hr-intel-agent/"><span>相关实践</span>资讯与报告研究助手 ↗</a>
+    <a href="/systems/personal-ai-ops/"><span>相关实践</span>个人 AI 工作系统 ↗</a>
+  </nav>
+  <div class="journey-back"><a href="/systems/">← 回到 AI 实践</a><a href="/">回到首页 →</a></div>
+</article>
+
+<style>
+  .journey-head { padding-top:40px; }
+  .journey-kicker { display:block; margin-top:28px; color:var(--ochre-deep); font-size:12px; letter-spacing:.08em; }
+  .journey-head h1 { font-size:clamp(38px,5vw,54px); line-height:1.4; margin:18px 0 22px; }
+  .journey-lead { font-size:21px; font-family:var(--serif); line-height:1.8; color:var(--ink-soft); }
+  .journey-opening { font-size:15px; line-height:1.95; margin-top:22px; max-width:40em; color:var(--ink-soft); }
+  .journey-stage { display:flex; align-items:center; gap:9px; font-size:12px; color:var(--muted); margin-top:24px; }
+  .journey-stage > span { width:6px; height:6px; border-radius:50%; background:var(--ochre); flex:none; }
+  .journey-jumps { display:flex; flex-wrap:wrap; gap:8px 24px; margin-top:22px; padding-bottom:20px; }
+  .journey-jumps a { display:inline-flex; align-items:center; min-height:40px; font-size:13px; text-underline-offset:5px; }
+  .journey-evidence { margin-top:36px; padding:30px; border:1px solid var(--line); background:var(--paper-2); border-radius:var(--r-lg); }
+  .evidence-heading, .story-heading { display:flex; align-items:baseline; gap:14px; }
+  .journey-index { color:var(--ochre); font-size:12px; flex:none; }
+  .evidence-heading h2 { margin:0 0 26px; font-family:var(--serif); font-size:23px; }
+  .evidence-grid { display:grid; grid-template-columns:minmax(0,1.45fr) minmax(0,1fr); align-items:center; gap:36px; }
+  .journey-shot { margin:0; min-width:0; }
+  .journey-shot video, .journey-shot img { display:block; width:100%; border-radius:12px; border:1px solid var(--line); background:var(--paper); }
+  .journey-shot video { aspect-ratio:16/10; object-fit:contain; }
+  .journey-shot figcaption { margin-top:12px; font-size:11px; line-height:1.8; color:var(--muted); }
+  .journey-shot figcaption span { color:var(--ochre-deep); }
+  .journey-label { display:block; color:var(--ochre-deep); font-size:11px; letter-spacing:.06em; }
+  .evidence-copy h3 { font-family:var(--serif); font-size:26px; line-height:1.6; margin:12px 0; }
+  .evidence-copy p { color:var(--ink-soft); font-size:14px; line-height:1.9; }
+  .evidence-link { display:inline-flex; align-items:center; min-height:40px; font-size:12px; margin-top:14px; }
+  .further-shot { margin-top:26px; }
+  .journey-story { margin-top:60px; }
+  .story-section { margin-bottom:60px; }
+  .story-heading h2 { font-family:var(--serif); font-size:26px; line-height:1.6; margin:0 0 24px; }
+  .story-section > p { margin:0 0 20px; color:var(--ink-soft); line-height:1.95; }
+  .scope-note { border-left:2px solid var(--line-strong); padding:4px 0 4px 20px; margin-top:24px; color:var(--muted); font-size:13px; }
+  .scope-note strong { font-weight:500; color:var(--ochre-deep); }
+  .scope-note p { margin-top:8px; line-height:1.85; }
+  .context-kinds { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px; margin:30px 0 34px; }
+  .context-kinds > div { border-top:1px solid var(--line-strong); padding-top:16px; }
+  .context-kinds h3 { font-size:16px; margin:0 0 10px; }
+  .context-kinds p { font-size:13px; line-height:1.9; color:var(--ink-soft); }
+  .design-principles > div { margin-top:28px; }
+  .design-principles h3 { font-size:17px; margin:0 0 10px; }
+  .design-principles p { font-size:15px; color:var(--ink-soft); line-height:1.95; }
+  .judgment-note { border-top:1px solid var(--line-strong); border-bottom:1px solid var(--line-strong); padding:26px 0; margin-top:36px; }
+  .judgment-note .judgment-order { font-size:clamp(17px,2.2vw,24px); color:var(--ink); font-family:var(--serif); margin:14px 0; }
+  .judgment-order span { color:var(--ochre-soft); padding:0 6px; }
+  .judgment-note > p:last-child { font-size:13px; color:var(--muted); line-height:1.85; }
+  .story-section .diagram-note { font-size:12px; color:var(--muted); margin-bottom:24px; }
+  .evolution-list { list-style:none; padding:0; margin:0; counter-reset:step; }
+  .evolution-list li { position:relative; counter-increment:step; margin-left:16px; padding:0 0 28px 34px; border-left:1px solid var(--line-strong); }
+  .evolution-list li::before { content:counter(step,decimal-leading-zero); position:absolute; top:0; left:-16px; width:32px; height:32px; display:grid; place-items:center; background:var(--paper); color:var(--ochre); font-size:11px; border:1px solid var(--line); border-radius:50%; }
+  .evolution-list li:last-child { border-color:transparent; padding-bottom:0; }
+  .evolution-status { color:var(--ochre-deep); font-size:11px; }
+  .evolution-list h3 { font-size:18px; font-family:var(--serif); margin:4px 0 8px; }
+  .evolution-list p { color:var(--ink-soft); font-size:14px; line-height:1.9; }
+  .implementation-record { margin-top:26px; border-top:1px solid var(--line-strong); border-bottom:1px solid var(--line-strong); }
+  .implementation-record > summary { padding:22px 0; display:flex; align-items:center; justify-content:space-between; gap:20px; cursor:pointer; list-style:none; color:var(--ink); font-size:16px; }
+  .implementation-record > summary::-webkit-details-marker { display:none; }
+  .implementation-record summary small { display:block; margin-top:6px; color:var(--muted); font-size:12px; }
+  .details-sign::before { content:"＋"; color:var(--ochre); font-size:23px; }
+  .implementation-record[open] .details-sign::before { content:"−"; }
+  summary:focus-visible { outline:2px solid var(--ochre); outline-offset:4px; }
+  .record-body { margin:0 0 26px; }
+  .record-body .record-preface { color:var(--muted); font-size:13px; padding:16px; border:1px solid var(--line); background:var(--paper-2); }
+  .record-pipeline { padding:22px 0; }
+  .record-pipeline .journey-label { margin-bottom:16px; }
+  .ongoing { border-top:1px solid var(--line-strong); padding-top:28px; }
+  .ongoing h2 { font-family:var(--serif); font-size:26px; margin:12px 0 22px; line-height:1.6; }
+  .ongoing .ongoing-boundary { font-size:13px; color:var(--muted); }
+  .journey-related { display:grid; gap:16px; }
+  .journey-related a { padding:16px 0; border-top:1px solid var(--line); text-decoration:none; color:var(--ink-soft); font-size:15px; }
+  .journey-related span { display:block; color:var(--ochre-deep); font-size:11px; margin-bottom:6px; }
+  .journey-related a:hover { color:var(--ochre); }
+  .journey-back { margin:36px 0 50px; padding-top:22px; border-top:1px solid var(--line-strong); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:14px; }
+  @media(max-width:800px) {
+    .evidence-grid { grid-template-columns:1fr; gap:26px; }
+    .evidence-copy h3 br { display:none; }
+  }
+  @media(max-width:600px) {
+    .journey-head { padding-top:28px; }
+    .journey-head h1 { font-size:38px; }
+    .journey-lead { font-size:19px; }
+    .desktop-break { display:none; }
+    .journey-evidence { margin-top:26px; padding:22px 18px; }
+    .evidence-heading h2 { font-size:22px; }
+    .evidence-copy h3 { font-size:24px; }
+    .journey-story { margin-top:44px; }
+    .story-section { margin-bottom:44px; }
+    .story-heading { gap:10px; }
+    .story-heading h2, .ongoing h2 { font-size:24px; }
+    .context-kinds { grid-template-columns:1fr; gap:20px; }
+    .context-kinds p { font-size:14px; }
+    .judgment-note .judgment-order { font-size:17px; }
+    .judgment-order span { padding:0 2px; }
+  }
+</style>
