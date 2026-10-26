@@ -10,15 +10,7 @@ cover: /systems/ai-creation-contest/cover.jpg
 span: "3"
 tags: ["AI 共创", "赛制设计", "平台搭建", "评审机制"]
 pipeline: ["定位调研", "自建赛事平台", "双赛道共创", "试玩茶话会", "盲评与合议", "精品路演"]
-media:
-  - type: video
-    src: /systems/ai-creation-contest/contest-landing.mp4
-    poster: /systems/ai-creation-contest/contest-landing.jpg
-    caption: "自建报名长页：赛道、赛程、奖项与报名入口一屏自助（品牌已脱敏）"
-  - type: video
-    src: /systems/ai-creation-contest/works-gallery.mp4
-    poster: /systems/ai-creation-contest/works-gallery.jpg
-    caption: "作品广场实机：分类与人气投票，点开一件作品看产品价值、产品实现与 AI 全流程（作者已匿名、品牌已脱敏）"
+media: []
 order: 3
 ---
 
