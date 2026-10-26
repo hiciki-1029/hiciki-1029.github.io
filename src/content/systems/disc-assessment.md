@@ -10,11 +10,7 @@ cover: /systems/disc-assessment/cover.jpg
 span: "2"
 tags: ["独立开发", "公网运行", "自动同步", "异常提醒"]
 pipeline: ["在线作答", "实时计分", "生成报告", "写回数据表", "邮箱匹配人员", "异常告警"]
-media:
-  - type: video
-    src: /systems/disc-assessment/disc-assessment.mp4
-    poster: /systems/disc-assessment/disc-assessment.jpg
-    caption: "实机演示：逐题作答后自动生成行为偏好报告（登录环节与个人信息已隐去）"
+media: []
 order: 6
 ---
 
@@ -42,4 +38,4 @@ order: 6
 
 过程里体会最深的是异常处理：真正让系统可信的不是顺利的那条路，而是写不进去时它会主动喊。从那以后，我做每一个自动化都会先问自己一句——如果我不盯着，它会不会悄悄坏掉。
 
-说明：该应用服务于内部场景，个人主页不直接外链、不放真实作答数据，上方为匿名化实机演示。
+说明：该应用服务于内部场景，个人主页不直接外链、不放真实作答数据，不提供公开录屏。
