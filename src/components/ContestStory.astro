@@ -1,0 +1,59 @@
+---
+import type { CollectionEntry } from "astro:content";
+import Crumb from "./Crumb.astro";
+import Pipeline from "./Pipeline.astro";
+import PracticeCover from "./PracticeCover.astro";
+import "../styles/project-story.css";
+interface Props { sys: CollectionEntry<"systems">; }
+const { sys } = Astro.props;
+---
+<section class="narrow story-head">
+  <Crumb parent={{ href:"/systems/", label:"AI 实践" }} />
+  <h1>AI 创作大赛</h1>
+  <p class="story-lead">做出来以后，作品还需要观众。</p>
+  <p class="story-opening">我把 AI 学习放进了新人培养里的一项真实任务：从工作或兴趣出发，做出别人可以体验的作品。创意表达和工作提效各设一条赛道，让不同背景的人都有可以开始的题目。</p>
+</section>
+<section class="wrap contest-results" id="case-media" aria-labelledby="contest-results-title">
+  <figure class="contest-excerpt"><PracticeCover kind="contest" /><figcaption>作品广场中的一件作品。名称、归属与投票信息已遮蔽；这是成果展示页面的局部。</figcaption></figure>
+  <div><h2 id="contest-results-title">想法，变成了二十余件作品。</h2><p>三周里，新人交出了小游戏、互动漫剧，也做了智能体、工作流和任务管理工具。作品广场让它们有了一个能被找到、被体验和收到反馈的地方。</p><p>比起列出用了多少工具，我更想留下的是：这个人发现了什么问题，又做过哪些选择。</p></div>
+</section>
+<article class="narrow story-body">
+  <section>
+    <h2>“没有评委，只有奶茶。”</h2>
+    <p>作品交齐后，我先安排了一场试玩茶话会。全部作品都可以被同伴玩到、互评，再让完成度较高的作品进入精品路演，请业务负责人来听。</p>
+    <p>没有站上路演台的作品，也继续留在广场里。完成作品是一件事，让它有机会被认真看见，是另一件值得花心思的事。</p>
+  </section>
+  <section>
+    <h2>好不好玩，不该是唯一的尺子。</h2>
+    <p>创意作品有可玩的演示，价值容易被看见；提效工具解决的却可能是一个藏在工作里的问题。最初，提效赛道只有一件作品晋级，后来恰恰是它拿下了人气第一。</p>
+    <p>这让我重新看评审机制。评委先独立写理由，再合议；人气单独成轨，不和专业判断绑在一起。复盘时，我给下一届留下的改法是：给提效赛道配业务评委，允许用脱敏录屏和使用数据说明价值。</p>
+    <blockquote class="story-quote">舞台要护住每一个人，评判的尺子也不该只有一把。</blockquote>
+  </section>
+  <details class="story-record" id="implementation">
+    <summary><span>组织方法与原始记录<small>赛道 · 陪跑 · 试玩 · 评价机制 · 原录屏</small></span></summary>
+    <div class="story-record-body prose">
+      <p class="record-note">以下保留原公开正文、数据口径与六步流程。本轮没有新增成效统计。原录屏仍出现参赛者姓名等信息，暂仅放在本人可见的评审预览中，正式采用前需要重新脱敏；原文件未改。</p>
+      <h2>{sys.data.title}</h2><p>{sys.data.tagline}</p>
+      <Pipeline steps={sys.data.pipeline} />
+      <slot />
+      <h2>原录屏（待重新脱敏）</h2>
+      {sys.data.media.map(m => <figure class="story-media">{m.type === "video" ? <video controls playsinline preload="none" poster={m.poster} src={m.src} aria-label="仅本人评审：原大赛录屏，待重新脱敏"></video> : <img src={m.src} alt={m.caption} loading="lazy" />}<figcaption>{m.caption}</figcaption></figure>)}
+    </div>
+  </details>
+  <nav class="story-related" aria-label="相关内容">
+    <a href="/systems/ssr-suite/">回到整体新人培养 ↗</a>
+    <a href="/systems/team-ai-movement/">另一项团队实践：带团队做 AI ↗</a>
+    <a href="/writing/before-building-another-project/">继续读：做出作品之后，人也需要被看见 ↗</a>
+  </nav>
+  <div class="story-foot"><a href="/systems/">← 全部实践</a><a href="/">回到首页 →</a></div>
+</article>
+<style>
+ .contest-results { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:48px; align-items:center; margin-top:12px; }
+ .contest-excerpt { margin:0; height:340px; padding-bottom:42px; }
+ .contest-excerpt figcaption { font-size:12px; color:var(--muted); line-height:1.7; margin-top:10px; }
+ .contest-results h2 { font-family:var(--serif); font-size:29px; line-height:1.6; margin:0 0 20px; }
+ .contest-results p { font-size:15px; line-height:1.95; color:var(--ink-soft); margin:0 0 16px; }
+ .story-record-body .story-media { margin-top:28px; }
+ @media(max-width:800px) { .contest-results { grid-template-columns:1fr; gap:30px; } .contest-excerpt { height:310px; } }
+ @media(max-width:600px) { .contest-results h2 { font-size:25px; } .contest-excerpt { height:265px; } }
+</style>

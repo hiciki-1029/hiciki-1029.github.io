@@ -7,6 +7,7 @@ import Pipeline from "../../components/Pipeline.astro";
 import Crumb from "../../components/Crumb.astro";
 import { practiceOutline } from "../../data/practice";
 import KnowledgeJourney from "../../components/KnowledgeJourney.astro";
+import ContestStory from "../../components/ContestStory.astro";
 
 export async function getStaticPaths() {
   const systems = await getCollection("systems");
@@ -17,6 +18,7 @@ const { sys } = Astro.props;
 const { Content } = await render(sys);
 const focus = practiceOutline.find(item => item.id === sys.id);
 const isKnowledgeJourney = sys.id === "knowledge-portal";
+const isContestStory = sys.id === "ai-creation-contest";
 const badgeMap = {
   live: { cls: "live", label: "在运行 LIVE" },
   building: { cls: "building", label: "建设中 BUILDING" },
@@ -57,7 +59,7 @@ const jsonLd = {
   imageAlt={`${sys.data.title} —— ${sys.data.short ?? sys.data.tagline}`}
   jsonLd={jsonLd}
 >
-  {isKnowledgeJourney ? <KnowledgeJourney sys={sys}><Content /></KnowledgeJourney> : <>
+  {isKnowledgeJourney ? <KnowledgeJourney sys={sys}><Content /></KnowledgeJourney> : isContestStory ? <ContestStory sys={sys}><Content /></ContestStory> : <>
   <section class="narrow page-head">
     <Crumb parent={{ href: "/systems/", label: "AI 实践" }} />
     <span class={`badge ${badge.cls}`} style="margin-bottom:18px;">

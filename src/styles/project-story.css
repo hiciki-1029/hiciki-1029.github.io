@@ -1,0 +1,37 @@
+.story-head { padding-top:40px; padding-bottom:28px; }
+.story-head h1 { font-family:var(--serif); font-size:clamp(34px,4.5vw,50px); line-height:1.4; margin:28px 0 20px; }
+.story-lead { font-family:var(--serif); font-size:23px; line-height:1.7; margin:0 0 22px; color:var(--ink-soft); }
+.story-opening { font-size:16px; line-height:1.95; color:var(--ink-soft); margin:0; }
+.story-body { margin-top:46px; }
+.story-body section { margin-bottom:46px; }
+.story-body h2 { font-family:var(--serif); font-size:27px; line-height:1.55; margin:0 0 20px; }
+.story-body p { color:var(--ink-soft); font-size:16px; line-height:1.95; margin:0 0 18px; }
+.story-quote { font-family:var(--serif); font-size:25px; line-height:1.7; margin:24px 0; padding:14px 0 14px 22px; border-left:2px solid var(--ochre-soft); color:var(--ink); }
+.story-media { margin:0; min-width:0; }
+.story-media video, .story-media img { display:block; width:100%; border:1px solid var(--line); border-radius:var(--r-md); }
+.story-media video { aspect-ratio:16/10; object-fit:contain; background:var(--paper-2); }
+.story-media figcaption { font-size:12px; color:var(--muted); line-height:1.8; margin-top:12px; }
+.story-record { border-top:1px solid var(--line-strong); border-bottom:1px solid var(--line-strong); margin:40px 0 30px; }
+.story-record > summary { cursor:pointer; padding:22px 0; display:flex; justify-content:space-between; gap:20px; align-items:center; font-size:16px; list-style:none; }
+.story-record > summary::-webkit-details-marker { display:none; }
+.story-record > summary::after { content:'＋'; color:var(--ochre); font-size:22px; }
+.story-record[open] > summary::after { content:'−'; }
+.story-record summary:focus-visible { outline:2px solid var(--ochre); outline-offset:4px; }
+.story-record summary small { display:block; font-size:12px; color:var(--muted); margin-top:6px; }
+.story-record-body { padding:8px 0 28px; }
+.story-record .record-note { font-size:13px; color:var(--muted); padding:16px; background:var(--paper-2); border:1px solid var(--line); margin-bottom:24px; }
+.story-record .pipeline { margin:20px 0 30px; }
+.story-foot { padding:22px 0 48px; border-top:1px solid var(--line); display:flex; flex-wrap:wrap; justify-content:space-between; gap:18px; font-size:14px; }
+.story-related { margin:28px 0; display:grid; gap:14px; }
+.story-related a { font-size:14px; color:var(--ink-soft); text-underline-offset:5px; }
+.story-scope { border-left:2px solid var(--line-strong); padding:4px 0 4px 18px; font-size:13px; line-height:1.85; color:var(--muted); margin:28px 0; }
+@media(max-width:600px) {
+ .story-head { padding-top:28px; padding-bottom:18px; }
+ .story-head h1 { font-size:34px; margin-top:22px; }
+ .story-lead { font-size:21px; }
+ .story-body { margin-top:34px; }
+ .story-body section { margin-bottom:36px; }
+ .story-body h2 { font-size:24px; }
+ .story-body p, .story-opening { font-size:15px; }
+ .story-quote { font-size:23px; padding-left:16px; }
+}

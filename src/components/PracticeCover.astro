@@ -1,0 +1,46 @@
+---
+interface Props { kind: string; }
+const { kind } = Astro.props;
+---
+<div class={`practice-cover cover-${kind}`}>
+  {kind === "contest" ? <>
+    <svg viewBox="0 0 640 360" role="img" aria-label="真实作品广场的单卡局部；作品名称、部门和投票信息已遮蔽，不是作品实机画面">
+      <rect width="640" height="360" fill="#eee6da" />
+      <svg x="164" y="30" width="312" height="294" viewBox="537 437 367 311" preserveAspectRatio="xMidYMid meet">
+        <image href="/systems/ai-creation-contest/works-gallery.jpg" width="1440" height="900" />
+        <rect x="548" y="562" width="344" height="40" rx="4" fill="#ffffff" />
+        <rect x="550" y="645" width="340" height="99" rx="4" fill="#ffffff" />
+        <path d="M560 579h105m-105 99h178m-178 17h118" stroke="#e8e0d4" stroke-width="8" stroke-linecap="round" />
+      </svg>
+    </svg>
+    <span class="cover-note">真实作品广场 · 脱敏局部</span>
+  </> : kind === "conversation" ? <>
+    <svg viewBox="0 0 640 360" role="img" aria-label="困难对话练习的概念图：两个人之间留出倾听和回应的空间，不是产品界面">
+      <rect width="640" height="360" fill="#f0e2d5" />
+      <path d="M140 90h170a32 32 0 0 1 32 32v80a32 32 0 0 1-32 32h-80l-50 35v-35h-40a32 32 0 0 1-32-32v-80a32 32 0 0 1 32-32z" fill="#fbf8f2" stroke="#b7a58f" stroke-width="2" />
+      <path d="M345 140h145a30 30 0 0 1 30 30v66a30 30 0 0 1-30 30h-25v30l-44-30h-76a30 30 0 0 1-30-30v-66a30 30 0 0 1 30-30z" fill="#b8492a" />
+      <path d="M154 140h127m-127 25h84" stroke="#5b4a3c" stroke-width="4" stroke-linecap="round" />
+      <path d="M365 185h106m-106 25h66" stroke="#fff5e9" stroke-width="4" stroke-linecap="round" />
+      <path d="M160 300h320" stroke="#cdbca9" stroke-width="1" />
+    </svg>
+    <span class="cover-note">对练与倾听 · 概念图</span>
+  </> : <>
+    <svg viewBox="0 0 640 360" role="img" aria-label="按任务协作的概念示意：把相关经历、已确认判断和协作规则交给有权限的 Agent，不表示功能已全部完成">
+      <rect width="640" height="360" fill="#ece8dc" />
+      <g fill="#faf8f4" stroke="#b9ae99" stroke-width="1.5">
+        <rect x="82" y="60" width="195" height="66" rx="8" /><rect x="82" y="146" width="195" height="66" rx="8" /><rect x="82" y="232" width="195" height="66" rx="8" />
+      </g>
+      <g fill="#473d35" font-size="22" font-family="sans-serif"><text x="113" y="101">相关经历</text><text x="113" y="187">已确认判断</text><text x="113" y="273">协作规则</text></g>
+      <path d="M292 93h38v172h-38m38-86h45" stroke="#b9ae99" fill="none" stroke-width="2" />
+      <rect x="381" y="110" width="180" height="140" rx="12" fill="#b8492a" />
+      <g fill="#fff6e9" font-family="sans-serif"><text x="418" y="164" font-size="23">一项任务</text><text x="409" y="202" font-size="17">按需读取背景</text></g>
+    </svg>
+    <span class="cover-note">上下文协作 · 示意图</span>
+  </>}
+</div>
+<style>
+  .practice-cover { position:relative; width:100%; height:100%; overflow:hidden; border-radius:var(--r-md); background:var(--paper-2); }
+  .practice-cover svg { display:block; width:100%; height:100%; object-fit:cover; }
+  .cover-note { position:absolute; left:12px; bottom:9px; font-size:10px; line-height:1.5; color:var(--ink-soft); background:rgba(250,248,244,.92); padding:3px 7px; border-radius:4px; }
+  @media(max-width:600px) { .cover-note { left:5px; right:5px; bottom:5px; padding:2px; font-size:9px; text-align:center; } }
+</style>
