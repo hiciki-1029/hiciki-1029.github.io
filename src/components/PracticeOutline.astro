@@ -2,50 +2,35 @@
 import { selectedPractices } from "../data/selected-practices";
 import PracticeCover from "./PracticeCover.astro";
 ---
-<div class="practice-outline" aria-label="三组代表实践" data-practice-variant="a">
+<div class="practice-outline" aria-label="三组代表实践">
   {selectedPractices.map(item => <article class="outline-item">
-    <div class="outline-image"><PracticeCover kind={item.kind} /></div>
     <h3>{item.title}</h3>
     <p class="outline-summary">{item.summary}</p>
+    <div class="outline-image"><PracticeCover kind={item.kind} /></div>
     <a class="outline-link" href={item.href}>{item.linkLabel} →</a>
   </article>)}
 </div>
-<script is:inline>
-  // 仅用于本轮两个首页方案的独立评审，不产生新的内容页面。
-  document.querySelectorAll('[data-practice-variant]').forEach(el => {
-    el.dataset.practiceVariant = new URLSearchParams(location.search).get('practice') === 'b' ? 'b' : 'a';
-  });
-</script>
 <style>
-  .practice-outline { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:28px; border-top:1px solid var(--line-strong); padding-top:24px; }
-  .outline-item { min-width:0; display:grid; grid-template-rows:174px auto 1fr auto; align-content:start; gap:15px; }
+  .practice-outline { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:36px; border-top:1px solid var(--line-strong); padding-top:24px; }
+  .outline-item { min-width:0; display:grid; grid-template-rows:auto 1fr 126px auto; align-content:start; gap:13px; border-top:2px solid var(--ochre-soft); padding-top:16px; }
   .outline-image { min-width:0; overflow:hidden; }
-  h3 { font-family:var(--serif); font-size:22px; line-height:1.5; margin:0; color:var(--ink); }
+  h3 { font-family:var(--serif); font-size:24px; line-height:1.5; margin:0; color:var(--ink); }
   .outline-summary { color:var(--ink-soft); font-size:14px; line-height:1.85; margin:0; }
   .outline-link { display:flex; align-items:center; justify-self:start; min-height:40px; font-size:13px; text-underline-offset:5px; }
-  .practice-outline[data-practice-variant="b"] { gap:36px; }
-  [data-practice-variant="b"] .outline-item { grid-template-rows:auto 1fr 126px auto; gap:13px; border-top:2px solid var(--ochre-soft); padding-top:16px; }
-  [data-practice-variant="b"] h3 { grid-row:1; font-size:24px; }
-  [data-practice-variant="b"] .outline-summary { grid-row:2; }
-  [data-practice-variant="b"] .outline-image { grid-row:3; }
   @media(min-width:901px) and (max-width:1150px) { h3 { min-height:3em; } }
   @media(max-width:900px) and (min-width:601px) {
-    .practice-outline, .practice-outline[data-practice-variant="b"] { gap:20px; }
-    .outline-item { grid-template-rows:124px auto 1fr auto; }
-    h3, [data-practice-variant="b"] h3 { font-size:19px; min-height:3em; }
+    .practice-outline { gap:20px; }
+    .outline-item { grid-template-rows:auto 1fr 104px auto; }
+    h3 { font-size:19px; min-height:3em; }
     .outline-summary { font-size:13px; }
-    [data-practice-variant="b"] .outline-item { grid-template-rows:auto 1fr 104px auto; }
   }
   @media(max-width:600px) {
-    .practice-outline, .practice-outline[data-practice-variant="b"] { grid-template-columns:1fr; gap:24px; padding-top:20px; }
-    .outline-item, [data-practice-variant="b"] .outline-item { grid-template-columns:104px minmax(0,1fr); grid-template-rows:auto auto auto; gap:8px 18px; padding:0 0 22px; border-top:0; border-bottom:1px solid var(--line); }
+    .practice-outline { grid-template-columns:1fr; gap:24px; padding-top:20px; }
+    .outline-item { grid-template-columns:minmax(0,1fr) 104px; grid-template-rows:auto auto auto; gap:8px 18px; padding:0 0 22px; border-top:0; border-bottom:1px solid var(--line); }
     .outline-item:last-child { border-bottom:0; padding-bottom:0; }
-    .outline-image, [data-practice-variant="b"] .outline-image { grid-column:1; grid-row:1 / 4; height:116px; align-self:start; }
-    h3, [data-practice-variant="b"] h3 { grid-column:2; grid-row:1; font-size:20px; }
-    .outline-summary, [data-practice-variant="b"] .outline-summary { grid-column:2; grid-row:2; font-size:14px; }
-    .outline-link { grid-column:2; grid-row:3; }
-    [data-practice-variant="b"] .outline-item { grid-template-columns:minmax(0,1fr) 104px; }
-    [data-practice-variant="b"] .outline-image { grid-column:2; }
-    [data-practice-variant="b"] h3, [data-practice-variant="b"] .outline-summary, [data-practice-variant="b"] .outline-link { grid-column:1; }
+    .outline-image { grid-column:2; grid-row:1 / 4; height:116px; align-self:start; }
+    h3 { grid-column:1; grid-row:1; font-size:20px; }
+    .outline-summary { grid-column:1; grid-row:2; font-size:14px; }
+    .outline-link { grid-column:1; grid-row:3; }
   }
 </style>

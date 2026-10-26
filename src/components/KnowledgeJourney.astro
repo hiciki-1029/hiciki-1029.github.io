@@ -9,36 +9,31 @@ const { sys } = Astro.props;
 <section class="narrow story-head">
   <Crumb parent={{ href:"/systems/", label:"AI 实践" }} />
   <h1>从个人知识库<br />到数字分身</h1>
-  <p class="story-lead">不必每次，都从“我是谁”讲起。</p>
-  <p class="story-opening">读过的书、做过的项目、留下的思考，我希望下次需要时能用得上。也希望把写作、研究或项目设计交给 Agent 时，它能在授权范围内读取相关背景，少一点从头解释。</p>
+  <p class="story-lead">让已有积累，在下一次任务里用得上。</p>
+  <p class="story-opening">我用 Obsidian 和 Markdown 保存资料、项目经历、本人确认的判断与协作规则。知识门户让材料可以检索、提问和回到出处；个人上下文则面向下一项写作、研究或项目设计任务。</p>
 </section>
 <article class="narrow story-body context-story">
-  <section>
-    <blockquote class="story-quote">文字读着顺，讲的却未必是我。</blockquote>
-    <p>这次改个人网站，AI 写出的介绍很完整，有些职责和工作内容却不准确。把资料放进知识库，离“了解我”还有距离。</p>
-    <p>所以我更想检查：它为什么认为我会这样选？能不能找到具体的经历和判断，也能不能在不了解时，留一个问题给我。</p>
-  </section>
-  <section class="task-example" aria-labelledby="task-title">
-    <h2 id="task-title">如果交给它一项写作任务</h2>
-    <p>先看这次要写什么，再选有关的材料。以前做过的项目，帮助它知道哪些经历可以写；我确认过的判断，帮助它理解怎样取舍；协作规则，则说明哪些地方应该先问我。</p>
-    <dl class="context-example">
-      <div><dt>这次需要什么背景</dt><dd>相关经历、本人确认的判断、这类任务的协作规则。</dd></div>
-      <div><dt>怎样看结果</dt><dd>先尊重我的判断和真实经历，再看表达是否熟悉。</dd></div>
-    </dl>
-    <p class="example-caption">协作方式示意，不含私人文件或真实任务数据。</p>
-  </section>
-  <section>
-    <h2>读过、认同、做过，要分清。</h2>
-    <p>收藏了一套引导方法，不代表我实践过；AI 从材料里总结出一个观点，也不代表我已经认可。我把原始资料、AI 的整理和自己确认的判断分开。它可以提建议，最后由我决定哪些留下。</p>
-    <p>如果每次还要纠正它替我编出的经历，这个系统就没有帮到我。协作是否贴合实际需要，比说话像不像我更值得检验。</p>
-  </section>
   <section id="case-media">
-    <h2>已有的基础：资料能回到出处。</h2>
-    <p>知识门户已经留下了可以检索、提问和回看来源的实践。“资料说了什么”与“我的观察”分开存放，读书蒸馏工具也已开源。</p>
+    <h2>先有一份可以重新调用的积累。</h2>
+    <p>书、报告和项目记录归入知识库，资料中的结论与“我的观察”分开存放。已有门户可以浏览资料、提问并查看原始来源，读书蒸馏工具也已开源。</p>
     {sys.data.media.map(m => <figure class="story-media">{m.type === "video" ? <video controls playsinline preload="none" poster={m.poster} src={m.src} aria-label="已有知识门户演示"></video> : <img src={m.src} alt={m.caption} loading="lazy" />}<figcaption>{m.caption}</figcaption></figure>)}
     {sys.data.link && <p class="portal-link"><a href={sys.data.link} target="_blank" rel="noopener">{sys.data.linkLabel} ↗</a></p>}
   </section>
-  <aside class="story-scope">这是持续探索中的个人实践：录屏展示的是已有知识门户，跨 Agent 协作仍需逐项验证。个人材料按授权读取，也不意味着 AI 可以独立代表我发言。</aside>
+  <section class="task-example" aria-labelledby="task-title">
+    <h2 id="task-title">接到任务时，先找相关背景。</h2>
+    <p>把一项写作、研究或项目设计任务交给 Agent 时，相关的 Markdown 文件可以提供经历、已确认的判断和协作偏好。不同任务选不同材料，不必每次重新介绍，也不必一次读取全部记录。</p>
+    <dl class="context-example">
+      <div><dt>例如，一项写作任务</dt><dd>选取与主题有关的项目记录、本人认可的判断，以及这类写作的协作规则。</dd></div>
+      <div><dt>拿到结果，再检查</dt><dd>经历有没有写错，资料有没有被当作我的立场，哪些判断还需要本人确认。</dd></div>
+    </dl>
+    <p class="example-caption">按任务协作的使用方式示意，不含私人文件或真实任务结果。</p>
+  </section>
+  <section class="context-reflection">
+    <h2>留下的判断，比存下的资料更重要。</h2>
+    <p>接触过的资料先作为参考；本人确认的判断才表达立场；真实经历需要可以核实。先让协作尊重这些区别，再考虑表达是不是熟悉。</p>
+    <p><a href="/writing/a-library-that-can-disagree/">为什么这样区分？读《知识库里的东西，怎样才算是我的？》 ↗</a></p>
+  </section>
+  <aside class="story-scope">录屏展示的是已实现的知识门户；个人上下文与按任务读取依据本人确认的实践描述，具体 Agent 的接入范围、真实任务结果及跨客户端效果尚未公开核验。读取以授权为前提，AI 不独立代表本人发言。</aside>
   <details class="story-record" id="implementation">
     <summary><span>具体方法与原始记录<small>个人上下文设计 · 知识采集与同步 · 出处管理</small></span></summary>
     <div class="story-record-body prose">
@@ -51,8 +46,7 @@ const { sys } = Astro.props;
       <slot />
     </div>
   </details>
-  <nav class="story-related" aria-label="相关内容">
-    <a href="/writing/a-library-that-can-disagree/">继续读：知识库里的东西，怎样才算是我的？ ↗</a>
+  <nav class="story-related" aria-label="相关实践">
     <a href="/systems/hr-intel-agent/">资讯与报告研究助手 ↗</a>
     <a href="/systems/personal-ai-ops/">个人 AI 工作系统 ↗</a>
   </nav>
@@ -66,6 +60,6 @@ const { sys } = Astro.props;
  .context-example dt { color:var(--ochre-deep); font-size:13px; margin-bottom:7px; }
  .context-example dd { margin:0; font-size:15px; line-height:1.85; color:var(--ink-soft); }
  .task-example .example-caption { font-size:11px; color:var(--muted); margin:14px 0 0; }
- .story-body .portal-link { margin:18px 0 0; font-size:14px; }
+ .story-body .portal-link, .story-body .context-reflection p:last-child { margin:18px 0 0; font-size:14px; }
  @media(max-width:600px) { .task-example { padding:22px 18px; } }
 </style>

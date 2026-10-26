@@ -4,16 +4,8 @@ const { kind } = Astro.props;
 ---
 <div class={`practice-cover cover-${kind}`}>
   {kind === "contest" ? <>
-    <svg viewBox="0 0 640 360" role="img" aria-label="真实作品广场的单卡局部；作品名称、部门和投票信息已遮蔽，不是作品实机画面">
-      <rect width="640" height="360" fill="#eee6da" />
-      <svg x="164" y="30" width="312" height="294" viewBox="537 437 367 311" preserveAspectRatio="xMidYMid meet">
-        <image href="/systems/ai-creation-contest/works-gallery.jpg" width="1440" height="900" />
-        <rect x="548" y="562" width="344" height="40" rx="4" fill="#ffffff" />
-        <rect x="550" y="645" width="340" height="99" rx="4" fill="#ffffff" />
-        <path d="M560 579h105m-105 99h178m-178 17h118" stroke="#e8e0d4" stroke-width="8" stroke-linecap="round" />
-      </svg>
-    </svg>
-    <span class="cover-note">真实作品广场 · 脱敏局部</span>
+    <img src="/systems/ai-creation-contest/cover.jpg" alt="既有赛事创作概念插画，不是参赛作品或产品实机画面" width="1600" height="900" loading="lazy" decoding="async" />
+    <span class="cover-note">赛事创作 · 概念图</span>
   </> : kind === "conversation" ? <>
     <svg viewBox="0 0 640 360" role="img" aria-label="困难对话练习的概念图：两个人之间留出倾听和回应的空间，不是产品界面">
       <rect width="640" height="360" fill="#f0e2d5" />
@@ -40,7 +32,7 @@ const { kind } = Astro.props;
 </div>
 <style>
   .practice-cover { position:relative; width:100%; height:100%; overflow:hidden; border-radius:var(--r-md); background:var(--paper-2); }
-  .practice-cover svg { display:block; width:100%; height:100%; object-fit:cover; }
+  .practice-cover svg, .practice-cover img { display:block; width:100%; height:100%; object-fit:cover; }
   .cover-note { position:absolute; left:12px; bottom:9px; font-size:10px; line-height:1.5; color:var(--ink-soft); background:rgba(250,248,244,.92); padding:3px 7px; border-radius:4px; }
   @media(max-width:600px) { .cover-note { left:5px; right:5px; bottom:5px; padding:2px; font-size:9px; text-align:center; } }
 </style>

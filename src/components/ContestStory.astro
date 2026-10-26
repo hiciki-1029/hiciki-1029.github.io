@@ -14,7 +14,7 @@ const { sys } = Astro.props;
   <p class="story-opening">我把 AI 学习放进了新人培养里的一项真实任务：从工作或兴趣出发，做出别人可以体验的作品。创意表达和工作提效各设一条赛道，让不同背景的人都有可以开始的题目。</p>
 </section>
 <section class="wrap contest-results" id="case-media" aria-labelledby="contest-results-title">
-  <figure class="contest-excerpt"><PracticeCover kind="contest" /><figcaption>作品广场中的一件作品。名称、归属与投票信息已遮蔽；这是成果展示页面的局部。</figcaption></figure>
+  <figure class="contest-excerpt"><PracticeCover kind="contest" /><figcaption>赛事创作概念图。真实成果画面待源文件完成脱敏并确认后再补充。</figcaption></figure>
   <div><h2 id="contest-results-title">想法，变成了二十余件作品。</h2><p>三周里，新人交出了小游戏、互动漫剧，也做了智能体、工作流和任务管理工具。作品广场让它们有了一个能被找到、被体验和收到反馈的地方。</p><p>比起列出用了多少工具，我更想留下的是：这个人发现了什么问题，又做过哪些选择。</p></div>
 </section>
 <article class="narrow story-body">
@@ -32,7 +32,7 @@ const { sys } = Astro.props;
   <details class="story-record" id="implementation">
     <summary><span>组织方法与原始记录<small>赛道 · 陪跑 · 试玩 · 评价机制 · 原录屏</small></span></summary>
     <div class="story-record-body prose">
-      <p class="record-note">以下保留原公开正文、数据口径与六步流程。本轮没有新增成效统计。原录屏仍出现参赛者姓名等信息，暂仅放在本人可见的评审预览中，正式采用前需要重新脱敏；原文件未改。</p>
+      <p class="record-note">以下保留原公开正文、数据口径与六步流程。本轮没有新增成效统计。原录屏仍出现参赛者身份和企业关联信息；线上核查确认正式网站也在引用相同文件。本轮只在本人私有预览内保留供核查，正式处置及源文件重新脱敏仍待确认；原文件未改。</p>
       <h2>{sys.data.title}</h2><p>{sys.data.tagline}</p>
       <Pipeline steps={sys.data.pipeline} />
       <slot />
