@@ -5,55 +5,40 @@ import { selectedPractices } from "../data/selected-practices";
 <div class="practice-outline" aria-label="三组代表实践">
   {selectedPractices.map(item => (
     <article class="outline-item">
-      <a class="outline-image" href={item.href} aria-label={`查看${item.title}`}>
+      <div class="outline-image">
         <img src={item.image} alt={item.imageAlt} width="1440" height="900" loading="lazy" decoding="async" />
-        <span>{item.imageNote}</span>
-      </a>
-      <div class="outline-copy">
-        <span class="outline-perspective"><span class="outline-number">{item.number}</span>{item.perspective}</span>
-        <h3><a href={item.href}>{item.title}<span class="outline-arrow" aria-hidden="true">↗</span></a></h3>
-        <p class="outline-summary">{item.summary}</p>
-        <p class="outline-stage">{item.stage}</p>
-        <div class="outline-links">
-          <a href={item.href}>{item.linkLabel} →</a>
-          {item.relatedHref && <a class="outline-related" href={item.relatedHref}>{item.relatedLabel} ↗</a>}
-        </div>
       </div>
+      <h3>{item.title}</h3>
+      <p class="outline-summary">{item.summary}</p>
+      <a class="outline-link" href={item.href}>{item.linkLabel} →</a>
     </article>
   ))}
 </div>
 
 <style>
-  .practice-outline { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:28px; border-top:1px solid var(--line-strong); padding-top:28px; }
-  .outline-item { min-width:0; display:flex; flex-direction:column; }
-  .outline-image { position:relative; display:block; color:var(--ink); border:1px solid var(--line); border-radius:var(--r-md); overflow:hidden; background:var(--paper-2); }
-  .outline-image img { display:block; width:100%; height:auto; aspect-ratio:16/10; object-fit:contain; }
-  .outline-image > span { display:block; padding:9px 12px; border-top:1px solid var(--line); font-size:10px; color:var(--muted); background:var(--paper); }
-  .outline-copy { display:flex; flex-direction:column; flex:1; padding-top:22px; }
-  .outline-perspective { display:flex; align-items:baseline; gap:10px; color:var(--ochre-deep); font-size:11px; }
-  .outline-number { color:var(--ochre); font-size:12px; }
-  h3 { font-family:var(--serif); font-size:23px; line-height:1.55; margin:12px 0 16px; }
-  h3 a { display:block; color:var(--ink); text-decoration:none; padding-right:16px; position:relative; }
-  h3 a:hover { color:var(--ochre-deep); }
-  .outline-arrow { position:absolute; right:0; top:2px; color:var(--ochre); font-family:var(--sans); font-size:16px; }
-  .outline-summary { color:var(--ink-soft); font-size:14px; line-height:1.9; margin:0; }
-  .outline-stage { color:var(--muted); font-size:11px; margin:16px 0 0; padding-top:14px; border-top:1px solid var(--line); }
-  .outline-links { display:flex; flex-wrap:wrap; gap:10px 18px; margin-top:auto; padding-top:18px; font-size:12px; }
-  .outline-links a { display:inline-flex; align-items:center; min-height:32px; text-underline-offset:5px; }
-  .outline-related { color:var(--ink-soft); }
+  .practice-outline { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:28px; border-top:1px solid var(--line-strong); padding-top:24px; }
+  .outline-item { min-width:0; display:grid; grid-template-rows:156px auto 1fr auto; align-content:start; gap:14px; }
+  .outline-image { min-width:0; overflow:hidden; border:1px solid var(--line); border-radius:var(--r-md); background:var(--paper-2); }
+  .outline-image img { display:block; width:100%; height:100%; object-fit:contain; }
+  h3 { font-family:var(--serif); font-size:22px; line-height:1.5; margin:0; color:var(--ink); }
+  .outline-summary { color:var(--ink-soft); font-size:14px; line-height:1.85; margin:0; }
+  .outline-link { display:flex; align-items:center; justify-self:start; min-height:40px; font-size:13px; text-underline-offset:5px; }
+  @media(min-width:901px) and (max-width:1150px) {
+    h3 { min-height:3em; }
+  }
   @media(max-width:900px) {
-    .practice-outline { grid-template-columns:1fr; gap:28px; }
-    .outline-item { display:grid; grid-template-columns:minmax(0,.85fr) minmax(0,1fr); gap:26px; padding-bottom:28px; border-bottom:1px solid var(--line); }
-    .outline-copy { padding-top:0; }
-    .outline-image { align-self:start; }
+    .practice-outline { grid-template-columns:1fr; gap:24px; }
+    .outline-item { grid-template-columns:164px minmax(0,1fr); grid-template-rows:auto auto auto; gap:10px 24px; padding-bottom:24px; border-bottom:1px solid var(--line); }
+    .outline-item:last-child { padding-bottom:0; border-bottom:0; }
+    .outline-image { grid-row:1 / 4; align-self:start; aspect-ratio:16/10; }
+    h3, .outline-summary, .outline-link { grid-column:2; }
   }
   @media(max-width:600px) {
-    .practice-outline { padding-top:24px; gap:32px; }
-    .outline-item { display:flex; gap:0; padding-bottom:32px; }
-    .outline-copy { padding-top:20px; }
-    h3 { font-size:25px; margin:10px 0 14px; }
+    .practice-outline { gap:20px; padding-top:20px; }
+    .outline-item { grid-template-columns:88px minmax(0,1fr); gap:12px 16px; padding-bottom:20px; }
+    .outline-image { grid-column:1; grid-row:1; align-self:center; aspect-ratio:4/3; }
+    h3 { grid-column:2; align-self:center; font-size:21px; }
+    .outline-summary, .outline-link { grid-column:1 / -1; }
     .outline-summary { font-size:15px; }
-    .outline-links { font-size:13px; gap:8px 20px; padding-top:12px; }
-    .outline-links a { min-height:40px; }
   }
 </style>
