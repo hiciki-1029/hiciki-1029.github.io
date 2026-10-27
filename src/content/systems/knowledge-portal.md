@@ -12,11 +12,7 @@ tags: ["知识门户", "可溯源问答", "有据可查"]
 pipeline: ["多端采集", "四段式解读", "Obsidian 真身沉淀", "签名发布", "可溯源问答"]
 link: "https://github.com/hiciki-1029/book-digest-hq"
 linkLabel: "开源的读书蒸馏器"
-media:
-  - type: video
-    src: /systems/knowledge-portal/knowledge-portal.mp4
-    poster: /systems/knowledge-portal/knowledge-portal.jpg
-    caption: "实机演示：先逛资料库、洞察与我的观察，再向知识库提问（Copilot），五段式回答逐条附原始来源"
+media: []
 order: 1
 ---
 
