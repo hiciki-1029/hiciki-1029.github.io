@@ -1,0 +1,25 @@
+/* Scoped refinements for purpose selection and readable review evidence. */
+#goal-response .goal-design{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;text-align:left}
+#goal-response .goal-design b{font-size:14px;color:var(--green)}
+#goal-response .goal-design p{font-size:16px;line-height:1.7;margin-top:8px}
+.local-review .review-principles{gap:13px}
+.local-review .review-principles b{font-size:25px}
+.local-review .review-principles span{font-size:15px}
+.local-opinion-counts{gap:8px;border:0!important;padding:0!important}
+.local-opinion-counts>div{padding:4px 8px}
+.local-opinion-counts b{font-size:34px!important;color:var(--green)}
+.local-opinion-counts span{font-size:15px;margin-top:3px}
+.local-opinion-caption{font-size:16px;line-height:1.5;color:var(--ink);margin-top:5px}
+.local-review-criteria{font-size:15px;line-height:1.8;color:var(--muted);margin-top:18px}
+.local-review-summary{font-size:19px;margin-bottom:12px;color:var(--green)}
+.local-review-process #sealed-reviews{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;padding:12px}
+.local-review-process .sealed-card{min-height:100px;padding:10px}
+.local-review-process .seal-graphic{height:22px}
+.local-review-process .sealed-card p{font-size:13px;margin-top:7px}
+.local-review-process .review-actions{margin-top:12px}
+.local-review-process .stage-detail{min-height:0;margin-top:12px;padding:12px}
+.local-review-process .local-opinion-counts{margin-top:12px}
+.local-review-process .local-opinion-counts b{font-size:28px!important}
+.local-review-process .local-opinion-caption{font-size:15px}
+.slide:has(#review-process:not([hidden])) .local-review-criteria{display:none}
+@media(max-width:800px){#goal-response .goal-design{grid-template-columns:1fr;gap:12px}.local-review .review-principles{grid-template-columns:1fr}.local-review-process #sealed-reviews{grid-template-columns:1fr 1fr}.local-review .review-principles b{font-size:23px}}
